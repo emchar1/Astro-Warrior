@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dhjrypf6u5eg0"]
+
+[ext_resource type="PackedScene" uid="uid://cesijpmwifb24" path="res://scenes/title.tscn" id="1_o5qli"]
+[ext_resource type="Shader" uid="uid://cmapxcydnv8ti" path="res://assets/shaders/crt.gdshader" id="2_0wfyh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lb7rc"]
+shader = ExtResource("2_0wfyh")
+shader_parameter/mask_density = 400.0
+shader_parameter/mask_intensity = 0.2
+shader_parameter/convergence_intensity = 0.02
+shader_parameter/halation_intensity = 0.5
+shader_parameter/halation_radius = 2.0
+shader_parameter/tv_brightness = -0.1
+shader_parameter/tv_contrast = 1.25
+shader_parameter/tv_saturation = 0.75
+shader_parameter/vignette_intensity = 0.5
+shader_parameter/vignette_smoothness = 0.5
+shader_parameter/corner_radius = 0.01
+shader_parameter/border_thickness_horizontal = 0.006
+shader_parameter/border_thickness_vertical = 0.008
+shader_parameter/border_smoothness = 0.002
+
+[node name="Main" type="Node2D" unique_id=24805113]
+
+[node name="Title" parent="." unique_id=696923215 instance=ExtResource("1_o5qli")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=113334314]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=277713631]
+material = SubResource("ShaderMaterial_lb7rc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
