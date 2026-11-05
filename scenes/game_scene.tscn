@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://h4rfk6iroky"]
+
+[ext_resource type="Script" uid="uid://by07bmaiq2n5o" path="res://scripts/game_scene.gd" id="1_bw6k5"]
+[ext_resource type="PackedScene" uid="uid://dqa6q46ty7ylj" path="res://scenes/level1.tscn" id="2_y3j0m"]
+[ext_resource type="PackedScene" uid="uid://brfkrsw3ex2l5" path="res://scenes/player.tscn" id="3_rurhu"]
+[ext_resource type="AudioStream" uid="uid://b4r2kt37pu0ba" path="res://assets/sounds/galaxy_zone.ogg" id="4_kk2rg"]
+
+[node name="GameScene" type="Node2D" unique_id=1416097669]
+script = ExtResource("1_bw6k5")
+
+[node name="BackgroundRect" type="ColorRect" parent="." unique_id=1628103260]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 256.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Level1" parent="." unique_id=138710807 instance=ExtResource("2_y3j0m")]
+
+[node name="Player" parent="." unique_id=1879099976 instance=ExtResource("3_rurhu")]
+position = Vector2(128, 160)
+
+[node name="IntroAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=563750417]
+bus = &"Music"
+
+[node name="LoopAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1860689019]
+stream = ExtResource("4_kk2rg")
+bus = &"Music"
+parameters/looping = true

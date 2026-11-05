@@ -19,8 +19,8 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and title_scene != null:
-		var level_scene = preload("res://scenes/level_map.tscn").instantiate()
-		_swap_scene(title_scene, level_scene)
+		var game_scene = preload("res://scenes/game_scene.tscn").instantiate()
+		_swap_scene(title_scene, game_scene)
 
 
 # HELPER FUNCTIONS

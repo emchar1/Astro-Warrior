@@ -26,7 +26,6 @@ size = Vector2(3, 9)
 
 [node name="Bullet" type="Area2D" unique_id=138294319 groups=["bullet"]]
 script = ExtResource("1_mkf8s")
-speed = 400.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=535230423]
 texture = SubResource("GradientTexture2D_u3pco")
