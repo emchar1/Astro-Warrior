@@ -108,7 +108,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_pyl7j"]
 resource_name = "title"
-length = 17.554
+length = 17.56
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true

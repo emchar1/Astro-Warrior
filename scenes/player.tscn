@@ -33,7 +33,8 @@ region = Rect2(0, 0, 16, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_u3pco"]
 radius = 8.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1879099976]
+[node name="Player" type="CharacterBody2D" unique_id=1879099976 groups=["player"]]
+z_index = 1
 script = ExtResource("1_g2els")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=860501452]
@@ -43,3 +44,7 @@ texture = SubResource("AtlasTexture_u8vuu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1788954422]
 shape = SubResource("CircleShape2D_u3pco")
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=608537734]
+wait_time = 0.2
+one_shot = true

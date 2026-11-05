@@ -2,9 +2,11 @@ extends CharacterBody2D
 
 # PROPERTIES
 
-const SPRITE_LEN = 8.0
+const SPRITE_LEN = 10.0
+const BULLET_SCENE = preload("res://scenes/bullet.tscn")
 
 @export var speed: float = 80.0
+@onready var shoot_timer = $ShootTimer
 
 var move_dir: Vector2
 
@@ -33,6 +35,13 @@ func _read_input() -> void:
 		"move_up",
 		"move_down"
 	)
+	
+	if Input.is_action_just_pressed("shoot"):
+		_shoot()
+		shoot_timer.start()
+	elif Input.is_action_pressed("shoot") and shoot_timer.is_stopped():
+		_shoot()
+		shoot_timer.start()
 
 
 func _read_movement() -> void:
@@ -49,3 +58,9 @@ func _read_movement() -> void:
 	
 	if position.y >= GameState.screen_size.y - SPRITE_LEN and velocity.y > 0:
 		velocity.y = 0
+
+
+func _shoot() -> void:
+	var bullet = BULLET_SCENE.instantiate()
+	get_parent().add_child(bullet)
+	bullet.global_position = global_position
