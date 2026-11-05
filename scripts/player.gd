@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 # PROPERTIES
 
+const SPRITE_LEN = 8.0
+
 @export var speed: float = 80.0
 
 var move_dir: Vector2
@@ -15,9 +17,10 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_read_input()
 	_read_movement()
+	
 	move_and_slide()
 
 
@@ -33,15 +36,16 @@ func _read_input() -> void:
 
 
 func _read_movement() -> void:
-	if not _check_bounds(position):
-		return
+	velocity = move_dir * speed
 	
-	velocity.x = move_dir.x * speed
-	velocity.y = move_dir.y * speed
-
-
-func _check_bounds(pos: Vector2) -> bool:
-	if pos.x <= 8 or pos.x >= 248 or pos.y <= 8 or pos.y >= 184:
-		return false
+	if position.x <= SPRITE_LEN and velocity.x < 0:
+		velocity.x = 0
 	
-	return true
+	if position.x >= GameState.screen_size.x - SPRITE_LEN and velocity.x > 0:
+		velocity.x = 0
+	
+	if position.y <= SPRITE_LEN and velocity.y < 0:
+		velocity.y = 0
+	
+	if position.y >= GameState.screen_size.y - SPRITE_LEN and velocity.y > 0:
+		velocity.y = 0
