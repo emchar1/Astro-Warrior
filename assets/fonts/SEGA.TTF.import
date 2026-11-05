@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bvg8gbx64bc05"
-path="res://.godot/imported/Jersey10-Regular.ttf-200460e514ca6d2634756f713ee1b38e.fontdata"
+uid="uid://boyocp4bijvdg"
+path="res://.godot/imported/SEGA.TTF-2c66c542726ac5c21e90a67bb5a99fac.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/Jersey10-Regular.ttf"
-dest_files=["res://.godot/imported/Jersey10-Regular.ttf-200460e514ca6d2634756f713ee1b38e.fontdata"]
+source_file="res://assets/fonts/SEGA.TTF"
+dest_files=["res://.godot/imported/SEGA.TTF-2c66c542726ac5c21e90a67bb5a99fac.fontdata"]
 
 [params]
 

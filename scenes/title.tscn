@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cesijpmwifb24"]
 
-[ext_resource type="Script" uid="uid://bbcur721rk7k8" path="res://scripts/title.gd" id="1_b3w7a"]
 [ext_resource type="Texture2D" uid="uid://n71en6xvf3ay" path="res://assets/images/title_sprite.png" id="2_p6dhs"]
 [ext_resource type="Texture2D" uid="uid://dyg6jkcdlol5g" path="res://assets/images/title_title.png" id="2_pyl7j"]
 [ext_resource type="AudioStream" uid="uid://6l1q6xgsm6y" path="res://assets/sounds/title.ogg" id="2_wosw1"]
 [ext_resource type="FontFile" uid="uid://x1l36w7tdkds" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_pyl7j"]
+[ext_resource type="FontFile" uid="uid://boyocp4bijvdg" path="res://assets/fonts/SEGA.TTF" id="5_4rr2b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3w7a"]
 atlas = ExtResource("2_pyl7j")
@@ -49,27 +49,47 @@ animations = [{
 "speed": 50.0
 }]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_u3pco"]
-radius = 1.0
-height = 16.0
+[sub_resource type="BoxMesh" id="BoxMesh_qhqgy"]
+size = Vector3(6, 32, 1)
 
 [sub_resource type="Gradient" id="Gradient_pyl7j"]
-colors = PackedColorArray(1, 1, 0, 1, 1, 0.36078432, 0, 1)
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0.36078432, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_b3w7a"]
 gradient = SubResource("Gradient_pyl7j")
 fill_to = Vector2(0, 1)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_b3w7a"]
-radius = 1.0
-height = 18.0
+[sub_resource type="BoxMesh" id="BoxMesh_u3pco"]
+size = Vector3(3, 32, 1)
+
+[sub_resource type="Gradient" id="Gradient_4rr2b"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lb7rc"]
+gradient = SubResource("Gradient_4rr2b")
+
+[sub_resource type="BoxMesh" id="BoxMesh_b3w7a"]
+size = Vector3(6, 36, 1)
 
 [sub_resource type="Gradient" id="Gradient_b3w7a"]
-colors = PackedColorArray(1, 1, 0, 1, 1, 0.36078432, 0, 1)
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0.36078432, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4rr2b"]
 gradient = SubResource("Gradient_b3w7a")
 fill_to = Vector2(0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lb7rc"]
+size = Vector3(3, 36, 1)
+
+[sub_resource type="Gradient" id="Gradient_yql1r"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jpsmn"]
+gradient = SubResource("Gradient_yql1r")
 
 [sub_resource type="Animation" id="Animation_wosw1"]
 length = 0.001
@@ -84,30 +104,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Laser0:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(68.00001, 39)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Laser1:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(80, 40)]
 }
 
 [sub_resource type="Animation" id="Animation_pyl7j"]
@@ -140,35 +136,81 @@ tracks/1/keys = {
 "update": 1,
 "values": [1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0]
 }
-tracks/2/type = "value"
+tracks/2/type = "animation"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Laser0:position")
+tracks/2/path = NodePath("AnimationPlayers/AnimationPlayerLasers")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 3, 3.02, 3.22, 3.3, 3.32, 3.52, 3.6, 3.62, 3.82, 6.799981, 6.819981, 7.0199814, 7.0999813, 7.119981, 7.319981, 7.399981, 7.419981, 7.619981, 11.000035, 11.020036, 11.220036, 11.300035, 11.320035, 11.520036, 11.600036, 11.620035, 11.820035, 14.699983, 14.719983, 14.919983, 14.999983, 15.019982, 15.219983, 15.299983, 15.319983, 15.519982),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 200), Vector2(0, 200), Vector2(68.00001, 39), Vector2(0, 200), Vector2(0, 200), Vector2(68.00001, 39), Vector2(0, 200), Vector2(0, 200), Vector2(68.00001, 39), Vector2(0, 200), Vector2(0, 200), Vector2(68.00001, 39), Vector2(0, 200), Vector2(0, 200), Vector2(68.00001, 39), Vector2(0, 200), Vector2(0, 200), Vector2(68.00001, 39), Vector2(0, 200), Vector2(0, 200), Vector2(68.00001, 39), Vector2(0, 200), Vector2(0, 200), Vector2(68.00001, 39), Vector2(0, 200), Vector2(0, 200), Vector2(68.00001, 39), Vector2(0, 200), Vector2(0, 200), Vector2(68.00001, 39), Vector2(0, 200), Vector2(0, 200), Vector2(68.00001, 39), Vector2(0, 200), Vector2(0, 200), Vector2(68.00001, 39), Vector2(0, 200)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Laser1:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 3, 3.02, 3.22, 3.3, 3.32, 3.52, 3.6, 3.62, 3.82, 6.799981, 6.819981, 7.0199814, 7.0999813, 7.119981, 7.319981, 7.399981, 7.419981, 7.619981, 11.000035, 11.020036, 11.220036, 11.300035, 11.320035, 11.520036, 11.600036, 11.620035, 11.820035, 14.699983, 14.719983, 14.919983, 14.999983, 15.019982, 15.219983, 15.299983, 15.319983, 15.519982),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(80, 202), Vector2(80, 202), Vector2(80, 40), Vector2(80, 202), Vector2(80, 202), Vector2(80, 40), Vector2(80, 202), Vector2(80, 202), Vector2(80, 40), Vector2(80, 202), Vector2(80, 202), Vector2(80, 40), Vector2(80, 202), Vector2(80, 202), Vector2(80, 40), Vector2(80, 202), Vector2(80, 202), Vector2(80, 40), Vector2(80, 202), Vector2(80, 202), Vector2(80, 40), Vector2(80, 202), Vector2(80, 202), Vector2(80, 40), Vector2(80, 202), Vector2(80, 202), Vector2(80, 40), Vector2(80, 202), Vector2(80, 202), Vector2(80, 40), Vector2(80, 202), Vector2(80, 202), Vector2(80, 40), Vector2(80, 202), Vector2(80, 202), Vector2(80, 40), Vector2(80, 202)]
+"clips": PackedStringArray("lasers", "lasers", "lasers", "lasers"),
+"times": PackedFloat32Array(3, 6.8, 11, 14.7)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b3w7a"]
 _data = {
 &"RESET": SubResource("Animation_wosw1"),
 &"title": SubResource("Animation_pyl7j")
+}
+
+[sub_resource type="Animation" id="Animation_yql1r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Laser0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10, 210)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Laser1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(86, 216)]
+}
+
+[sub_resource type="Animation" id="Animation_ia1n6"]
+resource_name = "lasers"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Laser0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01999998, 0.22000003, 0.29999995, 0.31999993, 0.52, 0.5999999, 0.6199999, 0.8199998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-10, 210), Vector2(64, 44), Vector2(-10, 210), Vector2(-10, 210), Vector2(64, 44), Vector2(-10, 210), Vector2(-10, 210), Vector2(64, 44), Vector2(-10, 210)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Laser1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01999998, 0.22000003, 0.29999995, 0.31999993, 0.52, 0.5999999, 0.6199999, 0.8199998),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(86, 216), Vector2(80, 46), Vector2(86, 216), Vector2(86, 216), Vector2(80, 46), Vector2(86, 216), Vector2(86, 216), Vector2(80, 46), Vector2(86, 216)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hiwto"]
+_data = {
+&"RESET": SubResource("Animation_yql1r"),
+&"lasers": SubResource("Animation_ia1n6")
 }
 
 [sub_resource type="Animation" id="Animation_b3w7a"]
@@ -210,7 +252,6 @@ _data = {
 }
 
 [node name="Title" type="Node2D" unique_id=696923215]
-script = ExtResource("1_b3w7a")
 metadata/_edit_vertical_guides_ = [207.0, 122.0]
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1360928267]
@@ -227,16 +268,24 @@ frame = 4
 frame_progress = 1.0
 
 [node name="Laser0" type="MeshInstance2D" parent="." unique_id=1874616328]
-position = Vector2(68.00001, 39)
+position = Vector2(-10, 210)
 rotation = 0.41887903
-mesh = SubResource("CapsuleMesh_u3pco")
+mesh = SubResource("BoxMesh_qhqgy")
 texture = SubResource("GradientTexture2D_b3w7a")
 
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Laser0" unique_id=227779082]
+mesh = SubResource("BoxMesh_u3pco")
+texture = SubResource("GradientTexture2D_lb7rc")
+
 [node name="Laser1" type="MeshInstance2D" parent="." unique_id=1920001403]
-position = Vector2(80, 40)
+position = Vector2(86, 216)
 rotation = -0.03839724
-mesh = SubResource("CapsuleMesh_b3w7a")
+mesh = SubResource("BoxMesh_b3w7a")
 texture = SubResource("GradientTexture2D_4rr2b")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Laser1" unique_id=531876308]
+mesh = SubResource("BoxMesh_lb7rc")
+texture = SubResource("GradientTexture2D_jpsmn")
 
 [node name="Labels" type="Control" parent="." unique_id=863416524]
 layout_mode = 3
@@ -275,22 +324,40 @@ text = "PUSH START BUTTON"
 
 [node name="CopyrightLabel" type="Label" parent="Labels" unique_id=661841130]
 layout_mode = 0
-offset_left = 123.0
+offset_left = 137.0
 offset_top = 169.0
-offset_right = 207.0
+offset_right = 221.0
 offset_bottom = 181.0
 theme_override_fonts/font = ExtResource("3_pyl7j")
 theme_override_font_sizes/font_size = 7
-text = "© GODOT 2026"
+text = "©     2026"
+
+[node name="GodotLabel" type="Label" parent="Labels" unique_id=608604804]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 169.0
+offset_right = 206.0
+offset_bottom = 179.0
+theme_override_fonts/font = ExtResource("5_4rr2b")
+theme_override_font_sizes/font_size = 7
+text = "GODOT"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=614597132]
 autoplay = true
 bus = &"Music"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=341499034]
+[node name="AnimationPlayers" type="Node" parent="." unique_id=238349649]
+
+[node name="AnimationPlayerMain" type="AnimationPlayer" parent="AnimationPlayers" unique_id=341499034]
+root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_b3w7a")
 autoplay = &"title"
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=481216273]
+[node name="AnimationPlayerLasers" type="AnimationPlayer" parent="AnimationPlayers" unique_id=2083735993]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_hiwto")
+
+[node name="AnimationPlayerStartButton" type="AnimationPlayer" parent="AnimationPlayers" unique_id=481216273]
+root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_yql1r")
 autoplay = &"push_start"
