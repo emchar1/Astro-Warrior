@@ -50,18 +50,18 @@ animations = [{
 }]
 
 [sub_resource type="BoxMesh" id="BoxMesh_qhqgy"]
-size = Vector3(6, 32, 1)
+size = Vector3(4, 32, 1)
 
 [sub_resource type="Gradient" id="Gradient_pyl7j"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 0.36078432, 0, 1)
+colors = PackedColorArray(1, 0.33333334, 0.32156864, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_b3w7a"]
 gradient = SubResource("Gradient_pyl7j")
 fill_to = Vector2(0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_u3pco"]
-size = Vector3(3, 32, 1)
+size = Vector3(2, 32, 1)
 
 [sub_resource type="Gradient" id="Gradient_4rr2b"]
 offsets = PackedFloat32Array(0)
@@ -71,18 +71,18 @@ colors = PackedColorArray(1, 1, 0, 1)
 gradient = SubResource("Gradient_4rr2b")
 
 [sub_resource type="BoxMesh" id="BoxMesh_b3w7a"]
-size = Vector3(6, 36, 1)
+size = Vector3(4, 36, 1)
 
 [sub_resource type="Gradient" id="Gradient_b3w7a"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 0.36078432, 0, 1)
+colors = PackedColorArray(1, 0.33333334, 0.32156864, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4rr2b"]
 gradient = SubResource("Gradient_b3w7a")
 fill_to = Vector2(0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lb7rc"]
-size = Vector3(3, 36, 1)
+size = Vector3(2, 36, 1)
 
 [sub_resource type="Gradient" id="Gradient_yql1r"]
 offsets = PackedFloat32Array(0)
