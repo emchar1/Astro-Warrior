@@ -2,6 +2,8 @@ extends Node2D
 
 # PROPERTIES
 
+const GAME_SCENE = preload("res://scenes/game_scene.tscn")
+
 @onready var title_scene = $Title
 
 
@@ -19,7 +21,7 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and title_scene != null:
-		var game_scene = preload("res://scenes/game_scene.tscn").instantiate()
+		var game_scene = GAME_SCENE.instantiate()
 		_swap_scene(title_scene, game_scene)
 
 

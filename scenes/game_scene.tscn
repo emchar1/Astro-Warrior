@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://h4rfk6iroky"]
 
 [ext_resource type="Script" uid="uid://by07bmaiq2n5o" path="res://scripts/game_scene.gd" id="1_bw6k5"]
-[ext_resource type="PackedScene" uid="uid://dqa6q46ty7ylj" path="res://scenes/level1.tscn" id="2_y3j0m"]
+[ext_resource type="PackedScene" uid="uid://cci76eyr3jj15" path="res://scenes/level_1.tscn" id="2_bw6k5"]
 [ext_resource type="PackedScene" uid="uid://brfkrsw3ex2l5" path="res://scenes/player.tscn" id="3_rurhu"]
 [ext_resource type="AudioStream" uid="uid://b4r2kt37pu0ba" path="res://assets/sounds/galaxy_zone.ogg" id="4_kk2rg"]
 
@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Level1" parent="." unique_id=138710807 instance=ExtResource("2_y3j0m")]
+[node name="Level1" parent="." unique_id=1258516462 instance=ExtResource("2_bw6k5")]
 
 [node name="Player" parent="." unique_id=1879099976 instance=ExtResource("3_rurhu")]
 position = Vector2(128, 160)

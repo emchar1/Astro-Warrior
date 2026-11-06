@@ -46,5 +46,5 @@ texture = SubResource("AtlasTexture_u8vuu")
 shape = SubResource("CircleShape2D_u3pco")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=608537734]
-wait_time = 0.2
+wait_time = 0.4
 one_shot = true

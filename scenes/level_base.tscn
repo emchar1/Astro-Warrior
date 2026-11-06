@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://p8aq2aco01qd"]
+
+[ext_resource type="Script" uid="uid://b5cwfq3dwydee" path="res://scripts/level_base.gd" id="1_548ah"]
+[ext_resource type="PackedScene" uid="uid://52a6lsqo2kim" path="res://scenes/starfield.tscn" id="2_osu2p"]
+
+[sub_resource type="Gradient" id="Gradient_osu2p"]
+colors = PackedColorArray(1, 0, 1, 1, 0.5019608, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u3pco"]
+gradient = SubResource("Gradient_osu2p")
+fill_to = Vector2(0, 1)
+
+[node name="LevelBase" type="Node2D" unique_id=1258516462]
+script = ExtResource("1_548ah")
+scroll_speed = 20.0
+
+[node name="BackgroundRect" type="TextureRect" parent="." unique_id=689075847]
+offset_top = -1728.0
+offset_right = 256.0
+offset_bottom = 192.0
+texture = SubResource("GradientTexture2D_u3pco")
+
+[node name="Starfield" parent="." unique_id=40263792 instance=ExtResource("2_osu2p")]
