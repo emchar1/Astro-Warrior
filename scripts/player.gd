@@ -36,10 +36,17 @@ func _read_input() -> void:
 		"move_down"
 	)
 	
-	if Input.is_action_just_pressed("shoot"):
-		_shoot()
-		shoot_timer.start()
-	elif Input.is_action_pressed("shoot") and shoot_timer.is_stopped():
+	var shoot_pressed = (
+		Input.is_action_just_pressed("shoot")
+		or Input.is_action_just_pressed("shoot2")
+	)
+	
+	var shoot_held = (
+		Input.is_action_pressed("shoot")
+		or Input.is_action_pressed("shoot2")
+	) and shoot_timer.is_stopped()
+	
+	if shoot_pressed or shoot_held:
 		_shoot()
 		shoot_timer.start()
 
