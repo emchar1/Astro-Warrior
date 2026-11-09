@@ -1,42 +1,42 @@
 [gd_scene format=3 uid="uid://cfh2b4fy025y5"]
 
 [ext_resource type="Script" uid="uid://dhvahwiu874vi" path="res://scripts/bullet.gd" id="1_mkf8s"]
+[ext_resource type="Shader" uid="uid://b3ab0nxvfvaie" path="res://assets/shaders/green_screen.gdshader" id="2_eoqba"]
+[ext_resource type="Texture2D" uid="uid://dtwt4lpssm2je" path="res://assets/images/player_sprite.png" id="2_l5glv"]
 [ext_resource type="AudioStream" uid="uid://c8ows3ekvhir4" path="res://assets/sounds/bullet0.ogg" id="2_y25gk"]
 
-[sub_resource type="Gradient" id="Gradient_h1aey"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 0.33333334, 0.32156864, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tamys"]
+shader = ExtResource("2_eoqba")
+shader_parameter/key_color = Color(0.19215687, 0.7921569, 0.1882353, 1)
+shader_parameter/threshold = 0.2
+shader_parameter/smoothing = 0.05
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_u3pco"]
-gradient = SubResource("Gradient_h1aey")
-width = 2
-height = 8
-
-[sub_resource type="Gradient" id="Gradient_mkf8s"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 1, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_lb7rc"]
-gradient = SubResource("Gradient_mkf8s")
-width = 1
-height = 8
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmsee"]
+atlas = ExtResource("2_l5glv")
+region = Rect2(0, 22, 2, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3pco"]
-size = Vector2(2, 8)
+size = Vector2(2, 11)
 
 [node name="Bullet" type="Area2D" unique_id=138294319 groups=["bullet"]]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_mkf8s")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=535230423]
-texture = SubResource("GradientTexture2D_u3pco")
-
-[node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=1195833626]
-texture = SubResource("GradientTexture2D_lb7rc")
+texture_filter = 1
+material = SubResource("ShaderMaterial_tamys")
+texture = SubResource("AtlasTexture_pmsee")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1814384628]
 shape = SubResource("RectangleShape2D_u3pco")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1313967981]
+rect = Rect2(-1, -5.5, 2, 11)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1270837188]
 stream = ExtResource("2_y25gk")
 autoplay = true
 bus = &"SFX"
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

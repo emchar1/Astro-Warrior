@@ -4,7 +4,7 @@ extends Node2D
 
 const STAR = preload("res://scenes/star.tscn")
 
-@export var density: int = 200
+@export var density: int = 400
 @export var colors: Array[Color] = [
 	Color(0.25, 0.75, 1.0, 1.0),
 	Color(0.0, 0.35, 1.0, 1.0),
