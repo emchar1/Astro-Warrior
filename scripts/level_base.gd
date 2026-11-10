@@ -1,11 +1,12 @@
 extends Node2D
+class_name LevelBase
 
 # PROPERTIES
 
-@export var scroll_speed: float = 200.0
+const ENEMY_GLIDER_SCENE = preload("res://enemy/enemy_glider.tscn")
+const ENEMY_GLIDER_CONFIG = preload("res://resources/enemy_glider.tres")
 
-var spawn_form_a: bool = false
-var spawn_form_ar: bool = false
+@export var scroll_speed: float = 200.0
 
 
 # FUNCTIONS
@@ -26,35 +27,6 @@ func _scroll_level(delta: float) -> void:
 
 
 func _spawn_enemies() -> void:
-	if position.y >= 100:
-		if not spawn_form_a:
-			var scene = load("res://enemy/enemy_glider.tscn")
-			var config = load("res://resources/enemy_glider.tres")
-			
-			spawn_form_a = true
-			
-			for i in range(6):
-				var enemy = scene.instantiate()
-				get_tree().current_scene.add_child(enemy)
-				
-				enemy.enemy_config = config.duplicate()
-				enemy.position = Vector2(GameState.screen_size.x / 2, 0)
-				enemy.setup()
-				await get_tree().create_timer(0.2).timeout
-	
-	if position.y >= 150:
-		if not spawn_form_ar:
-			var scene = load("res://enemy/enemy_glider.tscn")
-			var config = load("res://resources/enemy_glider.tres")
-			
-			spawn_form_ar = true
-			
-			for i in range(6):
-				var enemy = scene.instantiate()
-				get_tree().current_scene.add_child(enemy)
-				
-				enemy.enemy_config = config.duplicate()
-				enemy.enemy_config.type = EnemyConfig.Type.FORM_AR
-				enemy.position = Vector2(GameState.screen_size.x / 2, 0)
-				enemy.setup()
-				await get_tree().create_timer(0.2).timeout
+	# You should override this function with specific Level _spawn_enemies()
+	# implementation.
+	pass

@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cci76eyr3jj15"]
 
 [ext_resource type="PackedScene" uid="uid://p8aq2aco01qd" path="res://scenes/level_base.tscn" id="1_014kd"]
+[ext_resource type="Script" uid="uid://bmwtb1wp6esnf" path="res://scripts/level_1.gd" id="2_bswci"]
 
 [node name="Level1" unique_id=1258516462 instance=ExtResource("1_014kd")]
+script = ExtResource("2_bswci")
 
 [node name="BackgroundRect" parent="." index="0" unique_id=689075847]
 visible = false
