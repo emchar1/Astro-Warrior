@@ -2,10 +2,15 @@ extends CharacterBody2D
 
 # PROPERTIES
 
+signal did_die
+
 const SPRITE_LEN = 10.0
 const BULLET_SCENE = preload("res://scenes/bullet.tscn")
+const ENEMY_DIE_SCENE = preload("res://scenes/enemy_die.tscn")
 
 @export var speed: float = 80.0
+
+@onready var hurtbox = $Hurtbox
 @onready var shoot_timer = $ShootTimer
 
 var move_dir: Vector2
@@ -19,7 +24,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_read_input()
 	_read_movement()
 	
@@ -71,3 +76,30 @@ func _shoot() -> void:
 	var bullet = BULLET_SCENE.instantiate()
 	get_parent().add_child(bullet)
 	bullet.global_position = global_position
+
+
+func _die() -> void:
+	set_physics_process(false)
+	hurtbox.set_deferred("monitoring", false)
+	hide()
+	did_die.emit()
+	
+	var enemy_die = ENEMY_DIE_SCENE.instantiate()
+	get_tree().current_scene.add_child(enemy_die)
+	
+	enemy_die.position = position
+	enemy_die.activate()
+
+
+# SIGNAL CALLBACK FUNCTIONS
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		if body is Enemy:
+			print("I'm hit")
+			_die()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	await get_tree().create_timer(3.0).timeout
+	queue_free()

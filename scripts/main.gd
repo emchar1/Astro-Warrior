@@ -27,7 +27,12 @@ func _input(event: InputEvent) -> void:
 
 # HELPER FUNCTIONS
 
-func _swap_scene(from_scene: Node2D, to_scene: Node2D):
+func _swap_scene(from_scene: Node2D, to_scene: Node2D) -> void:
 	from_scene.queue_free()
 	await get_tree().process_frame
 	add_child(to_scene)
+
+
+func restart_game() -> void:
+	var game_scene = GAME_SCENE.instantiate()
+	add_child(game_scene)

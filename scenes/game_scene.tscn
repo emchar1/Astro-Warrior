@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cci76eyr3jj15" path="res://scenes/level_1.tscn" id="2_bw6k5"]
 [ext_resource type="PackedScene" uid="uid://brfkrsw3ex2l5" path="res://scenes/player.tscn" id="3_rurhu"]
 [ext_resource type="AudioStream" uid="uid://b4r2kt37pu0ba" path="res://assets/sounds/galaxy_zone.ogg" id="4_kk2rg"]
+[ext_resource type="AudioStream" uid="uid://d7hxri5j41ue" path="res://assets/sounds/death.ogg" id="5_y3j0m"]
 
 [node name="GameScene" type="Node2D" unique_id=1416097669]
 script = ExtResource("1_bw6k5")
@@ -30,3 +31,6 @@ bus = &"Music"
 stream = ExtResource("4_kk2rg")
 bus = &"Music"
 parameters/looping = true
+
+[node name="DeathAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1878676902]
+stream = ExtResource("5_y3j0m")

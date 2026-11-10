@@ -39,6 +39,7 @@ func _move(_delta: float) -> void:
 
 
 func _die() -> void:
+	set_collision_layer_value(2, 0)
 	hurtbox.set_deferred("monitoring", false)
 	hide()
 	did_die.emit()
