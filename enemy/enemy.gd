@@ -3,13 +3,9 @@ class_name Enemy
 
 # PROPERTIES
 
-enum Type { 
-	FORM_A, FORM_B
-}
-
 @onready var anim_sprite = $AnimatedSprite2D
 
-var type: Type
+var enemy_config: EnemyConfig
 var speed: float
 var elapsed_time: float = 0.0
 
@@ -28,41 +24,20 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 
-func setup(_type: Type) -> void:
-	type = _type
+func setup() -> void:
+	speed = enemy_config.speed
 	
-	match type:
-		Type.FORM_A:
-			anim_sprite.animation = "formation_a"
-			speed = 60.0
-		Type.FORM_B:
-			anim_sprite.animation = "formation_b"
-			speed = 60.0
-	
+	anim_sprite.animation = enemy_config.get_anim_name()
 	anim_sprite.play()
 
 
 func _move(delta: float) -> void:
-	var pivot: float = 30.0
-	var speed_coefficient: float = 30.0
-	
-	elapsed_time += delta
-	
-	match type:
-		Type.FORM_A:
-			velocity.y = speed
-			
-			if position.y > pivot:
-				velocity.x = -speed_coefficient * pow(elapsed_time, 2)
-		Type.FORM_B:
-			velocity.y = speed
-			
-			if position.y > pivot:
-				velocity.x = speed_coefficient * pow(elapsed_time, 2)
+	# You should override this function with specific enemy move implementation
+	pass
 
 
 func _die() -> void:
-	queue_free()
+	hide()
 
 
 # SIGNAL FUNCTIONS
@@ -73,3 +48,8 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			area.die()
 		
 		_die()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	print("Enemy queue_free().")
+	queue_free()
