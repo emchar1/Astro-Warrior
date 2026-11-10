@@ -1,14 +1,32 @@
 extends Enemy
+class_name EnemyGlider
 
 # PROPERTIES
 
+const GLIDER_SCENE = preload("res://enemy/enemy_glider.tscn")
+const GLIDER_CONFIG = preload("res://resources/enemy_glider.tres")
+
+var clones: Array[EnemyGlider] = []
+
+var is_leader: bool = true
+var did_nullify_cascade: bool = false
+
 var elapsed_time: float = 0.0
+var clone_count: int = 5
+var clone_spacing: float = 0.2
 
 
 # OVERRIDEN FUNCTIONS
 
 func _ready() -> void:
+	did_die.connect(_set_nullify_cascade)
+	did_die.connect(_die_cascade)
+	
 	die_scale = Vector2(0.5, 0.5)
+	
+	if is_leader:
+		await get_tree().process_frame
+		_spawn_gliders()
 
 
 func _move(delta: float) -> void:
@@ -28,3 +46,51 @@ func _move(delta: float) -> void:
 			
 			if position.y > pivot:
 				velocity.x = speed_coefficient * pow(elapsed_time, 2)
+
+
+# HELPER FUNCTIONS
+
+func _spawn_gliders() -> void:
+	var initial_position := Vector2(GameState.screen_size.x / 2, -4.0)
+	
+	# Set up gliders
+	for i in range(clone_count):
+		var glider = GLIDER_SCENE.instantiate()
+		glider.is_leader = false
+		get_tree().current_scene.add_child(glider)
+		
+		glider.set_physics_process(false)
+		glider.enemy_config = enemy_config.duplicate()
+		glider.position = initial_position
+		
+		clones.append(glider)
+	
+	# Animate in cascading fashion
+	for i in range(clone_count):
+		await get_tree().create_timer(clone_spacing).timeout
+		
+		var glider = clones[i]
+		glider.set_physics_process(true)
+		glider.setup()
+
+
+# SIGNAL CALLBACK FUNCTIONS
+
+func _set_nullify_cascade() -> void:
+	if is_leader:
+		return
+	
+	did_nullify_cascade = true
+
+
+func _die_cascade() -> void:
+	if not is_leader:
+		return
+	
+	for clone in clones:
+		if clone.did_nullify_cascade:
+			return
+	
+	for clone in clones:
+		await get_tree().create_timer(0.08).timeout
+		clone._die()

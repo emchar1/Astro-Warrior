@@ -3,9 +3,12 @@ class_name Enemy
 
 # PROPERTIES
 
+signal did_die
+
 const ENEMY_DIE_SCENE = preload("res://scenes/enemy_die.tscn")
 
 @onready var anim_sprite = $AnimatedSprite2D
+@onready var hurtbox = $Hurtbox
 
 var enemy_config: EnemyConfig
 var die_scale: Vector2 = Vector2.ONE
@@ -19,7 +22,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	_move(delta)
 	
 	move_and_slide()
@@ -36,7 +39,9 @@ func _move(_delta: float) -> void:
 
 
 func _die() -> void:
+	hurtbox.set_deferred("monitoring", false)
 	hide()
+	did_die.emit()
 	
 	var enemy_die = ENEMY_DIE_SCENE.instantiate()
 	get_tree().current_scene.add_child(enemy_die)
@@ -56,4 +61,5 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	print("Enemy queue_free().")
+	await get_tree().create_timer(1.0).timeout
 	queue_free()
