@@ -17,13 +17,11 @@ func _spawn_enemies() -> void:
 			spawn_form_a = true
 			
 			for i in range(glider_count):
-				var enemy = ENEMY_GLIDER_SCENE.instantiate()
-				get_tree().current_scene.add_child(enemy)
-				
-				enemy.enemy_config = ENEMY_GLIDER_CONFIG.duplicate()
-				enemy.enemy_config.type = EnemyConfig.Type.FORM_A
-				enemy.position = Vector2(GameState.screen_size.x / 2, 0)
-				enemy.setup()
+				_spawn_enemy_helper(
+					ENEMY_GLIDER_SCENE,
+					ENEMY_GLIDER_CONFIG,
+					EnemyConfig.Type.FORM_A
+				)
 				
 				await get_tree().create_timer(glider_spacing).timeout
 	
@@ -32,12 +30,10 @@ func _spawn_enemies() -> void:
 			spawn_form_ar = true
 			
 			for i in range(glider_count):
-				var enemy = ENEMY_GLIDER_SCENE.instantiate()
-				get_tree().current_scene.add_child(enemy)
-				
-				enemy.enemy_config = ENEMY_GLIDER_CONFIG.duplicate()
-				enemy.enemy_config.type = EnemyConfig.Type.FORM_AR
-				enemy.position = Vector2(GameState.screen_size.x / 2, 0)
-				enemy.setup()
+				_spawn_enemy_helper(
+					ENEMY_GLIDER_SCENE,
+					ENEMY_GLIDER_CONFIG,
+					EnemyConfig.Type.FORM_AR
+				)
 				
 				await get_tree().create_timer(glider_spacing).timeout

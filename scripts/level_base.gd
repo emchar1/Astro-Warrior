@@ -30,3 +30,18 @@ func _spawn_enemies() -> void:
 	# You should override this function with specific Level _spawn_enemies()
 	# implementation.
 	pass
+
+
+func _spawn_enemy_helper(
+	scene: PackedScene,
+	config: EnemyConfig,
+	type: EnemyConfig.Type,
+	pos: Vector2 = Vector2(GameState.screen_size.x / 2, 0)
+) -> void:
+	var enemy = scene.instantiate()
+	get_tree().current_scene.add_child(enemy)
+	
+	enemy.enemy_config = config
+	enemy.enemy_config.type = type
+	enemy.position = pos
+	enemy.setup()
