@@ -73,7 +73,7 @@ func _read_movement() -> void:
 
 
 func _shoot() -> void:
-	var bullet = BULLET_SCENE.instantiate()
+	var bullet = BULLET_SCENE.instantiate() as Bullet
 	get_parent().add_child(bullet)
 	bullet.global_position = global_position
 
@@ -84,7 +84,7 @@ func _die() -> void:
 	hide()
 	did_die.emit()
 	
-	var explosion = EXPLOSION_SCENE.instantiate()
+	var explosion = EXPLOSION_SCENE.instantiate() as Explosion
 	get_tree().current_scene.add_child(explosion)
 	explosion.activate(position)
 

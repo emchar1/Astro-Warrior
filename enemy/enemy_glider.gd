@@ -55,7 +55,7 @@ func _spawn_gliders() -> void:
 	
 	# Set up gliders
 	for i in range(clone_count):
-		var glider = GLIDER_SCENE.instantiate()
+		var glider = GLIDER_SCENE.instantiate() as EnemyGlider
 		glider.is_leader = false
 		get_tree().current_scene.add_child(glider)
 		

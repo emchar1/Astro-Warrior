@@ -31,7 +31,7 @@ func _move(_delta: float) -> void:
 
 func _spawn_clones() -> void:
 	for i in range(clone_count):
-		var pink_ball = PINK_BALL_SCENE.instantiate()
+		var pink_ball = PINK_BALL_SCENE.instantiate() as EnemyPinkBall
 		pink_ball.is_leader = false
 		get_tree().current_scene.add_child(pink_ball)
 		

@@ -41,7 +41,7 @@ func _spawn_enemy_helper(
 	type: EnemyConfig.Type,
 	pos: Vector2 = Vector2(GameState.screen_size.x / 2, 0.0)
 ) -> void:
-	var enemy = scene.instantiate()
+	var enemy = scene.instantiate() as Enemy
 	get_tree().current_scene.add_child(enemy)
 	
 	enemy.enemy_config = config

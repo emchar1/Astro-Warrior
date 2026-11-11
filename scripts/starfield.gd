@@ -44,7 +44,7 @@ func _generate_stars(star_color: Color, starting_visibility: float) -> void:
 			if loop_count > density:
 				break
 		
-		var star = STAR.instantiate()
+		var star = STAR.instantiate() as Star
 		star.star_color = star_color
 		star.twinkle_speed = twinkle_speed
 		star.starting_visibility = starting_visibility

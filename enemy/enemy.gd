@@ -33,6 +33,8 @@ func setup() -> void:
 	anim_sprite.play()
 
 
+# HELPER FUNCTIONS
+
 func _move(_delta: float) -> void:
 	# You should override this function with specific enemy move implementation
 	pass
@@ -44,7 +46,7 @@ func _die() -> void:
 	hide()
 	did_die.emit()
 	
-	var explosion = EXPLOSION_SCENE.instantiate()
+	var explosion = EXPLOSION_SCENE.instantiate() as Explosion
 	get_tree().current_scene.add_child(explosion)
 	explosion.activate(position, die_scale)
 
