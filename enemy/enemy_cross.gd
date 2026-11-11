@@ -46,9 +46,7 @@ func _spawn_clones(_initial_position: Vector2) -> void:
 			var clone = CROSS_SCENE.instantiate() as EnemyCross
 			clone.is_leader = false
 			
-			var main_scene = get_tree().current_scene
-			var enemies_node = main_scene.get_node("GameScene/Enemies")
-			enemies_node.add_child(clone)
+			GameState.add_child_to_game_scene(clone, "Enemies")
 			
 			clone.enemy_config = enemy_config.duplicate()
 			clone.setup()

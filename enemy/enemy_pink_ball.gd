@@ -33,7 +33,8 @@ func _spawn_clones() -> void:
 	for i in range(clone_count):
 		var clone = PINK_BALL_SCENE.instantiate() as EnemyPinkBall
 		clone.is_leader = false
-		get_tree().current_scene.get_node("GameScene/Enemies").add_child(clone)
+		
+		GameState.add_child_to_game_scene(clone, "Enemies")
 		
 		clone.enemy_config = enemy_config.duplicate()
 		clone.position = position + Vector2((i + 1) * clone_spacing, 0.0)

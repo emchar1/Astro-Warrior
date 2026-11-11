@@ -57,7 +57,8 @@ func _spawn_gliders() -> void:
 	for i in range(clone_count):
 		var clone = GLIDER_SCENE.instantiate() as EnemyGlider
 		clone.is_leader = false
-		get_tree().current_scene.get_node("GameScene/Enemies").add_child(clone)
+		
+		GameState.add_child_to_game_scene(clone, "Enemies")
 		
 		clone.set_physics_process(false)
 		clone.enemy_config = enemy_config.duplicate()

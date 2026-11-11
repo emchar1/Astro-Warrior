@@ -9,3 +9,9 @@ var screen_size: Vector2
 
 func _ready() -> void:
 	screen_size = get_viewport().get_visible_rect().size
+
+
+func add_child_to_game_scene(node: Node, node_name: String) -> void:
+	var main_scene := get_tree().current_scene
+	var game_scene_node := main_scene.get_node("GameScene/" + node_name)
+	game_scene_node.add_child(node)
