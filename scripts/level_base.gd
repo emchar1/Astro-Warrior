@@ -4,7 +4,10 @@ class_name LevelBase
 # PROPERTIES
 
 const ENEMY_GLIDER_SCENE = preload("res://enemy/enemy_glider.tscn")
+const ENEMY_PINK_BALL_SCENE = preload("res://enemy/enemy_pink_ball.tscn")
+
 const ENEMY_GLIDER_CONFIG = preload("res://resources/enemy_glider.tres")
+const ENEMY_PINK_BALL_CONFIG = preload("res://resources/enemy_pink_ball.tres")
 
 @export var scroll_speed: float = 200.0
 

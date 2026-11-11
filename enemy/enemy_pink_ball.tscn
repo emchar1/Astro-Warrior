@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bhfuv5el4a0sc"]
+
+[ext_resource type="PackedScene" uid="uid://fjwwtk5o15ml" path="res://enemy/enemy.tscn" id="1_bf40x"]
+[ext_resource type="Script" uid="uid://bb4qebditcl5t" path="res://enemy/enemy_pink_ball.gd" id="2_3gt54"]
+[ext_resource type="Shader" uid="uid://b3ab0nxvfvaie" path="res://assets/shaders/green_screen.gdshader" id="3_pjkqp"]
+[ext_resource type="Texture2D" uid="uid://poxmh3ino4l4" path="res://assets/images/enemies_sprite.png" id="4_ql4k3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b7fvw"]
+shader = ExtResource("3_pjkqp")
+shader_parameter/key_color = Color(0, 0.35686275, 0.35686275, 1)
+shader_parameter/threshold = 0.2
+shader_parameter/smoothing = 0.05
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_542mi"]
+atlas = ExtResource("4_ql4k3")
+region = Rect2(2, 10, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5cgs"]
+atlas = ExtResource("4_ql4k3")
+region = Rect2(19, 10, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8soun"]
+atlas = ExtResource("4_ql4k3")
+region = Rect2(36, 10, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5c0t"]
+atlas = ExtResource("4_ql4k3")
+region = Rect2(53, 10, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_msuts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_542mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5cgs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8soun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5c0t")
+}],
+"loop": 1,
+"name": &"form_d",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ie2sp"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dp6io"]
+
+[node name="EnemyPinkBall" unique_id=240346529 instance=ExtResource("1_bf40x")]
+script = ExtResource("2_3gt54")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1785739266]
+material = SubResource("ShaderMaterial_b7fvw")
+sprite_frames = SubResource("SpriteFrames_msuts")
+animation = &"form_d"
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1004384118]
+shape = SubResource("CircleShape2D_ie2sp")
+
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(823796231) index="0" unique_id=1324163660]
+shape = SubResource("CircleShape2D_dp6io")
