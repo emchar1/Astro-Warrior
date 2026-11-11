@@ -13,5 +13,10 @@ func _ready() -> void:
 
 func add_child_to_game_scene(node: Node, node_name: String) -> void:
 	var main_scene := get_tree().current_scene
-	var game_scene_node := main_scene.get_node("GameScene/" + node_name)
+	var game_scene_node := main_scene.get_node_or_null("GameScene/" + node_name)
+	
+	if game_scene_node == null:
+		print("Node name: ", node_name, " does not exist.")
+		return
+	
 	game_scene_node.add_child(node)
