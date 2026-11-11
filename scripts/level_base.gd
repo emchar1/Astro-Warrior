@@ -5,9 +5,11 @@ class_name LevelBase
 
 const ENEMY_GLIDER_SCENE = preload("res://enemy/enemy_glider.tscn")
 const ENEMY_PINK_BALL_SCENE = preload("res://enemy/enemy_pink_ball.tscn")
+const ENEMY_CROSS_SCENE = preload("res://enemy/enemy_cross.tscn")
 
 const ENEMY_GLIDER_CONFIG = preload("res://resources/enemy_glider.tres")
 const ENEMY_PINK_BALL_CONFIG = preload("res://resources/enemy_pink_ball.tres")
+const ENEMY_CROSS_CONFIG = preload("res://resources/enemy_cross.tres")
 
 @export var scroll_speed: float = 200.0
 
@@ -42,7 +44,7 @@ func _spawn_enemy_helper(
 	pos: Vector2 = Vector2(GameState.screen_size.x / 2, 0.0)
 ) -> void:
 	var enemy = scene.instantiate() as Enemy
-	get_tree().current_scene.add_child(enemy)
+	get_tree().current_scene.get_node("GameScene/Enemies").add_child(enemy)
 	
 	enemy.enemy_config = config
 	enemy.enemy_config.type = type

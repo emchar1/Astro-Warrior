@@ -55,23 +55,23 @@ func _spawn_gliders() -> void:
 	
 	# Set up gliders
 	for i in range(clone_count):
-		var glider = GLIDER_SCENE.instantiate() as EnemyGlider
-		glider.is_leader = false
-		get_tree().current_scene.add_child(glider)
+		var clone = GLIDER_SCENE.instantiate() as EnemyGlider
+		clone.is_leader = false
+		get_tree().current_scene.get_node("GameScene/Enemies").add_child(clone)
 		
-		glider.set_physics_process(false)
-		glider.enemy_config = enemy_config.duplicate()
-		glider.position = initial_position
+		clone.set_physics_process(false)
+		clone.enemy_config = enemy_config.duplicate()
+		clone.position = initial_position
 		
-		clones.append(glider)
+		clones.append(clone)
 	
 	# Animate in cascading fashion
 	for i in range(clone_count):
 		await get_tree().create_timer(clone_spacing).timeout
 		
-		var glider = clones[i]
-		glider.set_physics_process(true)
-		glider.setup()
+		var clone = clones[i]
+		clone.set_physics_process(true)
+		clone.setup()
 
 
 # SIGNAL CALLBACK FUNCTIONS

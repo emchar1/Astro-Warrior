@@ -31,13 +31,13 @@ func _move(_delta: float) -> void:
 
 func _spawn_clones() -> void:
 	for i in range(clone_count):
-		var pink_ball = PINK_BALL_SCENE.instantiate() as EnemyPinkBall
-		pink_ball.is_leader = false
-		get_tree().current_scene.add_child(pink_ball)
+		var clone = PINK_BALL_SCENE.instantiate() as EnemyPinkBall
+		clone.is_leader = false
+		get_tree().current_scene.get_node("GameScene/Enemies").add_child(clone)
 		
-		pink_ball.enemy_config = enemy_config.duplicate()
-		pink_ball.position = position + Vector2((i + 1) * clone_spacing, 0.0)
-		pink_ball.initial_position = pink_ball.position
-		pink_ball.setup()
+		clone.enemy_config = enemy_config.duplicate()
+		clone.position = position + Vector2((i + 1) * clone_spacing, 0.0)
+		clone.initial_position = clone.position
+		clone.setup()
 		
-		clones.append(pink_ball)
+		clones.append(clone)

@@ -24,6 +24,10 @@ color = Color(0, 0, 0, 1)
 [node name="Player" parent="." unique_id=1879099976 instance=ExtResource("3_rurhu")]
 position = Vector2(128, 160)
 
+[node name="Enemies" type="Node2D" parent="." unique_id=1378577987]
+
+[node name="Extras" type="Node2D" parent="." unique_id=592610197]
+
 [node name="IntroAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=563750417]
 bus = &"Music"
 

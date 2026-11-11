@@ -47,7 +47,7 @@ func _die() -> void:
 	did_die.emit()
 	
 	var explosion = EXPLOSION_SCENE.instantiate() as Explosion
-	get_tree().current_scene.add_child(explosion)
+	get_tree().current_scene.get_node("GameScene/Extras").add_child(explosion)
 	explosion.activate(position, die_scale)
 
 

@@ -47,5 +47,4 @@ func player_did_die() -> void:
 	
 	await get_tree().create_timer(3.5).timeout
 	
-	queue_free()
-	get_parent().restart_game()
+	get_parent().restart_game(self)

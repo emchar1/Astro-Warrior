@@ -33,6 +33,9 @@ func _swap_scene(from_scene: Node2D, to_scene: Node2D) -> void:
 	add_child(to_scene)
 
 
-func restart_game() -> void:
+func restart_game(old_game: Node2D) -> void:
+	old_game.queue_free()
+	await get_tree().process_frame
+	
 	var game_scene = GAME_SCENE.instantiate()
 	add_child(game_scene)
