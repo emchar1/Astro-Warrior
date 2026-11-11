@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvfcoon67o31f"]
 
-[ext_resource type="Script" uid="uid://bjp1vpphyltt8" path="res://scripts/enemy_die.gd" id="1_2c2ah"]
+[ext_resource type="Script" uid="uid://bjp1vpphyltt8" path="res://scripts/explosion.gd" id="1_2c2ah"]
 [ext_resource type="Shader" uid="uid://b3ab0nxvfvaie" path="res://assets/shaders/green_screen.gdshader" id="1_j7s23"]
 [ext_resource type="Texture2D" uid="uid://dtwt4lpssm2je" path="res://assets/images/player_sprite.png" id="2_2c2ah"]
 [ext_resource type="AudioStream" uid="uid://cm4850cjykuo4" path="res://assets/sounds/enemy_kill.ogg" id="3_dm0jn"]
@@ -54,7 +54,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="EnemyDie" type="Node2D" unique_id=879220398]
+[node name="Explosion" type="Node2D" unique_id=879220398]
 script = ExtResource("1_2c2ah")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2010045674]

@@ -6,7 +6,7 @@ signal did_die
 
 const SPRITE_LEN = 10.0
 const BULLET_SCENE = preload("res://scenes/bullet.tscn")
-const ENEMY_DIE_SCENE = preload("res://scenes/enemy_die.tscn")
+const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 
 @export var speed: float = 80.0
 
@@ -84,11 +84,9 @@ func _die() -> void:
 	hide()
 	did_die.emit()
 	
-	var enemy_die = ENEMY_DIE_SCENE.instantiate()
-	get_tree().current_scene.add_child(enemy_die)
-	
-	enemy_die.position = position
-	enemy_die.activate()
+	var explosion = EXPLOSION_SCENE.instantiate()
+	get_tree().current_scene.add_child(explosion)
+	explosion.activate(position)
 
 
 # SIGNAL CALLBACK FUNCTIONS
@@ -96,7 +94,6 @@ func _die() -> void:
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		if body is Enemy:
-			print("I'm hit")
 			_die()
 
 

@@ -45,7 +45,7 @@ func player_did_die() -> void:
 	loop_stream.stop()
 	death_stream.play()
 	
-	await get_tree().create_timer(4.0).timeout
+	await get_tree().create_timer(3.5).timeout
 	
 	queue_free()
 	get_parent().restart_game()

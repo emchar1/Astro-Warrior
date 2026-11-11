@@ -13,9 +13,12 @@ func _ready() -> void:
 	hide()
 
 
-func activate(_scale: Vector2 = Vector2.ONE) -> void:
+func activate(_position: Vector2, _scale: Vector2 = Vector2.ONE) -> void:
+	position = _position
 	scale = _scale
+	
 	show()
+	
 	anim_sprite.play()
 	audio_stream.play()
 
