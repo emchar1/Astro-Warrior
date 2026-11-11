@@ -13,6 +13,12 @@ const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 var enemy_config: EnemyConfig
 var die_scale: Vector2 = Vector2.ONE
 
+# Clone Properties
+var clones: Array[Enemy] = []
+var clones_count: int
+var is_leader: bool = true
+var initial_position: Vector2
+
 
 # FUNCTIONS
 

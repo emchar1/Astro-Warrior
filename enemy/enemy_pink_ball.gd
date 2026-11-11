@@ -6,31 +6,30 @@ class_name EnemyPinkBall
 const PINK_BALL_SCENE = preload("res://enemy/enemy_pink_ball.tscn")
 const PINK_BALL_CONFIG = preload("res://resources/enemy_pink_ball.tres")
 
-var clones: Array[EnemyPinkBall] = []
-var is_leader: bool = true
-var clone_count: int = 3
 var clone_spacing: float = 30.0
-var initial_position: Vector2
 var rand_speed: float = randf_range(0.0, 10.0)
 
 
 # FUNCTIONS
 
 func _ready() -> void:
+	clones_count = 3
+	
 	if is_leader:
 		await get_tree().process_frame
 		_spawn_clones()
 
 
 func _move(_delta: float) -> void:
-	var dir := -1.0 if initial_position.x > GameState.screen_size.x / 2 else 1.0
+	var right_side: bool = initial_position.x > GameState.screen_size.x / 2
+	var dir := -1.0 if right_side else 1.0
 	
-	velocity.x = dir * (enemy_config.speed / (randi_range(1, 3)) + rand_speed)
+	velocity.x = dir * (enemy_config.speed / randf_range(1, 3) + rand_speed)
 	velocity.y = enemy_config.speed + rand_speed
 
 
 func _spawn_clones() -> void:
-	for i in range(clone_count):
+	for i in range(clones_count):
 		var clone = PINK_BALL_SCENE.instantiate() as EnemyPinkBall
 		clone.is_leader = false
 		

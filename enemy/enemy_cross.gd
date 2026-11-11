@@ -6,11 +6,7 @@ class_name EnemyCross
 const CROSS_SCENE = preload("res://enemy/enemy_cross.tscn")
 const CROSS_CONFIG = preload("res://resources/enemy_cross.tres")
 
-var clones: Array[EnemyCross] = []
-
-var initial_position: Vector2
-var is_leader: bool = true
-var clone_rows: int = 4
+var clone_rows: int = 3
 var clone_cols: int = 2
 var clone_spacing: float = 30.0
 
@@ -40,7 +36,6 @@ func _spawn_clones(_initial_position: Vector2) -> void:
 				continue
 			
 			var spacing = Vector2(col * clone_spacing, -row * clone_spacing)
-			
 			initial_position = _initial_position + spacing
 			
 			var clone = CROSS_SCENE.instantiate() as EnemyCross
@@ -50,7 +45,6 @@ func _spawn_clones(_initial_position: Vector2) -> void:
 			
 			clone.enemy_config = enemy_config.duplicate()
 			clone.setup()
-			clone.anim_sprite.speed_scale = 2.0
 			clone.position = initial_position
 			
 			clones.append(clone)

@@ -30,7 +30,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"form_e",
-"speed": 2.0
+"speed": 3.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xw686"]
@@ -45,7 +45,7 @@ script = ExtResource("2_qlqhy")
 material = SubResource("ShaderMaterial_4qogt")
 sprite_frames = SubResource("SpriteFrames_8mxa3")
 animation = &"form_e"
-frame_progress = 0.17290315
+frame_progress = 0.16287474
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1004384118]
 shape = SubResource("CircleShape2D_xw686")
