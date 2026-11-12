@@ -3,6 +3,8 @@ extends Node
 # PROPERTIES
 
 var screen_size: Vector2
+var score: int
+var lives: int = 2
 
 
 # FUNCTIONS

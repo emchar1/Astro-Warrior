@@ -22,7 +22,7 @@ color = Color(0, 0, 0, 1)
 [node name="Level1" parent="." unique_id=1258516462 instance=ExtResource("2_bw6k5")]
 
 [node name="Player" parent="." unique_id=1879099976 instance=ExtResource("3_rurhu")]
-position = Vector2(128, 160)
+position = Vector2(128, 150)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1378577987]
 

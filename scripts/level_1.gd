@@ -12,7 +12,6 @@ var spawn_form_f: Array[bool] = [false, false]
 # FUNCTIONS
 
 func _spawn_enemies() -> void:
-	
 	# GLIDERS
 	if position.y >= 100:
 		if not spawn_form_a:

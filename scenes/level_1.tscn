@@ -5,6 +5,7 @@
 
 [node name="Level1" unique_id=1258516462 instance=ExtResource("1_014kd")]
 script = ExtResource("2_bswci")
+level_name = "GALAXY"
 
 [node name="BackgroundRect" parent="." index="0" unique_id=689075847]
 visible = false
