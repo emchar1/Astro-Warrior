@@ -7,7 +7,7 @@ const PINK_BALL_SCENE = preload("res://enemy/enemy_pink_ball.tscn")
 const PINK_BALL_CONFIG = preload("res://resources/enemy_pink_ball.tres")
 
 var clone_spacing: float = 30.0
-var rand_speed: float = randf_range(0.0, 10.0)
+var rand_speed: float = randf_range(0.0, 30.0)
 
 
 # FUNCTIONS

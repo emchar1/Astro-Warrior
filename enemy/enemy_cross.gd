@@ -6,17 +6,26 @@ class_name EnemyCross
 const CROSS_SCENE = preload("res://enemy/enemy_cross.tscn")
 const CROSS_CONFIG = preload("res://resources/enemy_cross.tres")
 
-var clone_rows: int = 10
-var clone_cols: int = 2
+var clone_rows: int
+var clone_cols: int
 var clone_spacing: float = 30.0
-var horiz_dir: float = 1.0
+var horiz_dir: float = -1.0
 
 
 # FUNCTIONS
 
 func _ready() -> void:
+	await get_tree().process_frame
+	
+	match enemy_config.type:
+		EnemyConfig.Type.FORM_E:
+			clone_rows = 2
+			clone_cols = 2
+		EnemyConfig.Type.FORM_F:
+			clone_rows = 4
+			clone_cols = 1
+	
 	if is_leader:
-		await get_tree().process_frame
 		initial_position = position
 		_spawn_clones(initial_position)
 
@@ -45,8 +54,17 @@ func _spawn_clones(_initial_position: Vector2) -> void:
 			if row == 0 and col == 0:
 				continue
 			
-			var spacing = Vector2(col * clone_spacing, -row * clone_spacing)
-			var offset = Vector2(clone_spacing / 2 * row, 0.0)
+			var row_spacing: float = 1.0
+			
+			if enemy_config.type == EnemyConfig.Type.FORM_E:
+				row_spacing = 1.5
+			
+			var spacing := Vector2(
+				col * clone_spacing,
+				-row_spacing * row * clone_spacing
+			)
+			
+			var offset := Vector2(clone_spacing / 2 * row, 0.0)
 			
 			var clone = CROSS_SCENE.instantiate() as EnemyCross
 			clone.is_leader = false
