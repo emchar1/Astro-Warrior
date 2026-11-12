@@ -11,7 +11,7 @@ const ENEMY_GLIDER_CONFIG = preload("res://resources/enemy_glider.tres")
 const ENEMY_PINK_BALL_CONFIG = preload("res://resources/enemy_pink_ball.tres")
 const ENEMY_CROSS_CONFIG = preload("res://resources/enemy_cross.tres")
 
-@export var scroll_speed: float = 200.0
+@export var scroll_speed: float = 20.0
 
 
 # FUNCTIONS

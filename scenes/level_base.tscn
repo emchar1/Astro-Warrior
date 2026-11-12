@@ -12,7 +12,6 @@ fill_to = Vector2(0, 1)
 
 [node name="LevelBase" type="Node2D" unique_id=1258516462]
 script = ExtResource("1_548ah")
-scroll_speed = 20.0
 
 [node name="BackgroundRect" type="TextureRect" parent="." unique_id=689075847]
 offset_top = -1728.0
