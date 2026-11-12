@@ -11,6 +11,7 @@ enum Type {
 @onready var sprite = $Sprite2D
 
 var type: Type
+var is_disabled: bool = false
 
 
 # FUNCTIONS
@@ -29,11 +30,21 @@ func _process(delta: float) -> void:
 
 func die() -> void:
 	if type == Type.PLAIN:
-		speed = 0.0
-		set_deferred("monitorable", false)
-		hide()
+		_disable_bullet()
+
+
+func _disable_bullet() -> void:
+	if is_disabled:
+		return
+	
+	is_disabled = true
+	speed = 0.0
+	set_deferred("monitorable", false)
+	hide()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	_disable_bullet()
+	
 	await get_tree().create_timer(1.0).timeout
 	queue_free()
