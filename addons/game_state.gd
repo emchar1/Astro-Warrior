@@ -5,6 +5,7 @@ extends Node
 var screen_size: Vector2
 var score: int
 var lives: int = 2
+var powerup_count: int = 0
 
 
 # FUNCTIONS
