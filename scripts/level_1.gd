@@ -14,17 +14,6 @@ var spawn_form_f: Array[bool] = [false, false]
 func _spawn_enemies() -> void:
 	# GLIDERS
 	if position.y >= 100:
-		if not spawn_form_a:
-			spawn_form_a = true
-			
-			_spawn_enemy_helper(
-				ENEMY_GLIDER_SCENE,
-				ENEMY_GLIDER_CONFIG,
-				EnemyConfig.Type.FORM_A,
-				Vector2(GameState.screen_size.x / 2, -4.0)
-			)
-	
-	if position.y >= 200:
 		if not spawn_form_ar:
 			spawn_form_ar = true
 			
@@ -32,6 +21,17 @@ func _spawn_enemies() -> void:
 				ENEMY_GLIDER_SCENE,
 				ENEMY_GLIDER_CONFIG,
 				EnemyConfig.Type.FORM_AR,
+				Vector2(GameState.screen_size.x / 2, -4.0)
+			)
+	
+	if position.y >= 200:
+		if not spawn_form_a:
+			spawn_form_a = true
+			
+			_spawn_enemy_helper(
+				ENEMY_GLIDER_SCENE,
+				ENEMY_GLIDER_CONFIG,
+				EnemyConfig.Type.FORM_A,
 				Vector2(GameState.screen_size.x / 2, -4.0)
 			)
 	
