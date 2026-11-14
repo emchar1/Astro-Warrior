@@ -65,10 +65,17 @@ func _on_body_shape_entered(
 	var tile_coords := tilemap.get_coords_for_body_rid(body_rid)
 	var explosion = EXPLOSION_SCENE.instantiate() as Explosion
 	
-	tilemap.call_deferred("erase_cell", tile_coords)
-	tilemap.add_child(explosion)
-	explosion.type = Explosion.Type.TILE
-	explosion.activate(tilemap.map_to_local(tile_coords))
+	if tilemap.name == "Destructibles":
+		tilemap.call_deferred("erase_cell", tile_coords)
+		tilemap.add_child(explosion)
+		explosion.type = Explosion.Type.TILE
+		explosion.activate(tilemap.map_to_local(tile_coords))
+		GameState.powerup_count += 1
 	
-	GameState.powerup_count += 1
+	if tilemap.name == "Walls":
+		var audio_stream = AudioStreamPlayer.new()
+		audio_stream.stream = load("res://assets/sounds/unused.ogg")
+		tilemap.add_child(audio_stream)
+		audio_stream.play()
+	
 	die()
