@@ -24,10 +24,6 @@ region = Rect2(48, 96, 16, 16)
 atlas = ExtResource("2_pd8pi")
 region = Rect2(64, 96, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gg250"]
-atlas = ExtResource("2_pd8pi")
-region = Rect2(80, 96, 16, 16)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_u3pco"]
 animations = [{
 "frames": [{
@@ -45,9 +41,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_11160")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gg250")
 }],
 "loop": 0,
 "name": &"default",
@@ -60,7 +53,7 @@ script = ExtResource("1_2ql2j")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=217489377]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_u3pco")
-frame = 5
+frame = 4
 frame_progress = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=803179519]

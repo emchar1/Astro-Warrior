@@ -14,10 +14,6 @@ func _ready() -> void:
 	hide()
 
 
-#func _process(delta: float) -> void:
-	#position.y += 20 * delta
-
-
 func activate(_position: Vector2, _scale: Vector2 = Vector2.ONE) -> void:
 	position = _position
 	scale = _scale
