@@ -7,6 +7,9 @@ enum Type {
 	ACTOR, TILE
 }
 
+const ACTOR_EXPLOSION_SFX = preload("res://assets/sounds/enemy_kill.ogg")
+const TILE_EXPLOSION_SFX = preload("res://assets/sounds/unused.ogg")
+
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var audio_stream = $AudioStreamPlayer
 
@@ -27,10 +30,10 @@ func activate(_position: Vector2, _scale: Vector2 = Vector2.ONE) -> void:
 	match type:
 		Type.ACTOR:
 			anim_sprite.animation = "actor"
-			audio_stream.stream = load("res://assets/sounds/enemy_kill.ogg")
+			audio_stream.stream = ACTOR_EXPLOSION_SFX
 		Type.TILE:
 			anim_sprite.animation = "tile"
-			audio_stream.stream = load("res://assets/sounds/unused.ogg")
+			audio_stream.stream = TILE_EXPLOSION_SFX
 	
 	show()
 	
