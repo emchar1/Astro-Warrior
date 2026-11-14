@@ -7,6 +7,8 @@ enum Type {
 	PLAIN, LASER
 }
 
+const TILE_EXPLOSION_SCENE = preload("res://scenes/tile_explosion.tscn")
+
 @export var speed: float = 500.0
 @onready var sprite = $Sprite2D
 
@@ -48,3 +50,24 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	
 	await get_tree().create_timer(1.0).timeout
 	queue_free()
+
+
+func _on_body_shape_entered(
+	body_rid: RID,
+	body: Node2D,
+	_body_shape_index: int,
+	_local_shape_index: int
+) -> void:
+	if not body is TileMapLayer:
+		return
+	
+	var tilemap := body as TileMapLayer
+	var tile_coords := tilemap.get_coords_for_body_rid(body_rid)
+	var tile_explosion = TILE_EXPLOSION_SCENE.instantiate() as TileExplosion
+	
+	tilemap.call_deferred("erase_cell", tile_coords)
+	tilemap.add_child(tile_explosion)
+	tile_explosion.activate(tilemap.map_to_local(tile_coords))
+
+	GameState.powerup_count += 1
+	die()
