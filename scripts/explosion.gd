@@ -3,8 +3,14 @@ class_name Explosion
 
 # PROPERTIES
 
+enum Type {
+	ACTOR, TILE
+}
+
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var audio_stream = $AudioStreamPlayer
+
+var type: Type = Type.ACTOR
 
 
 # FUNCTIONS
@@ -17,6 +23,14 @@ func _ready() -> void:
 func activate(_position: Vector2, _scale: Vector2 = Vector2.ONE) -> void:
 	position = _position
 	scale = _scale
+	
+	match type:
+		Type.ACTOR:
+			anim_sprite.animation = "actor"
+			audio_stream.stream = load("res://assets/sounds/enemy_kill.ogg")
+		Type.TILE:
+			anim_sprite.animation = "tile"
+			audio_stream.stream = load("res://assets/sounds/unused.ogg")
 	
 	show()
 	

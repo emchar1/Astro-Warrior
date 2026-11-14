@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://b3ab0nxvfvaie" path="res://assets/shaders/green_screen.gdshader" id="1_j7s23"]
 [ext_resource type="Texture2D" uid="uid://dtwt4lpssm2je" path="res://assets/images/player_sprite.png" id="2_2c2ah"]
 [ext_resource type="AudioStream" uid="uid://cm4850cjykuo4" path="res://assets/sounds/enemy_kill.ogg" id="3_dm0jn"]
+[ext_resource type="Texture2D" uid="uid://dypihfamswodk" path="res://assets/images/tile_map.png" id="4_hbmxj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lb7rc"]
 shader = ExtResource("1_j7s23")
@@ -31,6 +32,26 @@ region = Rect2(71, 25, 8, 8)
 atlas = ExtResource("2_2c2ah")
 region = Rect2(80, 26, 7, 7)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfoey"]
+atlas = ExtResource("4_hbmxj")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8gpv"]
+atlas = ExtResource("4_hbmxj")
+region = Rect2(16, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cun36"]
+atlas = ExtResource("4_hbmxj")
+region = Rect2(32, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk406"]
+atlas = ExtResource("4_hbmxj")
+region = Rect2(48, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jttm"]
+atlas = ExtResource("4_hbmxj")
+region = Rect2(64, 96, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_u3pco"]
 animations = [{
 "frames": [{
@@ -50,7 +71,27 @@ animations = [{
 "texture": SubResource("AtlasTexture_e53mr")
 }],
 "loop": 0,
-"name": &"default",
+"name": &"actor",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfoey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8gpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cun36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk406")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jttm")
+}],
+"loop": 0,
+"name": &"tile",
 "speed": 12.0
 }]
 
@@ -61,6 +102,7 @@ script = ExtResource("1_2c2ah")
 texture_filter = 1
 material = SubResource("ShaderMaterial_lb7rc")
 sprite_frames = SubResource("SpriteFrames_u3pco")
+animation = &"actor"
 frame = 4
 frame_progress = 1.0
 
