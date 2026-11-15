@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://b3ab0nxvfvaie" path="res://assets/shaders/green_screen.gdshader" id="2_eoqba"]
 [ext_resource type="Texture2D" uid="uid://dtwt4lpssm2je" path="res://assets/images/player_sprite.png" id="2_l5glv"]
 [ext_resource type="AudioStream" uid="uid://c8ows3ekvhir4" path="res://assets/sounds/bullet0.ogg" id="2_y25gk"]
+[ext_resource type="AudioStream" uid="uid://dhdi2p6pundfq" path="res://assets/sounds/wall_deflect.ogg" id="5_qncy5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tamys"]
 shader = ExtResource("2_eoqba")
@@ -22,6 +23,7 @@ size = Vector2(2, 11)
 collision_layer = 4
 collision_mask = 34
 script = ExtResource("1_mkf8s")
+speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=535230423]
 texture_filter = 1
@@ -37,10 +39,13 @@ shape = SubResource("RectangleShape2D_u3pco")
 position = Vector2(0, -8)
 rect = Rect2(-1, -5.5, 2, 11)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1270837188]
+[node name="BulletAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1270837188]
 stream = ExtResource("2_y25gk")
 autoplay = true
 bus = &"SFX"
+
+[node name="WallAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1597583440]
+stream = ExtResource("5_qncy5")
 
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

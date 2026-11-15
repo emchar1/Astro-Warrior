@@ -11,6 +11,7 @@ const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 
 @export var speed: float = 500.0
 @onready var sprite = $Sprite2D
+@onready var wall_audio_stream = $WallAudioStreamPlayer
 
 var type: Type
 var is_disabled: bool = false
@@ -73,9 +74,6 @@ func _on_body_shape_entered(
 		GameState.powerup_count += 1
 	
 	if tilemap.name == "Walls":
-		var audio_stream = AudioStreamPlayer.new()
-		audio_stream.stream = load("res://assets/sounds/unused.ogg")
-		tilemap.add_child(audio_stream)
-		audio_stream.play()
+		wall_audio_stream.play()
 	
 	die()

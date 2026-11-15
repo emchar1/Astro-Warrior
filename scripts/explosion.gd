@@ -8,7 +8,7 @@ enum Type {
 }
 
 const ACTOR_EXPLOSION_SFX = preload("res://assets/sounds/enemy_kill.ogg")
-const TILE_EXPLOSION_SFX = preload("res://assets/sounds/enemy_kill.ogg")
+const TILE_EXPLOSION_SFX = preload("res://assets/sounds/tile_destroy.ogg")
 
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var audio_stream = $AudioStreamPlayer
