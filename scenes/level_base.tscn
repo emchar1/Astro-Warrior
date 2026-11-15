@@ -64,6 +64,8 @@ texture = ExtResource("3_krm4r")
 0:7/animation_frame_4/duration = 1.0
 0:7/animation_frame_5/duration = 1.0
 0:7/0 = 0
+5:0/0 = 0
+5:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_u3pco"]
 sources/0 = SubResource("TileSetAtlasSource_8n3nq")
@@ -148,9 +150,9 @@ texture = ExtResource("3_krm4r")
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8)
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:1/0 = 0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, -8, 8)
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:2/0 = 0
 1:2/0 = 0
 2:2/0 = 0
