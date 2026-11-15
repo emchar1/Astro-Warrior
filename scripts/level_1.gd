@@ -5,7 +5,8 @@ extends LevelBase
 var spawn_form_a: bool = false
 var spawn_form_ar: bool = false
 var spawn_form_b: bool = false
-var spawn_form_d: Array[bool] = [false, false, false, false]
+var spawn_form_d: Array[bool] = [false, false, false, false, false]
+var spawn_form_d2: Array[bool] = [false, false, false]
 var spawn_form_e: bool = false
 var spawn_form_f: Array[bool] = [false, false]
 
@@ -115,6 +116,7 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
 	
+	# S-GLIDER
 	if position.y >= 800:
 		if not spawn_form_b:
 			
@@ -125,4 +127,49 @@ func _spawn_enemies() -> void:
 				ENEMY_GLIDER_CONFIG,
 				EnemyConfig.Type.FORM_B,
 				Vector2(GameState.screen_size.x / 2, -4.0)
+			)
+	
+	# PINK BALLS
+	if position.y >= 850:
+		if not spawn_form_d[4]:
+			spawn_form_d[4] = true
+			
+			_spawn_enemy_helper(
+				ENEMY_PINK_BALL_SCENE,
+				ENEMY_PINK_BALL_CONFIG,
+				EnemyConfig.Type.FORM_D,
+				Vector2(GameState.screen_size.x / 3, -8.0)
+			)
+	
+	if position.y >= 900:
+		if not spawn_form_d2[0]:
+			spawn_form_d2[0] = true
+			
+			_spawn_enemy_helper(
+				ENEMY_PINK_BALL_SCENE,
+				ENEMY_PINK_BALL_CONFIG,
+				EnemyConfig.Type.FORM_D2,
+				Vector2(GameState.screen_size.x / 4, -8.0)
+			)
+	
+	if position.y >= 930:
+		if not spawn_form_d2[1]:
+			spawn_form_d2[1] = true
+			
+			_spawn_enemy_helper(
+				ENEMY_PINK_BALL_SCENE,
+				ENEMY_PINK_BALL_CONFIG,
+				EnemyConfig.Type.FORM_D2,
+				Vector2(GameState.screen_size.x / 4, -8.0)
+			)
+	
+	if position.y >= 960:
+		if not spawn_form_d2[2]:
+			spawn_form_d2[2] = true
+			
+			_spawn_enemy_helper(
+				ENEMY_PINK_BALL_SCENE,
+				ENEMY_PINK_BALL_CONFIG,
+				EnemyConfig.Type.FORM_D2,
+				Vector2(GameState.screen_size.x / 4, -8.0)
 			)

@@ -13,10 +13,17 @@ var rand_speed: float = randf_range(0.0, 30.0)
 # FUNCTIONS
 
 func _ready() -> void:
-	clones_count = 3
+	await get_tree().process_frame
+	
+	match enemy_config.type:
+		EnemyConfig.Type.FORM_D:
+			clones_count = 3
+			clone_spacing = 30.0
+		EnemyConfig.Type.FORM_D2:
+			clones_count = 1
+			clone_spacing = 100.0
 	
 	if is_leader:
-		await get_tree().process_frame
 		_spawn_clones()
 
 
