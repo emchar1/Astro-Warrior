@@ -27,22 +27,31 @@ func _ready() -> void:
 
 
 func _move(delta: float) -> void:
-	var pivot: float = 30.0
-	var speed_coefficient: float = 30.0
-	
 	elapsed_time += delta
 	
 	match enemy_config.type:
 		EnemyConfig.Type.FORM_A:
+			var pivot: float = 30.0
+			var speed_coefficient: float = 30.0
+			
 			velocity.y = enemy_config.speed
 			
 			if position.y > pivot:
 				velocity.x = -speed_coefficient * pow(elapsed_time, 2)
 		EnemyConfig.Type.FORM_AR:
+			var pivot: float = 30.0
+			var speed_coefficient: float = 30.0
+			
 			velocity.y = enemy_config.speed
 			
 			if position.y > pivot:
 				velocity.x = speed_coefficient * pow(elapsed_time, 2)
+		EnemyConfig.Type.FORM_B:
+			var amplitude: float = 50.0
+			var frequency: float = 2.0
+			
+			velocity.y = enemy_config.speed
+			velocity.x = amplitude * frequency * cos(elapsed_time * frequency)
 
 
 # HELPER FUNCTIONS

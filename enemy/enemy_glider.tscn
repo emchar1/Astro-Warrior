@@ -27,6 +27,14 @@ region = Rect2(9, 0, 8, 8)
 atlas = ExtResource("2_e4q1y")
 region = Rect2(18, 0, 8, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_drxso"]
+atlas = ExtResource("2_e4q1y")
+region = Rect2(18, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_440sq"]
+atlas = ExtResource("2_e4q1y")
+region = Rect2(0, 0, 8, 8)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_cmbqk"]
 animations = [{
 "frames": [{
@@ -50,6 +58,17 @@ animations = [{
 "loop": 0,
 "name": &"form_ar",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drxso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_440sq")
+}],
+"loop": 1,
+"name": &"form_b",
+"speed": 0.92
 }]
 
 [node name="EnemyGlider" unique_id=240346529 instance=ExtResource("1_qa3u7")]
@@ -58,4 +77,4 @@ script = ExtResource("2_p6u1t")
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1785739266]
 material = SubResource("ShaderMaterial_p6u1t")
 sprite_frames = SubResource("SpriteFrames_cmbqk")
-animation = &"form_ar"
+animation = &"form_b"

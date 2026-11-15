@@ -4,6 +4,7 @@ extends LevelBase
 
 var spawn_form_a: bool = false
 var spawn_form_ar: bool = false
+var spawn_form_b: bool = false
 var spawn_form_d: Array[bool] = [false, false, false, false]
 var spawn_form_e: bool = false
 var spawn_form_f: Array[bool] = [false, false]
@@ -112,4 +113,16 @@ func _spawn_enemies() -> void:
 				ENEMY_CROSS_CONFIG,
 				EnemyConfig.Type.FORM_F,
 				Vector2(GameState.screen_size.x / 4, -8.0)
+			)
+	
+	if position.y >= 800:
+		if not spawn_form_b:
+			
+			spawn_form_b = true
+			
+			_spawn_enemy_helper(
+				ENEMY_GLIDER_SCENE,
+				ENEMY_GLIDER_CONFIG,
+				EnemyConfig.Type.FORM_B,
+				Vector2(GameState.screen_size.x / 2, -4.0)
 			)
