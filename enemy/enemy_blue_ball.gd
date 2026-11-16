@@ -4,7 +4,7 @@ class_name EnemyBlueBall
 # PROPERTIES
 
 enum MoveType {
-	DESCEND, CIRCLE, EXIT
+	DESCEND, CIRCLE, LEAVE
 }
 
 enum Direction {
@@ -54,8 +54,8 @@ func _move(delta: float) -> void:
 			velocity.y = circle_speed * cos(elapsed_speed)
 			
 			if elapsed_time > circle_duration:
-				move_type = MoveType.EXIT
-		MoveType.EXIT:
+				move_type = MoveType.LEAVE
+		MoveType.LEAVE:
 			var circle_speed := circle_radius * angular_speed
 			var exit_speed := 2.0
 			
