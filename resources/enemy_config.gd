@@ -7,7 +7,7 @@ enum Type {
 	FORM_A, FORM_AR, FORM_B, FORM_BR, FORM_C, FORM_CR, # Gliders
 	FORM_D, FORM_D2, # Pink Balls
 	FORM_E, FORM_E2, # Crosses
-	FORM_F # Blue Balls
+	FORM_F, FORM_FR, FORM_F2, FORM_F2R # Blue Balls
 }
 
 @export var type: Type
@@ -36,7 +36,7 @@ func get_anim_name() -> String:
 			anim_name = "form_d"
 		Type.FORM_E, Type.FORM_E2:
 			anim_name = "form_e"
-		Type.FORM_F:
+		Type.FORM_F, Type.FORM_FR, Type.FORM_F2, Type.FORM_F2R:
 			anim_name = "form_f"
 	
 	return anim_name
@@ -54,7 +54,7 @@ func get_scene() -> PackedScene:
 			scene = load("res://enemy/enemy_pink_ball.tscn")
 		Type.FORM_E, Type.FORM_E2:
 			scene = load("res://enemy/enemy_cross.tscn")
-		Type.FORM_F:
+		Type.FORM_F, Type.FORM_FR, Type.FORM_F2, Type.FORM_F2R:
 			scene = load("res://enemy/enemy_blue_ball.tscn")
 	
 	return scene

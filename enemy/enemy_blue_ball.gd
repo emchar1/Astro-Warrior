@@ -15,24 +15,44 @@ const SCENE = preload("res://enemy/enemy_blue_ball.tscn")
 const CONFIG = preload("res://resources/enemy_blue_ball.tres")
 
 var move_type: MoveType = MoveType.DESCEND
-var rotation_dir: Direction = Direction.CLOCKWISE
+var rotation_dir: Direction
 var clone_spacing: float = 30.0
 var elapsed_time: float
+var index: int = 0
 
 # Circle Movement Properties
 var circle_radius: float = 20.0
 var angular_speed: float = 3.0 * PI
 var circle_duration: float = 2.35 * TAU / angular_speed
-var dir: float = 1.0 if rotation_dir == Direction.CLOCKWISE else -1.0
+var dir: float
 
 
 # FUNCTIONS
 
 func _ready() -> void:
+	await get_tree().process_frame
+	
 	clones_count = 3
 	
+	match enemy_config.type:
+		EnemyConfig.Type.FORM_F:
+			rotation_dir = Direction.CLOCKWISE
+		EnemyConfig.Type.FORM_FR:
+			rotation_dir = Direction.COUNTERCLOCKWISE
+		EnemyConfig.Type.FORM_F2:
+			rotation_dir = Direction.CLOCKWISE
+			
+			if index == 2 or index == 3:
+				rotation_dir = Direction.COUNTERCLOCKWISE
+		EnemyConfig.Type.FORM_F2R:
+			rotation_dir = Direction.COUNTERCLOCKWISE
+			
+			if index == 2 or index == 3:
+				rotation_dir = Direction.CLOCKWISE
+	
+	dir = 1.0 if rotation_dir == Direction.CLOCKWISE else -1.0
+	
 	if is_leader:
-		await get_tree().process_frame
 		_spawn_clones()
 
 
@@ -73,6 +93,7 @@ func _spawn_clones() -> void:
 		clone.enemy_config = enemy_config.duplicate()
 		clone.position = position + Vector2((i + 1) * clone_spacing, 0.0)
 		clone.initial_position = clone.position
+		clone.index = i + 1
 		clone.setup()
 		
 		clones.append(clone)
