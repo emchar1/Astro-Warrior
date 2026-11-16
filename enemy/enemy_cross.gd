@@ -3,8 +3,8 @@ class_name EnemyCross
 
 # PROPERTIES
 
-const CROSS_SCENE = preload("res://enemy/enemy_cross.tscn")
-const CROSS_CONFIG = preload("res://resources/enemy_cross.tres")
+const SCENE = preload("res://enemy/enemy_cross.tscn")
+const CONFIG = preload("res://resources/enemy_cross.tres")
 
 var clone_rows: int
 var clone_cols: int
@@ -66,7 +66,7 @@ func _spawn_clones(_initial_position: Vector2) -> void:
 			
 			var offset := Vector2(clone_spacing / 2 * row, 0.0)
 			
-			var clone = CROSS_SCENE.instantiate() as EnemyCross
+			var clone = SCENE.instantiate() as EnemyCross
 			clone.is_leader = false
 			
 			GameState.add_child_to_game_scene(clone, "Enemies")

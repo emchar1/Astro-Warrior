@@ -3,8 +3,8 @@ class_name EnemyBlueBall
 
 # PROPERTIES
 
-const BLUE_BALL_SCENE = preload("res://enemy/enemy_blue_ball.tscn")
-const BLUE_BALL_CONFIG = preload("res://resources/enemy_blue_ball.tres")
+const SCENE = preload("res://enemy/enemy_blue_ball.tscn")
+const CONFIG = preload("res://resources/enemy_blue_ball.tres")
 
 var clone_spacing: float = 30.0
 
@@ -25,7 +25,7 @@ func _move(_delta: float) -> void:
 
 func _spawn_clones() -> void:
 	for i in range(clones_count):
-		var clone = BLUE_BALL_SCENE.instantiate() as EnemyBlueBall
+		var clone = SCENE.instantiate() as EnemyBlueBall
 		clone.is_leader = false
 		
 		GameState.add_child_to_game_scene(clone, "Enemies")
