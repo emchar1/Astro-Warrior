@@ -6,10 +6,12 @@ class_name LevelBase
 const ENEMY_GLIDER_SCENE = preload("res://enemy/enemy_glider.tscn")
 const ENEMY_PINK_BALL_SCENE = preload("res://enemy/enemy_pink_ball.tscn")
 const ENEMY_CROSS_SCENE = preload("res://enemy/enemy_cross.tscn")
+const ENEMY_BLUE_SCENE = preload("res://enemy/enemy_blue_ball.tscn")
 
 const ENEMY_GLIDER_CONFIG = preload("res://resources/enemy_glider.tres")
 const ENEMY_PINK_BALL_CONFIG = preload("res://resources/enemy_pink_ball.tres")
 const ENEMY_CROSS_CONFIG = preload("res://resources/enemy_cross.tres")
+const ENEMY_BLUE_CONFIG = preload("res://resources/enemy_blue_ball.tres")
 
 @export var level_name: String
 @export var scroll_speed: float = 20.0
@@ -40,6 +42,7 @@ func _process(delta: float) -> void:
 
 func _scroll_level(delta: float) -> void:
 	position.y += delta * scroll_speed
+	#print("position.y: ", position.y)
 
 
 func _spawn_enemies() -> void:

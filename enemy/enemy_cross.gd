@@ -21,7 +21,7 @@ func _ready() -> void:
 		EnemyConfig.Type.FORM_E:
 			clone_rows = 2
 			clone_cols = 2
-		EnemyConfig.Type.FORM_F:
+		EnemyConfig.Type.FORM_E2:
 			clone_rows = 4
 			clone_cols = 1
 	

@@ -8,7 +8,8 @@ var spawn_form_b: bool = false
 var spawn_form_d: Array[bool] = [false, false, false, false, false]
 var spawn_form_d2: Array[bool] = [false, false, false]
 var spawn_form_e: bool = false
-var spawn_form_f: Array[bool] = [false, false]
+var spawn_form_e2: Array[bool] = [false, false]
+var spawn_form_f: Array[bool] = [false, false, false, false]
 
 
 # FUNCTIONS
@@ -95,24 +96,24 @@ func _spawn_enemies() -> void:
 			)
 	
 	if position.y >= 600:
-		if not spawn_form_f[0]:
-			spawn_form_f[0] = true
+		if not spawn_form_e2[0]:
+			spawn_form_e2[0] = true
 			
 			_spawn_enemy_helper(
 				ENEMY_CROSS_SCENE,
 				ENEMY_CROSS_CONFIG,
-				EnemyConfig.Type.FORM_F,
+				EnemyConfig.Type.FORM_E2,
 				Vector2(3 * GameState.screen_size.x / 4, -8.0)
 			)
 	
 	if position.y >= 660:
-		if not spawn_form_f[1]:
-			spawn_form_f[1] = true
+		if not spawn_form_e2[1]:
+			spawn_form_e2[1] = true
 			
 			_spawn_enemy_helper(
 				ENEMY_CROSS_SCENE,
 				ENEMY_CROSS_CONFIG,
-				EnemyConfig.Type.FORM_F,
+				EnemyConfig.Type.FORM_E2,
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
 	
@@ -172,4 +173,15 @@ func _spawn_enemies() -> void:
 				ENEMY_PINK_BALL_CONFIG,
 				EnemyConfig.Type.FORM_D2,
 				Vector2(GameState.screen_size.x / 4, -8.0)
+			)
+	
+	if position.y >= 1000:
+		if not spawn_form_f[0]:
+			spawn_form_f[0] = true
+			
+			_spawn_enemy_helper(
+				ENEMY_BLUE_SCENE,
+				ENEMY_BLUE_CONFIG,
+				EnemyConfig.Type.FORM_F,
+				Vector2(GameState.screen_size.x / 3.1, -8.0)
 			)

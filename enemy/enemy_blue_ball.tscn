@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bmnbmwew150rh"]
+
+[ext_resource type="PackedScene" uid="uid://fjwwtk5o15ml" path="res://enemy/enemy.tscn" id="1_8xlw1"]
+[ext_resource type="Script" uid="uid://dsvm5ab8cwk6m" path="res://enemy/enemy_blue_ball.gd" id="2_rwxfh"]
+[ext_resource type="Texture2D" uid="uid://poxmh3ino4l4" path="res://assets/images/enemies_sprite.png" id="2_sgxio"]
+
+[sub_resource type="Shader" id="Shader_rwxfh"]
+code = "shader_type canvas_item;
+
+uniform vec3 key_color : source_color = vec3(0.0, 1.0, 0.0);
+uniform float threshold : hint_range(0.0, 1.0) = 0.2;
+uniform float smoothing : hint_range(0.0, 0.5) = 0.05;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+
+	float distance_to_green = distance(color.rgb, key_color);
+
+	color.a *= smoothstep(threshold, threshold + smoothing, distance_to_green);
+
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o40ex"]
+shader = SubResource("Shader_rwxfh")
+shader_parameter/key_color = Color(0.043137256, 0.38039216, 0.38039216, 1)
+shader_parameter/threshold = 0.2
+shader_parameter/smoothing = 0.05
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyxuh"]
+atlas = ExtResource("2_sgxio")
+region = Rect2(28, 45, 14, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_swa25"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyxuh")
+}],
+"loop": 1,
+"name": &"form_f",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kfu3j"]
+radius = 6.0
+
+[node name="EnemyBlueBall" unique_id=240346529 instance=ExtResource("1_8xlw1")]
+script = ExtResource("2_rwxfh")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1785739266]
+material = SubResource("ShaderMaterial_o40ex")
+sprite_frames = SubResource("SpriteFrames_swa25")
+animation = &"form_f"
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1004384118]
+shape = SubResource("CircleShape2D_kfu3j")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3" unique_id=1410581220]
+rect = Rect2(-8, -8, 16, 16)
