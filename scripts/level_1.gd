@@ -180,8 +180,8 @@ func _spawn_enemies() -> void:
 			spawn_form_f[0] = true
 			
 			_spawn_enemy_helper(
-				ENEMY_BLUE_SCENE,
-				ENEMY_BLUE_CONFIG,
+				ENEMY_BLUE_BALL_SCENE,
+				ENEMY_BLUE_BALL_CONFIG,
 				EnemyConfig.Type.FORM_F,
 				Vector2(GameState.screen_size.x / 3.1, -8.0)
 			)
