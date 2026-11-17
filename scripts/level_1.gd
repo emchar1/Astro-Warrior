@@ -5,6 +5,9 @@ extends LevelBase
 var spawn_form_a: bool = false
 var spawn_form_ar: bool = false
 var spawn_form_b: bool = false
+var spawn_form_br: bool = false
+var spawn_form_c: bool = false
+var spawn_form_cr: bool = false
 var spawn_form_d: Array[bool] = [false, false, false, false, false]
 var spawn_form_d2: Array[bool] = [false, false, false]
 var spawn_form_e: bool = false
@@ -175,7 +178,20 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
 	
+	# GLIDER
 	if position.y >= 1000:
+		if not spawn_form_c:
+			spawn_form_c = true
+			
+			_spawn_enemy_helper(
+				EnemyGlider.SCENE,
+				EnemyGlider.CONFIG,
+				EnemyConfig.Type.FORM_C,
+				Vector2(GameState.screen_size.x / 2, -4.0)
+			)
+	
+	# BLUE BALLS
+	if position.y >= 1050:
 		if not spawn_form_f[0]:
 			spawn_form_f[0] = true
 			
@@ -197,7 +213,7 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 3.1, -8.0)
 			)
 	
-	if position.y >= 1200:
+	if position.y >= 1150:
 		if not spawn_form_f[2]:
 			spawn_form_f[2] = true
 			
@@ -208,7 +224,7 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 3.1, -8.0)
 			)
 	
-	if position.y >= 1300:
+	if position.y >= 1200:
 		if not spawn_form_f[3]:
 			spawn_form_f[3] = true
 			
@@ -217,4 +233,16 @@ func _spawn_enemies() -> void:
 				EnemyBlueBall.CONFIG,
 				EnemyConfig.Type.FORM_F2R,
 				Vector2(GameState.screen_size.x / 3.1, -8.0)
+			)
+	
+	# GLIDER
+	if position.y >= 1250:
+		if not spawn_form_br:
+			spawn_form_br = true
+			
+			_spawn_enemy_helper(
+				EnemyGlider.SCENE,
+				EnemyGlider.CONFIG,
+				EnemyConfig.Type.FORM_BR,
+				Vector2(GameState.screen_size.x / 2, -4.0)
 			)
