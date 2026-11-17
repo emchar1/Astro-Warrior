@@ -2,10 +2,79 @@
 
 [ext_resource type="Texture2D" uid="uid://dbluf7fh6vlvs" path="res://assets/images/powerups.png" id="1_8vsy1"]
 [ext_resource type="Script" uid="uid://y6vjyob2cxve" path="res://scripts/powerup.gd" id="1_ih772"]
+[ext_resource type="AudioStream" uid="uid://cwyk3vlorpum5" path="res://assets/sounds/powerup.ogg" id="3_406cw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u3pco"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih772"]
+atlas = ExtResource("1_8vsy1")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_406cw"]
+atlas = ExtResource("1_8vsy1")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pufsy"]
+atlas = ExtResource("1_8vsy1")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4g7g"]
+atlas = ExtResource("1_8vsy1")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arwl4"]
+atlas = ExtResource("1_8vsy1")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5dod"]
 atlas = ExtResource("1_8vsy1")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb3me"]
+atlas = ExtResource("1_8vsy1")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u3pco"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih772")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_406cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pufsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4g7g")
+}],
+"loop": 1,
+"name": &"drone",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arwl4")
+}],
+"loop": 1,
+"name": &"laser",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5dod")
+}],
+"loop": 1,
+"name": &"speed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb3me")
+}],
+"loop": 1,
+"name": &"triple",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u3pco"]
 radius = 14.0
@@ -14,9 +83,18 @@ radius = 14.0
 collision_layer = 16
 script = ExtResource("1_ih772")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1856790976]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1211487999]
 texture_filter = 1
-texture = SubResource("AtlasTexture_u3pco")
+sprite_frames = SubResource("SpriteFrames_u3pco")
+animation = &"drone"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187790432]
 shape = SubResource("CircleShape2D_u3pco")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=453458889]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2119852506]
+stream = ExtResource("3_406cw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
