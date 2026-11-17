@@ -3,6 +3,8 @@ class_name LevelBase
 
 # PROPERTIES
 
+const POWERUP_SCENE = preload("res://scenes/powerup.tscn")
+
 @export var level_name: String
 @export var scroll_speed: float = 20.0
 
@@ -11,11 +13,15 @@ class_name LevelBase
 @onready var score_label = $CanvasLayer/Control/ScoreLabel
 @onready var lives_label = $CanvasLayer/Control/LivesLabel
 
+var player: Player
+
 
 # FUNCTIONS
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameState.powerup_count_did_change.connect(_spawn_powerup)
+	
 	level_label.text = level_name
 	score_label.text = str(GameState.score)
 	lives_label.text = " x " + str(GameState.lives)
@@ -55,3 +61,35 @@ func _spawn_enemy_helper(
 	enemy.enemy_config.type = type
 	enemy.position = pos
 	enemy.setup()
+
+
+func _spawn_powerup(count: int) -> void:
+	var powerup_type: Powerup.Type
+	
+	match count:
+		Powerup.INCREMENT * 1:
+			powerup_type = Powerup.Type.SPEED
+		Powerup.INCREMENT * 2:
+			if player:
+				powerup_type = Powerup.Type.TRIPLE
+			else:
+				print("Error finding player! Here's a speed boost.")
+				powerup_type = Powerup.Type.SPEED
+		Powerup.INCREMENT * 3:
+			powerup_type = Powerup.Type.SPEED
+		Powerup.INCREMENT * 4:
+			if player:
+				if player.current_powerup_level == Powerup.Type.TRIPLE:
+					powerup_type = Powerup.Type.LASER
+				else:
+					powerup_type = Powerup.Type.TRIPLE
+			else:
+				print("Error finding player! Here's a speed boost again.")
+				powerup_type = Powerup.Type.SPEED
+		Powerup.INCREMENT * 5:
+			powerup_type = Powerup.Type.SPEED
+	
+	if count % Powerup.INCREMENT == 0:
+		var powerup = POWERUP_SCENE.instantiate() as Powerup
+		powerup.current_type = powerup_type
+		GameState.call_deferred("add_child_to_game_scene", powerup, "Extras")

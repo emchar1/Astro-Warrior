@@ -2,6 +2,7 @@ extends Node2D
 
 # PROPERTIES
 
+@onready var level = $Level1
 @onready var player = $Player
 @onready var intro_stream = $IntroAudioStreamPlayer
 @onready var loop_stream = $LoopAudioStreamPlayer
@@ -13,6 +14,8 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.did_die.connect(player_did_die)
+	
+	level.player = player
 	
 	intro_stream.play()
 	intro_stream.finished.connect(_play_bgm_loop)

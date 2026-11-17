@@ -14,7 +14,6 @@ var spawn_form_e: bool = false
 var spawn_form_e2: Array[bool] = [false, false]
 var spawn_form_f: Array[bool] = [false, false, false, false]
 
-
 # FUNCTIONS
 
 func _spawn_enemies() -> void:

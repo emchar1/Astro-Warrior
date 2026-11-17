@@ -94,7 +94,7 @@ func _on_body_shape_entered(
 		tilemap.add_child(explosion)
 		explosion.type = Explosion.Type.TILE
 		explosion.activate(tilemap.map_to_local(tile_coords))
-		GameState.powerup_count += 1
+		GameState.increment_powerup_count()
 	
 	if tilemap.name == "Walls" and type != Type.LASER:
 		wall_audio_stream.play()

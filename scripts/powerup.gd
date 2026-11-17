@@ -7,11 +7,13 @@ enum Type {
 	SPEED, TRIPLE, LASER, DRONE
 }
 
+const INCREMENT = 12
+
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var audio_stream = $AudioStreamPlayer
 
 var current_type: Type = Type.SPEED
-var speed: float = 40.0
+var speed: float = 60.0
 
 
 # FUNCTIONS
