@@ -42,15 +42,15 @@ func _ready() -> void:
 		EnemyConfig.Type.FORM_FR:
 			rotation_dir = Direction.CLOCKWISE
 		EnemyConfig.Type.FORM_F2:
-			rotation_dir = Direction.CLOCKWISE
-			
-			if index == 2 or index == 3:
-				rotation_dir = Direction.COUNTERCLOCKWISE
-		EnemyConfig.Type.FORM_F2R:
 			rotation_dir = Direction.COUNTERCLOCKWISE
 			
 			if index == 2 or index == 3:
 				rotation_dir = Direction.CLOCKWISE
+		EnemyConfig.Type.FORM_F2R:
+			rotation_dir = Direction.CLOCKWISE
+			
+			if index == 2 or index == 3:
+				rotation_dir = Direction.COUNTERCLOCKWISE
 	
 	dir = 1.0 if rotation_dir == Direction.CLOCKWISE else -1.0
 	

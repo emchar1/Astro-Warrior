@@ -39,6 +39,38 @@ region = Rect2(9, 0, 8, 8)
 atlas = ExtResource("2_e4q1y")
 region = Rect2(0, 0, 8, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue4g0"]
+atlas = ExtResource("2_e4q1y")
+region = Rect2(63, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7a8cj"]
+atlas = ExtResource("2_e4q1y")
+region = Rect2(54, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icqtr"]
+atlas = ExtResource("2_e4q1y")
+region = Rect2(45, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7jws"]
+atlas = ExtResource("2_e4q1y")
+region = Rect2(36, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qari"]
+atlas = ExtResource("2_e4q1y")
+region = Rect2(27, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnva7"]
+atlas = ExtResource("2_e4q1y")
+region = Rect2(18, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kth3e"]
+atlas = ExtResource("2_e4q1y")
+region = Rect2(9, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuuah"]
+atlas = ExtResource("2_e4q1y")
+region = Rect2(0, 0, 8, 8)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_cmbqk"]
 animations = [{
 "frames": [{
@@ -79,6 +111,93 @@ animations = [{
 "loop": 1,
 "name": &"form_b",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_440sq")
+}, {
+"duration": 0.3,
+"texture": SubResource("AtlasTexture_36o71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drxso")
+}, {
+"duration": 0.35,
+"texture": SubResource("AtlasTexture_36o71")
+}],
+"loop": 1,
+"name": &"form_br",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6u1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3djw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ue4g0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7a8cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icqtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7jws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qari")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnva7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kth3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuuah")
+}],
+"loop": 0,
+"name": &"form_c",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6u1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnva7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qari")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7jws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icqtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7a8cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ue4g0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3djw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kth3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnva7")
+}],
+"loop": 0,
+"name": &"form_cr",
+"speed": 4.0
 }]
 
 [node name="EnemyGlider" unique_id=240346529 instance=ExtResource("1_qa3u7")]
@@ -87,4 +206,4 @@ script = ExtResource("2_p6u1t")
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1785739266]
 material = SubResource("ShaderMaterial_p6u1t")
 sprite_frames = SubResource("SpriteFrames_cmbqk")
-animation = &"form_b"
+animation = &"form_cr"
