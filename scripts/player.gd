@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 # PROPERTIES
 
@@ -10,10 +11,12 @@ const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 
 @export var speed: float = 80.0
 
+@onready var sprite = $Sprite2D
 @onready var hurtbox = $Hurtbox
 @onready var shoot_timer = $ShootTimer
 
 var move_dir: Vector2
+var current_powerup_level: Bullet.Type = Bullet.Type.MAIN
 
 
 # FUNCTIONS
@@ -29,6 +32,27 @@ func _physics_process(_delta: float) -> void:
 	_read_movement()
 	
 	move_and_slide()
+
+
+# POWERUP FUNCTIONS
+
+func increase_level(powerup_level: Bullet.Type) -> void:
+	current_powerup_level = powerup_level
+	var sprite_offset_x: float
+	
+	match powerup_level:
+		Bullet.Type.MAIN:
+			sprite_offset_x = 0.0
+		Bullet.Type.TRIPLE:
+			sprite_offset_x = 17.0
+		Bullet.Type.LASER:
+			sprite_offset_x = 34.0
+	
+	sprite.texture.region = Rect2(sprite_offset_x, 0.0, 16.0, 16.0)
+
+
+func increase_speed() -> void:
+	speed += 30.0
 
 
 # HELPER FUNCTIONS
@@ -74,6 +98,7 @@ func _read_movement() -> void:
 
 func _shoot() -> void:
 	var bullet = BULLET_SCENE.instantiate() as Bullet
+	bullet.type = current_powerup_level
 	get_parent().add_child(bullet)
 	bullet.global_position = global_position
 

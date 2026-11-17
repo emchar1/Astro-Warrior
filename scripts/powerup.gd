@@ -42,16 +42,22 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		var powerup_level: Bullet.Type
+		if current_type == Type.TRIPLE or current_type == Type.LASER:
+			var powerup_level: Bullet.Type
+			
+			match current_type:
+				Type.TRIPLE:
+					powerup_level = Bullet.Type.TRIPLE
+				Type.LASER:
+					powerup_level = Bullet.Type.LASER
+			
+			body.increase_level(powerup_level)
+		elif current_type == Type.SPEED:
+			body.increase_speed()
 		
-		match current_type:
-			Type.TRIPLE:
-				powerup_level = Bullet.Type.TRIPLE
-			Type.LASER:
-				powerup_level = Bullet.Type.LASER
-		
-		body.increase_level(powerup_level)
 		audio_stream.play()
+		
+		# Disable powerup
 		hide()
 		set_deferred("monitoring", false)
 
