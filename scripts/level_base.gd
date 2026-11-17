@@ -79,7 +79,7 @@ func _spawn_powerup(count: int) -> void:
 			powerup_type = Powerup.Type.SPEED
 		Powerup.INCREMENT * 4:
 			if player:
-				if player.current_powerup_level == Powerup.Type.TRIPLE:
+				if player.current_powerup_level == Bullet.Type.TRIPLE:
 					powerup_type = Powerup.Type.LASER
 				else:
 					powerup_type = Powerup.Type.TRIPLE
