@@ -185,3 +185,36 @@ func _spawn_enemies() -> void:
 				EnemyConfig.Type.FORM_F,
 				Vector2(GameState.screen_size.x / 3.1, -8.0)
 			)
+	
+	if position.y >= 1100:
+		if not spawn_form_f[1]:
+			spawn_form_f[1] = true
+			
+			_spawn_enemy_helper(
+				EnemyBlueBall.SCENE,
+				EnemyBlueBall.CONFIG,
+				EnemyConfig.Type.FORM_FR,
+				Vector2(GameState.screen_size.x / 3.1, -8.0)
+			)
+	
+	if position.y >= 1200:
+		if not spawn_form_f[2]:
+			spawn_form_f[2] = true
+			
+			_spawn_enemy_helper(
+				EnemyBlueBall.SCENE,
+				EnemyBlueBall.CONFIG,
+				EnemyConfig.Type.FORM_F2,
+				Vector2(GameState.screen_size.x / 3.1, -8.0)
+			)
+	
+	if position.y >= 1300:
+		if not spawn_form_f[3]:
+			spawn_form_f[3] = true
+			
+			_spawn_enemy_helper(
+				EnemyBlueBall.SCENE,
+				EnemyBlueBall.CONFIG,
+				EnemyConfig.Type.FORM_F2R,
+				Vector2(GameState.screen_size.x / 3.1, -8.0)
+			)
