@@ -24,6 +24,8 @@ var index: int = 0
 var circle_radius: float = 20.0
 var angular_speed: float = 3.0 * PI
 var circle_duration: float = 1.5 * TAU / angular_speed
+var circle_speed := circle_radius * angular_speed
+var exit_speed := 2.0
 var dir: float
 
 
@@ -40,15 +42,15 @@ func _ready() -> void:
 		EnemyConfig.Type.FORM_FR:
 			rotation_dir = Direction.CLOCKWISE
 		EnemyConfig.Type.FORM_F2:
-			rotation_dir = Direction.COUNTERCLOCKWISE
-			
-			if index == 2 or index == 3:
-				rotation_dir = Direction.CLOCKWISE
-		EnemyConfig.Type.FORM_F2R:
 			rotation_dir = Direction.CLOCKWISE
 			
 			if index == 2 or index == 3:
 				rotation_dir = Direction.COUNTERCLOCKWISE
+		EnemyConfig.Type.FORM_F2R:
+			rotation_dir = Direction.COUNTERCLOCKWISE
+			
+			if index == 2 or index == 3:
+				rotation_dir = Direction.CLOCKWISE
 	
 	dir = 1.0 if rotation_dir == Direction.CLOCKWISE else -1.0
 	
@@ -67,7 +69,6 @@ func _move(delta: float) -> void:
 		MoveType.CIRCLE:
 			elapsed_time += delta
 			
-			var circle_speed := circle_radius * angular_speed
 			var elapsed_speed := elapsed_time * angular_speed
 			
 			velocity.x = -circle_speed * sin(elapsed_speed) * dir
@@ -76,9 +77,6 @@ func _move(delta: float) -> void:
 			if elapsed_time > circle_duration:
 				move_type = MoveType.LEAVE
 		MoveType.LEAVE:
-			var circle_speed := circle_radius * angular_speed
-			var exit_speed := 2.0
-			
 			velocity.x = circle_speed * sin(2 * PI / 3) * exit_speed * dir
 			velocity.y = circle_speed * cos(2 * PI / 3) * exit_speed
 
