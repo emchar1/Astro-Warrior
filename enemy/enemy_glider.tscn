@@ -130,7 +130,7 @@ animations = [{
 "speed": 1.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_p6u1t")
 }, {
 "duration": 1.0,
@@ -165,7 +165,7 @@ animations = [{
 "speed": 4.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_p6u1t")
 }, {
 "duration": 1.0,
