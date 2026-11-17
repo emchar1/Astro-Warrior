@@ -14,6 +14,7 @@ const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 @onready var sprite = $Sprite2D
 @onready var hurtbox = $Hurtbox
 @onready var shoot_timer = $ShootTimer
+@onready var laser_timer = $LaserShootTimer
 
 var move_dir: Vector2
 var current_powerup_level: Bullet.Type = Bullet.Type.MAIN
@@ -23,7 +24,7 @@ var current_powerup_level: Bullet.Type = Bullet.Type.MAIN
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	increase_level(current_powerup_level)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -76,8 +77,13 @@ func _read_input() -> void:
 	) and shoot_timer.is_stopped()
 	
 	if shoot_pressed or shoot_held:
+		if current_powerup_level == Bullet.Type.LASER and \
+		not laser_timer.is_stopped():
+			return
+		
 		_shoot()
 		shoot_timer.start()
+		laser_timer.start()
 
 
 func _read_movement() -> void:
