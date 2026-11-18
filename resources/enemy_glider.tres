@@ -5,3 +5,4 @@
 [resource]
 script = ExtResource("1_6w38x")
 speed = 60.0
+score = 10

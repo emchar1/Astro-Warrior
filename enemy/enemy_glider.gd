@@ -29,6 +29,7 @@ func _ready() -> void:
 	
 	die_scale = Vector2(0.5, 0.5)
 	clones_count = 5
+	enemy_config.score = 10
 	
 	if is_leader:
 		initial_position = position
@@ -163,8 +164,12 @@ func _die_cascade() -> void:
 	if not is_leader or did_nullify_cascade:
 		return
 	
+	enemy_config.score = 100
+	
 	for clone in clones:
 		if is_instance_valid(clone):
+			clone.enemy_config.score = 0
+			
 			await get_tree().create_timer(0.08).timeout
 			
 			if is_instance_valid(clone):

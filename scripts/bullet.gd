@@ -94,6 +94,7 @@ func _on_body_shape_entered(
 		
 		powerup_manager.increment_powerup_count()
 		_add_powerup_label(tilemap, tile_coords)
+		GameState.update_score(200)
 	
 	if powerup_manager.bullet_type != Powerup.Type.LASER \
 	and tilemap.name == "Walls":

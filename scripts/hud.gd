@@ -11,7 +11,15 @@ extends CanvasLayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameState.did_update_score.connect(_update_score)
+	GameState.did_update_lives.connect(_update_lives)
+	
+	_update_score(GameState.score)
+	_update_lives(GameState.lives)
 
 
-func _update_score(new_score: int) -> void:
-	score_label.text = str(new_score)
+func _update_score(total_score: int) -> void:
+	score_label.text = str(total_score).pad_zeros(6)
+
+
+func _update_lives(total_lives: int) -> void:
+	lives_label.text = str(" x ", total_lives)

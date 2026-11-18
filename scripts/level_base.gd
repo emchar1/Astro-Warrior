@@ -20,8 +20,8 @@ var powerup_manager: PowerupManager
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level_label.text = level_name
-	score_label.text = str(GameState.score)
-	lives_label.text = " x " + str(GameState.lives)
+	score_label.text = str(GameState.score).pad_zeros(6)
+	lives_label.text = str(" x ", GameState.lives)
 	
 	await get_tree().create_timer(3.0).timeout
 	canvas_layer.hide()

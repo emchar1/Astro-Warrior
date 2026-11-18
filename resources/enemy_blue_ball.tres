@@ -6,4 +6,5 @@
 script = ExtResource("1_uanng")
 type = 10
 speed = 100.0
+score = 100
 metadata/_custom_type_script = "uid://d3vykss4k8ng6"

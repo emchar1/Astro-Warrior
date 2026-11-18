@@ -12,6 +12,7 @@ enum Type {
 
 @export var type: Type
 @export var speed: float
+@export var score: int
 
 
 # FUNCTIONS

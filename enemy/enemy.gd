@@ -12,6 +12,7 @@ const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 
 var enemy_config: EnemyConfig
 var die_scale: Vector2 = Vector2.ONE
+var is_dead: bool = false
 
 # Clone Properties
 var clones: Array[Enemy] = []
@@ -47,15 +48,23 @@ func _move(_delta: float) -> void:
 
 
 func _die() -> void:
+	if is_dead:
+		return
+	
+	is_dead = true
+	
 	set_collision_layer_value(2, 0)
 	hurtbox.set_deferred("monitoring", false)
 	hide()
 	did_die.emit()
 	
+	# MUST come after did_die signal for glider scoring.
+	GameState.update_score(enemy_config.score)
+
+	
+	# Add explosion
 	var explosion = EXPLOSION_SCENE.instantiate() as Explosion
-	
 	GameState.add_child_to_game_scene(explosion, "Extras")
-	
 	explosion.activate(position, die_scale)
 
 

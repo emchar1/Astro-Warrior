@@ -57,4 +57,11 @@ func player_did_die() -> void:
 	
 	await get_tree().create_timer(3.5).timeout
 	
-	get_parent().restart_game(self)
+	GameState.update_lives(-1)
+	GameState.powerup_count = 0
+	
+	if GameState.lives >= 0:
+		get_parent().restart_game(self)
+	else:
+		# TODO: - Game Over screen -> Title screen
+		print("Game Over!")
