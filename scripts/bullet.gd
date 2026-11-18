@@ -82,9 +82,10 @@ func _on_body_shape_entered(
 	
 	var tilemap := body as TileMapLayer
 	var tile_coords := tilemap.get_coords_for_body_rid(body_rid)
-	var explosion = EXPLOSION_SCENE.instantiate() as Explosion
 	
 	if tilemap.name == "Destructibles":
+		var explosion = EXPLOSION_SCENE.instantiate() as Explosion
+		
 		tilemap.call_deferred("erase_cell", tile_coords)
 		tilemap.add_child(explosion)
 		
@@ -92,9 +93,48 @@ func _on_body_shape_entered(
 		explosion.activate(tilemap.map_to_local(tile_coords))
 		
 		powerup_manager.increment_powerup_count()
+		_add_powerup_label(tilemap, tile_coords)
 	
 	if powerup_manager.bullet_type != Powerup.Type.LASER \
 	and tilemap.name == "Walls":
 		wall_audio_stream.play()
 	
 	die()
+
+
+func _add_powerup_label(tilemap: TileMapLayer, tile_coords: Vector2i):
+	var powerup_font := load("res://assets/fonts/PressStart2P-Regular.ttf")
+	var powerup_mod := int(GameState.powerup_count % PowerupManager.THRESHOLD)
+	var powerup_label = Label.new()
+	var tween = create_tween()
+	
+	powerup_label.z_index = 5
+	powerup_label.add_theme_font_override("font", powerup_font)
+	powerup_label.add_theme_constant_override("outline_size", 3)
+	
+	if powerup_mod == 0:
+		powerup_label.text = "POWER UP!"
+		powerup_label.add_theme_font_size_override("font_size", 4)
+		powerup_label.add_theme_color_override(
+			"font_outline_color",
+			Color.MAGENTA.darkened(0.3)
+		)
+	else:
+		powerup_label.text = str(powerup_mod, "/", PowerupManager.THRESHOLD)
+		powerup_label.add_theme_font_size_override("font_size", 3)
+		powerup_label.add_theme_color_override(
+			"font_outline_color",
+			Color.BLUE
+		)
+	
+	tilemap.add_child(powerup_label)
+	
+	powerup_label.position = tilemap.map_to_local(tile_coords)
+		
+	tween.tween_property(powerup_label, "modulate:a", 0.0, 1.0)
+	tween.parallel().tween_property(
+		powerup_label,
+		"position:y",
+		powerup_label.position.y - 10.0,
+		1.0
+	)
