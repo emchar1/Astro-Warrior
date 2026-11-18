@@ -37,5 +37,7 @@ func restart_game(old_game: Node2D) -> void:
 	old_game.queue_free()
 	await get_tree().process_frame
 	
+	GameState.powerup_count = 0
+	
 	var game_scene = GAME_SCENE.instantiate()
 	add_child(game_scene)

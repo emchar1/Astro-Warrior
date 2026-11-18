@@ -4,15 +4,15 @@ class_name Powerup
 # PROPERTIES
 
 enum Type {
-	SPEED, TRIPLE, LASER, DRONE
+	MAIN, TRIPLE, LASER, # Bullet Types
+	SPEED, DRONE # Other
 }
-
-const INCREMENT = 12
 
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var audio_stream = $AudioStreamPlayer
 
-var current_type: Type = Type.SPEED
+var powerup_manager: PowerupManager
+var type: Type
 var speed: float = 60.0
 
 
@@ -22,13 +22,17 @@ var speed: float = 60.0
 func _ready() -> void:
 	position.x = GameState.screen_size.x / 2
 	
-	match current_type:
-		Type.SPEED:
-			anim_sprite.animation = "speed"
+	if type == null:
+		print("Powerup type not set!")
+		return
+	
+	match type:
 		Type.TRIPLE:
 			anim_sprite.animation = "triple"
 		Type.LASER:
 			anim_sprite.animation = "laser"
+		Type.SPEED:
+			anim_sprite.animation = "speed"
 		Type.DRONE:
 			anim_sprite.animation = "drone"
 	
@@ -44,18 +48,21 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		if current_type == Type.TRIPLE or current_type == Type.LASER:
-			var powerup_level: Bullet.Type
-			
-			match current_type:
-				Type.TRIPLE:
-					powerup_level = Bullet.Type.TRIPLE
-				Type.LASER:
-					powerup_level = Bullet.Type.LASER
-			
-			body.increase_level(powerup_level)
-		elif current_type == Type.SPEED:
-			body.increase_speed()
+		var player = body as Player
+		
+		if player == null:
+			return
+		
+		powerup_manager.collect_powerup(type)
+		
+		match type:
+			Powerup.Type.TRIPLE, Powerup.Type.LASER:
+				player.update_weapon()
+			Powerup.Type.SPEED:
+				player.increase_speed()
+			Powerup.Type.DRONE:
+				# TODO: - Make Drones
+				pass
 		
 		audio_stream.play()
 		

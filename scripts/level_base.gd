@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 func setup(_player: Player, _powerup_manager: PowerupManager) -> void:
 	player = _player
 	powerup_manager = _powerup_manager
-	powerup_manager.powerup_count_did_increment.connect(_spawn_powerup)
+	powerup_manager.powerup_did_earn.connect(_spawn_powerup)
 
 
 func _scroll_level(delta: float) -> void:
@@ -66,33 +66,8 @@ func _spawn_enemy_helper(
 	enemy.setup()
 
 
-func _spawn_powerup(count: int) -> void:
-	var powerup_type: Powerup.Type
-	
-	match count:
-		Powerup.INCREMENT * 1:
-			powerup_type = Powerup.Type.SPEED
-		Powerup.INCREMENT * 2:
-			if player:
-				powerup_type = Powerup.Type.TRIPLE
-			else:
-				print("Error finding player! Here's a speed boost.")
-				powerup_type = Powerup.Type.SPEED
-		Powerup.INCREMENT * 3:
-			powerup_type = Powerup.Type.SPEED
-		Powerup.INCREMENT * 4:
-			if player:
-				if player.current_powerup_level == Bullet.Type.TRIPLE:
-					powerup_type = Powerup.Type.LASER
-				else:
-					powerup_type = Powerup.Type.TRIPLE
-			else:
-				print("Error finding player! Here's a speed boost again.")
-				powerup_type = Powerup.Type.SPEED
-		Powerup.INCREMENT * 5:
-			powerup_type = Powerup.Type.SPEED
-	
-	if count % Powerup.INCREMENT == 0:
-		var powerup = PowerupManager.POWERUP_SCENE.instantiate() as Powerup
-		powerup.current_type = powerup_type
-		GameState.call_deferred("add_child_to_game_scene", powerup, "Extras")
+func _spawn_powerup(type: Powerup.Type) -> void:
+	var powerup = PowerupManager.POWERUP_SCENE.instantiate() as Powerup
+	powerup.powerup_manager = powerup_manager
+	powerup.type = type
+	GameState.call_deferred("add_child_to_game_scene", powerup, "Extras")

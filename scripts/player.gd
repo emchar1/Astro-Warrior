@@ -18,14 +18,13 @@ const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 
 var powerup_manager: PowerupManager
 var move_dir: Vector2
-var current_powerup_level: Bullet.Type = Bullet.Type.MAIN
 
 
 # FUNCTIONS
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	increase_level(current_powerup_level)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,19 +35,23 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
+func setup(_powerup_manager: PowerupManager) -> void:
+	powerup_manager = _powerup_manager
+	update_weapon()
+
+
 # POWERUP FUNCTIONS
 
-func increase_level(powerup_level: Bullet.Type) -> void:
-	current_powerup_level = powerup_level
+func update_weapon() -> void:
 	var sprite_offset_x: float
 	
-	match powerup_level:
-		Bullet.Type.MAIN:
-			sprite_offset_x = 0.0
-		Bullet.Type.TRIPLE:
-			sprite_offset_x = 17.0
-		Bullet.Type.LASER:
+	match powerup_manager.bullet_type:
+		Powerup.Type.LASER:
 			sprite_offset_x = 34.0
+		Powerup.Type.TRIPLE:
+			sprite_offset_x = 17.0
+		_:
+			sprite_offset_x = 0.0
 	
 	sprite.texture.region = Rect2(sprite_offset_x, 0.0, 16.0, 16.0)
 
@@ -78,8 +81,8 @@ func _read_input() -> void:
 	) and shoot_timer.is_stopped()
 	
 	if shoot_pressed or shoot_held:
-		if current_powerup_level == Bullet.Type.LASER and \
-		not laser_timer.is_stopped():
+		if powerup_manager.bullet_type == Powerup.Type.LASER \
+		and not laser_timer.is_stopped():
 			return
 		
 		_shoot()
@@ -106,8 +109,9 @@ func _read_movement() -> void:
 func _shoot() -> void:
 	var bullet = BULLET_SCENE.instantiate() as Bullet
 	bullet.powerup_manager = powerup_manager
-	bullet.type = current_powerup_level
-	get_parent().add_child(bullet)
+	
+	GameState.add_child_to_game_scene(bullet, "Extras")
+	
 	bullet.global_position = global_position
 
 
@@ -117,10 +121,9 @@ func _die() -> void:
 	hide()
 	did_die.emit()
 	
+	# Add explosion
 	var explosion = EXPLOSION_SCENE.instantiate() as Explosion
-	
 	GameState.add_child_to_game_scene(explosion, "Extras")
-	
 	explosion.activate(position)
 
 

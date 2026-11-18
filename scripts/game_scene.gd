@@ -18,7 +18,7 @@ func _ready() -> void:
 	player.did_die.connect(player_did_die)
 	
 	level.setup(player, powerup_manager)
-	player.powerup_manager = powerup_manager
+	player.setup(powerup_manager)
 	
 	intro_stream.play()
 	intro_stream.finished.connect(_play_bgm_loop)

@@ -3,10 +3,6 @@ class_name Bullet
 
 # PROPERTIES
 
-enum Type {
-	MAIN, TRIPLE, LASER
-}
-
 const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 const BULLET_MAIN_SFX = preload("res://assets/sounds/bullet0.ogg")
 const BULLET_LASER_SFX = preload("res://assets/sounds/bullet1.ogg")
@@ -18,34 +14,32 @@ const BULLET_LASER_SFX = preload("res://assets/sounds/bullet1.ogg")
 @onready var wall_audio_stream = $WallAudioStreamPlayer
 
 var powerup_manager: PowerupManager
-var type: Type = Type.MAIN
 var is_disabled: bool = false
 
 
 # FUNCTIONS
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	match type:
-		Type.MAIN:
-			sprite.texture.region = Rect2(0.0, 22.0, 2.0, 11.0)
-			collision.shape.size = Vector2(2.0, 11.0)
-			sprite.scale.y = 1.0
-			collision.scale.y = 1.0
-			bullet_audio_stream.stream = BULLET_MAIN_SFX
-		Type.TRIPLE:
-			sprite.texture.region = Rect2(3.0, 22.0, 14.0, 11.0)
-			collision.shape.size = Vector2(14.0, 11.0)
-			sprite.scale.y = 1.0
-			collision.scale.y = 1.0
-			bullet_audio_stream.stream = BULLET_MAIN_SFX
-		Type.LASER:
+	match powerup_manager.bullet_type:
+		Powerup.Type.LASER:
 			sprite.texture.region = Rect2(18.0, 17.0, 8.0, 16.0)
 			collision.shape.size = Vector2(8.0, 16.0)
 			sprite.scale.y = 2.0
 			collision.scale.y = 2.0
 			bullet_audio_stream.stream = BULLET_LASER_SFX
+		Powerup.Type.TRIPLE:
+			sprite.texture.region = Rect2(3.0, 22.0, 14.0, 11.0)
+			collision.shape.size = Vector2(14.0, 11.0)
+			sprite.scale.y = 1.0
+			collision.scale.y = 1.0
+			bullet_audio_stream.stream = BULLET_MAIN_SFX
+		_:
+			sprite.texture.region = Rect2(0.0, 22.0, 2.0, 11.0)
+			collision.shape.size = Vector2(2.0, 11.0)
+			sprite.scale.y = 1.0
+			collision.scale.y = 1.0
+			bullet_audio_stream.stream = BULLET_MAIN_SFX
 	
 	bullet_audio_stream.play()
 
@@ -56,7 +50,7 @@ func _process(delta: float) -> void:
 
 
 func die() -> void:
-	if type != Type.LASER:
+	if powerup_manager.bullet_type != Powerup.Type.LASER:
 		_disable_bullet()
 
 
@@ -93,11 +87,14 @@ func _on_body_shape_entered(
 	if tilemap.name == "Destructibles":
 		tilemap.call_deferred("erase_cell", tile_coords)
 		tilemap.add_child(explosion)
+		
 		explosion.type = Explosion.Type.TILE
 		explosion.activate(tilemap.map_to_local(tile_coords))
+		
 		powerup_manager.increment_powerup_count()
 	
-	if tilemap.name == "Walls" and type != Type.LASER:
+	if powerup_manager.bullet_type != Powerup.Type.LASER \
+	and tilemap.name == "Walls":
 		wall_audio_stream.play()
 	
 	die()
