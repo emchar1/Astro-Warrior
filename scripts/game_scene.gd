@@ -5,6 +5,7 @@ class_name GameScene
 
 @onready var level = $Level1
 @onready var player = $Player
+@onready var hud = $Hud
 @onready var powerup_manager = %PowerupManager
 @onready var intro_stream = $IntroAudioStreamPlayer
 @onready var loop_stream = $LoopAudioStreamPlayer
@@ -25,6 +26,9 @@ func _ready() -> void:
 	
 	if intro_stream.stream == null:
 		_play_bgm_loop()
+	
+	await get_tree().create_timer(3.0).timeout
+	hud.show()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

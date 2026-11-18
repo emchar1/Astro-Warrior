@@ -2,6 +2,8 @@ extends Node
 
 # PROPERTIES
 
+signal did_update_score(new_score: int)
+
 var screen_size: Vector2
 
 var score: int
@@ -24,3 +26,8 @@ func add_child_to_game_scene(node: Node, node_name: String) -> void:
 		return
 	
 	game_scene_node.add_child(node)
+
+
+func update_score(score_to_add: int) -> void:
+	score += score_to_add
+	did_update_score.emit(score)

@@ -119,14 +119,14 @@ func _add_powerup_label(tilemap: TileMapLayer, tile_coords: Vector2i):
 		powerup_label.add_theme_font_size_override("font_size", 4)
 		powerup_label.add_theme_color_override(
 			"font_outline_color",
-			Color.MAGENTA.darkened(0.3)
+			Color.MAGENTA
 		)
 	else:
 		powerup_label.text = str(powerup_mod, "/", PowerupManager.THRESHOLD)
 		powerup_label.add_theme_font_size_override("font_size", 3)
 		powerup_label.add_theme_color_override(
 			"font_outline_color",
-			Color.BLUE
+			Color.MAGENTA.darkened(0.4)
 		)
 	
 	tilemap.add_child(powerup_label)
