@@ -1,9 +1,11 @@
 extends Node2D
+class_name GameScene
 
 # PROPERTIES
 
 @onready var level = $Level1
 @onready var player = $Player
+@onready var powerup_manager = %PowerupManager
 @onready var intro_stream = $IntroAudioStreamPlayer
 @onready var loop_stream = $LoopAudioStreamPlayer
 @onready var death_stream = $DeathAudioStreamPlayer
@@ -15,7 +17,8 @@ extends Node2D
 func _ready() -> void:
 	player.did_die.connect(player_did_die)
 	
-	level.player = player
+	level.setup(player, powerup_manager)
+	player.powerup_manager = powerup_manager
 	
 	intro_stream.play()
 	intro_stream.finished.connect(_play_bgm_loop)

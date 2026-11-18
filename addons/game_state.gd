@@ -2,9 +2,8 @@ extends Node
 
 # PROPERTIES
 
-signal powerup_count_did_change(count: int)
-
 var screen_size: Vector2
+
 var score: int
 var lives: int = 2
 var powerup_count: int = 0
@@ -25,8 +24,3 @@ func add_child_to_game_scene(node: Node, node_name: String) -> void:
 		return
 	
 	game_scene_node.add_child(node)
-
-
-func increment_powerup_count() -> void:
-	powerup_count += 1
-	powerup_count_did_change.emit(powerup_count)

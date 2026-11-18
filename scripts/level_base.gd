@@ -3,8 +3,6 @@ class_name LevelBase
 
 # PROPERTIES
 
-const POWERUP_SCENE = preload("res://scenes/powerup.tscn")
-
 @export var level_name: String
 @export var scroll_speed: float = 20.0
 
@@ -14,14 +12,13 @@ const POWERUP_SCENE = preload("res://scenes/powerup.tscn")
 @onready var lives_label = $CanvasLayer/Control/LivesLabel
 
 var player: Player
+var powerup_manager: PowerupManager
 
 
 # FUNCTIONS
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GameState.powerup_count_did_change.connect(_spawn_powerup)
-	
 	level_label.text = level_name
 	score_label.text = str(GameState.score)
 	lives_label.text = " x " + str(GameState.lives)
@@ -34,6 +31,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_scroll_level(delta)
 	_spawn_enemies()
+
+
+func setup(_player: Player, _powerup_manager: PowerupManager) -> void:
+	player = _player
+	powerup_manager = _powerup_manager
+	powerup_manager.powerup_count_did_increment.connect(_spawn_powerup)
 
 
 func _scroll_level(delta: float) -> void:
@@ -90,6 +93,6 @@ func _spawn_powerup(count: int) -> void:
 			powerup_type = Powerup.Type.SPEED
 	
 	if count % Powerup.INCREMENT == 0:
-		var powerup = POWERUP_SCENE.instantiate() as Powerup
+		var powerup = PowerupManager.POWERUP_SCENE.instantiate() as Powerup
 		powerup.current_type = powerup_type
 		GameState.call_deferred("add_child_to_game_scene", powerup, "Extras")

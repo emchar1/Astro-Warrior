@@ -17,6 +17,7 @@ const BULLET_LASER_SFX = preload("res://assets/sounds/bullet1.ogg")
 @onready var bullet_audio_stream = $BulletAudioStreamPlayer
 @onready var wall_audio_stream = $WallAudioStreamPlayer
 
+var powerup_manager: PowerupManager
 var type: Type = Type.MAIN
 var is_disabled: bool = false
 
@@ -94,7 +95,7 @@ func _on_body_shape_entered(
 		tilemap.add_child(explosion)
 		explosion.type = Explosion.Type.TILE
 		explosion.activate(tilemap.map_to_local(tile_coords))
-		GameState.increment_powerup_count()
+		powerup_manager.increment_powerup_count()
 	
 	if tilemap.name == "Walls" and type != Type.LASER:
 		wall_audio_stream.play()

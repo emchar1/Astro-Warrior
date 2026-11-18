@@ -16,6 +16,7 @@ const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 @onready var shoot_timer = $ShootTimer
 @onready var laser_timer = $LaserShootTimer
 
+var powerup_manager: PowerupManager
 var move_dir: Vector2
 var current_powerup_level: Bullet.Type = Bullet.Type.MAIN
 
@@ -104,6 +105,7 @@ func _read_movement() -> void:
 
 func _shoot() -> void:
 	var bullet = BULLET_SCENE.instantiate() as Bullet
+	bullet.powerup_manager = powerup_manager
 	bullet.type = current_powerup_level
 	get_parent().add_child(bullet)
 	bullet.global_position = global_position
