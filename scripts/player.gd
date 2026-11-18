@@ -18,6 +18,7 @@ const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 
 var powerup_manager: PowerupManager
 var move_dir: Vector2
+var is_dead: bool = false
 
 
 # FUNCTIONS
@@ -116,6 +117,10 @@ func _shoot() -> void:
 
 
 func _die() -> void:
+	if is_dead:
+		return
+	
+	is_dead = true
 	set_physics_process(false)
 	hurtbox.set_deferred("monitoring", false)
 	hide()

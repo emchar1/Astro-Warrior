@@ -50,7 +50,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		var player = body as Player
 		
-		if player == null:
+		if player == null or player.is_dead:
 			return
 		
 		powerup_manager.collect_powerup(type)
