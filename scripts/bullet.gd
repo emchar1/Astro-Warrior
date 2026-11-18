@@ -105,14 +105,16 @@ func _on_body_shape_entered(
 func _add_powerup_label(tilemap: TileMapLayer, tile_coords: Vector2i):
 	var powerup_font := load("res://assets/fonts/PressStart2P-Regular.ttf")
 	var powerup_mod := int(GameState.powerup_count % PowerupManager.THRESHOLD)
-	var powerup_label = Label.new()
-	var tween = create_tween()
+	var powerup_label := Label.new()
+	var tween := create_tween()
+	var _speed := 0.8
 	
 	powerup_label.z_index = 5
 	powerup_label.add_theme_font_override("font", powerup_font)
 	powerup_label.add_theme_constant_override("outline_size", 3)
 	
 	if powerup_mod == 0:
+		_speed = 1.0
 		powerup_label.text = "POWER UP!"
 		powerup_label.add_theme_font_size_override("font_size", 4)
 		powerup_label.add_theme_color_override(
@@ -131,10 +133,10 @@ func _add_powerup_label(tilemap: TileMapLayer, tile_coords: Vector2i):
 	
 	powerup_label.position = tilemap.map_to_local(tile_coords)
 		
-	tween.tween_property(powerup_label, "modulate:a", 0.0, 1.0)
+	tween.tween_property(powerup_label, "modulate:a", 0.0, _speed)
 	tween.parallel().tween_property(
 		powerup_label,
 		"position:y",
 		powerup_label.position.y - 10.0,
-		1.0
+		_speed
 	)
