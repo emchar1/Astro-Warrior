@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dbluf7fh6vlvs" path="res://assets/images/powerups.png" id="1_8vsy1"]
 [ext_resource type="Script" uid="uid://y6vjyob2cxve" path="res://scripts/powerup.gd" id="1_ih772"]
 [ext_resource type="AudioStream" uid="uid://cwyk3vlorpum5" path="res://assets/sounds/powerup.ogg" id="3_406cw"]
+[ext_resource type="FontFile" uid="uid://x1l36w7tdkds" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_pufsy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ih772"]
 atlas = ExtResource("1_8vsy1")
@@ -92,6 +93,26 @@ animation = &"drone"
 shape = SubResource("CircleShape2D_u3pco")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=453458889]
+
+[node name="StatusLabel" type="Label" parent="." unique_id=762190766]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -11.5
+offset_right = 25.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.8156863, 0, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_pufsy")
+theme_override_font_sizes/font_size = 5
+text = "WEAPON UP!"
+vertical_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2119852506]
 stream = ExtResource("3_406cw")
