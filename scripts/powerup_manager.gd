@@ -30,13 +30,13 @@ func collect_powerup(type: Powerup.Type) -> void:
 # HELPER FUNCTIONS
 
 func _offer_powerup(index: int) -> void:
-	var type: Powerup.Type = Powerup.Type.SPEED
+	var type: Powerup.Type
 	
 	# == OFFERINGS ==
 	# 1 - Speed
 	# 2 - Triple
 	# 3 - Speed
-	# 4 - Laser
+	# 4 - Laser (or Triple if not gotten yet)
 	# 5 - Speed
 	# 6 - Drone
 	# 7 - Speed
@@ -46,25 +46,25 @@ func _offer_powerup(index: int) -> void:
 	# 11+ - Triple or Laser (if not gotten yet)
 	
 	match index:
-		2:
-			type = Powerup.Type.TRIPLE
+		1: type = Powerup.Type.SPEED
+		2: type = Powerup.Type.TRIPLE
+		3: type = Powerup.Type.SPEED
 		4:
 			if bullet_type == Powerup.Type.TRIPLE:
 				type = Powerup.Type.LASER
 			else:
 				type = Powerup.Type.TRIPLE
-		6:
-			# TODO: - Make Drone
-			pass
-		8:
-			# TODO: - Make Drone
-			pass
+		5: type = Powerup.Type.SPEED
+		6: pass # TODO: - Drone
+		7: type = Powerup.Type.SPEED
+		8: pass # TODO: - Drone
+		9: type = Powerup.Type.SPEED
+		10: type = Powerup.Type.SPEED
 		11, 12, 13, 14, 15, 16, 17, 18, 19, 20:
 			if bullet_type == Powerup.Type.TRIPLE:
 				type = Powerup.Type.LASER
 			elif bullet_type == Powerup.Type.MAIN:
 				type = Powerup.Type.TRIPLE
-			else:
-				return
 	
-	powerup_did_earn.emit(type)
+	if type:
+		powerup_did_earn.emit(type)
