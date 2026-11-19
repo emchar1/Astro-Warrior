@@ -27,13 +27,22 @@ func _ready() -> void:
 		EnemyConfig.Type.FORM_D2:
 			clones_count = 1
 			clone_spacing = 100.0
+		EnemyConfig.Type.FORM_D8, EnemyConfig.Type.FORM_D8R:
+			clones_count = 7
+			clone_spacing = 20.0
 	
 	if is_leader:
 		_spawn_clones()
 
 
 func _move(_delta: float) -> void:
-	var right_side: bool = initial_position.x > GameState.screen_size.x / 2
+	var right_side := initial_position.x > GameState.screen_size.x / 2
+	
+	if enemy_config.type == EnemyConfig.Type.FORM_D8:
+		right_side = false
+	elif enemy_config.type == EnemyConfig.Type.FORM_D8R:
+		right_side = true
+	
 	var dir := -1.0 if right_side else 1.0
 	
 	velocity.x = dir * (enemy_config.speed / randf_range(1, 3) + rand_speed)
@@ -42,13 +51,24 @@ func _move(_delta: float) -> void:
 
 func _spawn_clones() -> void:
 	for i in range(clones_count):
+		var x_offset := 1.0
+		var y_offset := 0.0
 		var clone = SCENE.instantiate() as EnemyPinkBall
 		clone.is_leader = false
 		
 		GameState.add_child_to_game_scene(clone, "Enemies")
 		
+		if enemy_config.type == EnemyConfig.Type.FORM_D8:
+			y_offset = -10.0
+		elif enemy_config.type == EnemyConfig.Type.FORM_D8R:
+			x_offset = -1.0
+			y_offset = -10.0
+		
 		clone.enemy_config = enemy_config.duplicate()
-		clone.position = position + Vector2((i + 1) * clone_spacing, 0.0)
+		clone.position = position + Vector2(
+			x_offset * (i + 1) * clone_spacing, 
+			y_offset * (i + 1)
+		)
 		clone.initial_position = clone.position
 		clone.setup()
 		
