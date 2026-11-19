@@ -14,6 +14,11 @@ var horiz_dir: float = -1.0
 
 # FUNCTIONS
 
+func _init() -> void:
+	scene = preload("res://enemy/enemy_cross.tscn")
+	config = preload("res://resources/enemy_cross.tres")
+
+
 func _ready() -> void:
 	await get_tree().process_frame
 	

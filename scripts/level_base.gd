@@ -57,18 +57,28 @@ func _spawn_enemies() -> void:
 	pass
 
 
-func _spawn_enemy_helper(
-	scene: PackedScene,
-	config: EnemyConfig,
-	type: EnemyConfig.Type,
-	pos: Vector2 = Vector2(GameState.screen_size.x / 2, 0.0)
-) -> void:
-	var enemy = scene.instantiate() as Enemy
+func _spawn_enemy_helper(type: EnemyConfig.Type, pos: Vector2) -> void:
+	var enemy_class: Enemy
+	var enemy: Enemy
+	
+	match EnemyConfig.get_type_readable(type):
+		EnemyConfig.TypeReadable.GLIDER:
+			enemy_class = EnemyGlider.new()
+		EnemyConfig.TypeReadable.PINK_BALL:
+			enemy_class = EnemyPinkBall.new()
+		EnemyConfig.TypeReadable.CROSS:
+			enemy_class = EnemyCross.new()
+		EnemyConfig.TypeReadable.BLUE_BALL:
+			enemy_class = EnemyBlueBall.new()
+		EnemyConfig.TypeReadable.TIE_FIGHTER:
+			enemy_class = EnemyTieFighter.new()
+	
+	enemy = enemy_class.scene.instantiate() as Enemy
 	enemy.player = player
 	
 	GameState.add_child_to_game_scene(enemy, "Enemies")
 	
-	enemy.enemy_config = config
+	enemy.enemy_config = enemy_class.config.duplicate()
 	enemy.enemy_config.type = type
 	enemy.position = pos
 	enemy.setup()

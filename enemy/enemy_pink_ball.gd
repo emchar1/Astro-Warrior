@@ -12,6 +12,11 @@ var rand_speed: float = randf_range(0.0, 30.0)
 
 # FUNCTIONS
 
+func _init() -> void:
+	scene = preload("res://enemy/enemy_pink_ball.tscn")
+	config = preload("res://resources/enemy_pink_ball.tres")
+
+
 func _ready() -> void:
 	await get_tree().process_frame
 	

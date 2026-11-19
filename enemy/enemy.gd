@@ -10,6 +10,9 @@ const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var hurtbox = $Hurtbox
 
+var scene: PackedScene
+var config: EnemyConfig
+
 var enemy_config: EnemyConfig
 var die_scale: Vector2 = Vector2.ONE
 var is_dead: bool = false

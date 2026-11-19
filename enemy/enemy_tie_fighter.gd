@@ -18,6 +18,11 @@ var attack_speed: float = 2.0
 
 # FUNCTIONS
 
+func _init() -> void:
+	scene = preload("res://enemy/enemy_tie_fighter.tscn")
+	config = preload("res://resources/enemy_tie_fighter.tres")
+
+
 func _ready() -> void:
 	await get_tree().process_frame
 	

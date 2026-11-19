@@ -29,8 +29,6 @@ func _spawn_enemies() -> void:
 			spawn_form_ar = true
 			
 			_spawn_enemy_helper(
-				EnemyGlider.SCENE,
-				EnemyGlider.CONFIG,
 				EnemyConfig.Type.FORM_AR,
 				Vector2(GameState.screen_size.x / 2, -4.0)
 			)
@@ -40,8 +38,6 @@ func _spawn_enemies() -> void:
 			spawn_form_a = true
 			
 			_spawn_enemy_helper(
-				EnemyGlider.SCENE,
-				EnemyGlider.CONFIG,
 				EnemyConfig.Type.FORM_A,
 				Vector2(GameState.screen_size.x / 2, -4.0)
 			)
@@ -52,8 +48,6 @@ func _spawn_enemies() -> void:
 			spawn_form_d[0] = true
 			
 			_spawn_enemy_helper(
-				EnemyPinkBall.SCENE,
-				EnemyPinkBall.CONFIG,
 				EnemyConfig.Type.FORM_D,
 				Vector2(GameState.screen_size.x / 6, -8.0)
 			)
@@ -63,8 +57,6 @@ func _spawn_enemies() -> void:
 			spawn_form_d[1] = true
 			
 			_spawn_enemy_helper(
-				EnemyPinkBall.SCENE,
-				EnemyPinkBall.CONFIG,
 				EnemyConfig.Type.FORM_D,
 				Vector2(2 * GameState.screen_size.x / 3, -8.0)
 			)
@@ -74,8 +66,6 @@ func _spawn_enemies() -> void:
 			spawn_form_d[2] = true
 			
 			_spawn_enemy_helper(
-				EnemyPinkBall.SCENE,
-				EnemyPinkBall.CONFIG,
 				EnemyConfig.Type.FORM_D,
 				Vector2(GameState.screen_size.x / 3, -8.0)
 			)
@@ -85,8 +75,6 @@ func _spawn_enemies() -> void:
 			spawn_form_d[3] = true
 			
 			_spawn_enemy_helper(
-				EnemyPinkBall.SCENE,
-				EnemyPinkBall.CONFIG,
 				EnemyConfig.Type.FORM_D,
 				Vector2(GameState.screen_size.x / 3, -8.0)
 			)
@@ -97,8 +85,6 @@ func _spawn_enemies() -> void:
 			spawn_form_e = true
 			
 			_spawn_enemy_helper(
-				EnemyCross.SCENE,
-				EnemyCross.CONFIG,
 				EnemyConfig.Type.FORM_E,
 				Vector2(GameState.screen_size.x / 2 - 15.0, -8.0)
 			)
@@ -108,8 +94,6 @@ func _spawn_enemies() -> void:
 			spawn_form_e2[0] = true
 			
 			_spawn_enemy_helper(
-				EnemyCross.SCENE,
-				EnemyCross.CONFIG,
 				EnemyConfig.Type.FORM_E2,
 				Vector2(3 * GameState.screen_size.x / 4, -8.0)
 			)
@@ -119,8 +103,6 @@ func _spawn_enemies() -> void:
 			spawn_form_e2[1] = true
 			
 			_spawn_enemy_helper(
-				EnemyCross.SCENE,
-				EnemyCross.CONFIG,
 				EnemyConfig.Type.FORM_E2,
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
@@ -132,8 +114,6 @@ func _spawn_enemies() -> void:
 			spawn_form_b = true
 			
 			_spawn_enemy_helper(
-				EnemyGlider.SCENE,
-				EnemyGlider.CONFIG,
 				EnemyConfig.Type.FORM_B,
 				Vector2(GameState.screen_size.x / 2, -4.0)
 			)
@@ -144,8 +124,6 @@ func _spawn_enemies() -> void:
 			spawn_form_d[4] = true
 			
 			_spawn_enemy_helper(
-				EnemyPinkBall.SCENE,
-				EnemyPinkBall.CONFIG,
 				EnemyConfig.Type.FORM_D,
 				Vector2(GameState.screen_size.x / 3, -8.0)
 			)
@@ -155,8 +133,6 @@ func _spawn_enemies() -> void:
 			spawn_form_d2[0] = true
 			
 			_spawn_enemy_helper(
-				EnemyPinkBall.SCENE,
-				EnemyPinkBall.CONFIG,
 				EnemyConfig.Type.FORM_D2,
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
@@ -166,8 +142,6 @@ func _spawn_enemies() -> void:
 			spawn_form_d2[1] = true
 			
 			_spawn_enemy_helper(
-				EnemyPinkBall.SCENE,
-				EnemyPinkBall.CONFIG,
 				EnemyConfig.Type.FORM_D2,
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
@@ -177,8 +151,6 @@ func _spawn_enemies() -> void:
 			spawn_form_d2[2] = true
 			
 			_spawn_enemy_helper(
-				EnemyPinkBall.SCENE,
-				EnemyPinkBall.CONFIG,
 				EnemyConfig.Type.FORM_D2,
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
@@ -189,8 +161,6 @@ func _spawn_enemies() -> void:
 			spawn_form_c[0] = true
 			
 			_spawn_enemy_helper(
-				EnemyGlider.SCENE,
-				EnemyGlider.CONFIG,
 				EnemyConfig.Type.FORM_C,
 				Vector2(GameState.screen_size.x / 2, -4.0)
 			)
@@ -201,8 +171,6 @@ func _spawn_enemies() -> void:
 			spawn_form_f[0] = true
 			
 			_spawn_enemy_helper(
-				EnemyBlueBall.SCENE,
-				EnemyBlueBall.CONFIG,
 				EnemyConfig.Type.FORM_F,
 				Vector2(GameState.screen_size.x / 3.1, -8.0)
 			)
@@ -212,8 +180,6 @@ func _spawn_enemies() -> void:
 			spawn_form_f[1] = true
 			
 			_spawn_enemy_helper(
-				EnemyBlueBall.SCENE,
-				EnemyBlueBall.CONFIG,
 				EnemyConfig.Type.FORM_FR,
 				Vector2(GameState.screen_size.x / 3.1, -8.0)
 			)
@@ -223,8 +189,6 @@ func _spawn_enemies() -> void:
 			spawn_form_f[2] = true
 			
 			_spawn_enemy_helper(
-				EnemyBlueBall.SCENE,
-				EnemyBlueBall.CONFIG,
 				EnemyConfig.Type.FORM_F2,
 				Vector2(GameState.screen_size.x / 3.1, -8.0)
 			)
@@ -234,8 +198,6 @@ func _spawn_enemies() -> void:
 			spawn_form_f[3] = true
 			
 			_spawn_enemy_helper(
-				EnemyBlueBall.SCENE,
-				EnemyBlueBall.CONFIG,
 				EnemyConfig.Type.FORM_F2R,
 				Vector2(GameState.screen_size.x / 3.1, -8.0)
 			)
@@ -248,8 +210,6 @@ func _spawn_enemies() -> void:
 			spawn_form_br = true
 			
 			_spawn_enemy_helper(
-				EnemyGlider.SCENE,
-				EnemyGlider.CONFIG,
 				EnemyConfig.Type.FORM_BR,
 				Vector2(GameState.screen_size.x / 2, -4.0)
 			)
@@ -260,8 +220,6 @@ func _spawn_enemies() -> void:
 			spawn_form_d2[3] = true
 			
 			_spawn_enemy_helper(
-				EnemyPinkBall.SCENE,
-				EnemyPinkBall.CONFIG,
 				EnemyConfig.Type.FORM_D2,
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
@@ -271,8 +229,6 @@ func _spawn_enemies() -> void:
 			spawn_form_d2[4] = true
 			
 			_spawn_enemy_helper(
-				EnemyPinkBall.SCENE,
-				EnemyPinkBall.CONFIG,
 				EnemyConfig.Type.FORM_D2,
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
@@ -282,8 +238,6 @@ func _spawn_enemies() -> void:
 			spawn_form_d2[5] = true
 			
 			_spawn_enemy_helper(
-				EnemyPinkBall.SCENE,
-				EnemyPinkBall.CONFIG,
 				EnemyConfig.Type.FORM_D2,
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
@@ -293,8 +247,6 @@ func _spawn_enemies() -> void:
 			spawn_form_d2[6] = true
 			
 			_spawn_enemy_helper(
-				EnemyPinkBall.SCENE,
-				EnemyPinkBall.CONFIG,
 				EnemyConfig.Type.FORM_D2,
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
@@ -305,8 +257,6 @@ func _spawn_enemies() -> void:
 			spawn_form_c[1] = true
 			
 			_spawn_enemy_helper(
-				EnemyGlider.SCENE,
-				EnemyGlider.CONFIG,
 				EnemyConfig.Type.FORM_C,
 				Vector2(GameState.screen_size.x / 2, -4.0)
 			)
@@ -317,8 +267,6 @@ func _spawn_enemies() -> void:
 			spawn_form_g[0] = true
 			
 			_spawn_enemy_helper(
-				EnemyTieFighter.SCENE,
-				EnemyTieFighter.CONFIG,
 				EnemyConfig.Type.FORM_G,
 				Vector2(0.0, -8.0)
 			)
@@ -328,8 +276,6 @@ func _spawn_enemies() -> void:
 			spawn_form_gr[0] = true
 			
 			_spawn_enemy_helper(
-				EnemyTieFighter.SCENE,
-				EnemyTieFighter.CONFIG,
 				EnemyConfig.Type.FORM_GR,
 				Vector2(0.0, -8.0)
 			)
@@ -339,8 +285,6 @@ func _spawn_enemies() -> void:
 			spawn_form_g[1] = true
 			
 			_spawn_enemy_helper(
-				EnemyTieFighter.SCENE,
-				EnemyTieFighter.CONFIG,
 				EnemyConfig.Type.FORM_G,
 				Vector2(0.0, -8.0)
 			)
@@ -350,8 +294,6 @@ func _spawn_enemies() -> void:
 			spawn_form_gr[1] = true
 			
 			_spawn_enemy_helper(
-				EnemyTieFighter.SCENE,
-				EnemyTieFighter.CONFIG,
 				EnemyConfig.Type.FORM_GR,
 				Vector2(0.0, -8.0)
 			)
@@ -362,8 +304,6 @@ func _spawn_enemies() -> void:
 			spawn_form_e3[0] = true
 			
 			_spawn_enemy_helper(
-				EnemyCross.SCENE,
-				EnemyCross.CONFIG,
 				EnemyConfig.Type.FORM_E3,
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
@@ -373,8 +313,6 @@ func _spawn_enemies() -> void:
 			spawn_form_e3[1] = true
 			
 			_spawn_enemy_helper(
-				EnemyCross.SCENE,
-				EnemyCross.CONFIG,
 				EnemyConfig.Type.FORM_E3,
 				Vector2(3 * GameState.screen_size.x / 4, -8.0)
 			)

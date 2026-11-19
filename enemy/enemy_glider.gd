@@ -21,6 +21,11 @@ var form_c_initialized: bool = false
 
 # OVERRIDEN FUNCTIONS
 
+func _init() -> void:
+	scene = preload("res://enemy/enemy_glider.tscn")
+	config = preload("res://resources/enemy_glider.tres")
+
+
 func _ready() -> void:
 	did_die.connect(_set_nullify_cascade)
 	did_die.connect(_die_cascade)

@@ -31,6 +31,11 @@ var dir: float
 
 # FUNCTIONS
 
+func _init() -> void:
+	scene = preload("res://enemy/enemy_blue_ball.tscn")
+	config = preload("res://resources/enemy_blue_ball.tres")
+
+
 func _ready() -> void:
 	await get_tree().process_frame
 	
