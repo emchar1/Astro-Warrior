@@ -24,6 +24,9 @@ func _ready() -> void:
 		EnemyConfig.Type.FORM_E2:
 			clone_rows = 4
 			clone_cols = 1
+		EnemyConfig.Type.FORM_E3:
+			clone_rows = 4
+			clone_cols = 2
 	
 	if is_leader:
 		initial_position = position

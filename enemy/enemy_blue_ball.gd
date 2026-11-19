@@ -25,7 +25,7 @@ var circle_radius: float = 20.0
 var angular_speed: float = 3.0 * PI
 var circle_duration: float = 1.5 * TAU / angular_speed
 var circle_speed := circle_radius * angular_speed
-var exit_speed := 2.0
+var exit_speed := 1.0
 var dir: float
 
 

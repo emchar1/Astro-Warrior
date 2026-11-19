@@ -6,7 +6,7 @@ class_name EnemyConfig
 enum Type { 
 	FORM_A, FORM_AR, FORM_B, FORM_BR, FORM_C, FORM_CR, # Gliders
 	FORM_D, FORM_D2, # Pink Balls
-	FORM_E, FORM_E2, # Crosses
+	FORM_E, FORM_E2, FORM_E3, # Crosses
 	FORM_F, FORM_FR, FORM_F2, FORM_F2R, # Blue Balls
 	FORM_G, FORM_GR # TIE FIGHTERS
 }
@@ -36,7 +36,7 @@ func get_anim_name() -> String:
 			anim_name = "form_cr"
 		Type.FORM_D, Type.FORM_D2:
 			anim_name = "form_d"
-		Type.FORM_E, Type.FORM_E2:
+		Type.FORM_E, Type.FORM_E2, Type.FORM_E3:
 			anim_name = "form_e"
 		Type.FORM_F, Type.FORM_FR, Type.FORM_F2, Type.FORM_F2R:
 			anim_name = "form_f"
@@ -56,7 +56,7 @@ func get_scene() -> PackedScene:
 			scene = load("res://scenes/enemy_glider.tscn")
 		Type.FORM_D, Type.FORM_D2:
 			scene = load("res://enemy/enemy_pink_ball.tscn")
-		Type.FORM_E, Type.FORM_E2:
+		Type.FORM_E, Type.FORM_E2, Type.FORM_E3:
 			scene = load("res://enemy/enemy_cross.tscn")
 		Type.FORM_F, Type.FORM_FR, Type.FORM_F2, Type.FORM_F2R:
 			scene = load("res://enemy/enemy_blue_ball.tscn")

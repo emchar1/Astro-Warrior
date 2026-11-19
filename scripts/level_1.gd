@@ -15,6 +15,7 @@ var spawn_form_d2: Array[bool] = [
 ]
 var spawn_form_e: bool = false
 var spawn_form_e2: Array[bool] = [false, false]
+var spawn_form_e3: Array[bool] = [false, false]
 var spawn_form_f: Array[bool] = [false, false, false, false]
 var spawn_form_g: Array[bool] = [false, false]
 var spawn_form_gr: Array[bool] = [false, false]
@@ -357,12 +358,23 @@ func _spawn_enemies() -> void:
 	
 	# CROSSES
 	if checkpoint < 1700 and position.y >= 1700:
-		if not spawn_form_gr[0]:
-			spawn_form_gr[0] = true
+		if not spawn_form_e3[0]:
+			spawn_form_e3[0] = true
 			
 			_spawn_enemy_helper(
-				EnemyTieFighter.SCENE,
-				EnemyTieFighter.CONFIG,
-				EnemyConfig.Type.FORM_GR,
-				Vector2(0, -8.0)
+				EnemyCross.SCENE,
+				EnemyCross.CONFIG,
+				EnemyConfig.Type.FORM_E3,
+				Vector2(GameState.screen_size.x / 4, -8.0)
+			)
+	
+	if checkpoint < 1800 and position.y >= 1800:
+		if not spawn_form_e3[1]:
+			spawn_form_e3[1] = true
+			
+			_spawn_enemy_helper(
+				EnemyCross.SCENE,
+				EnemyCross.CONFIG,
+				EnemyConfig.Type.FORM_E3,
+				Vector2(3 * GameState.screen_size.x / 4, -8.0)
 			)
