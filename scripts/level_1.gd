@@ -18,7 +18,7 @@ var spawn_form_f: Array[bool] = [false, false, false, false]
 
 func _spawn_enemies() -> void:
 	# GLIDERS
-	if position.y >= 100:
+	if checkpoint < 100 and position.y >= 100:
 		if not spawn_form_ar:
 			spawn_form_ar = true
 			
@@ -29,7 +29,7 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 2, -4.0)
 			)
 	
-	if position.y >= 200:
+	if checkpoint < 200 and position.y >= 200:
 		if not spawn_form_a:
 			spawn_form_a = true
 			
@@ -41,7 +41,7 @@ func _spawn_enemies() -> void:
 			)
 	
 	# PINK BALLS
-	if position.y >= 260:
+	if checkpoint < 260 and position.y >= 260:
 		if not spawn_form_d[0]:
 			spawn_form_d[0] = true
 			
@@ -52,7 +52,7 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 6, -8.0)
 			)
 	
-	if position.y >= 320:
+	if checkpoint < 320 and position.y >= 320:
 		if not spawn_form_d[1]:
 			spawn_form_d[1] = true
 			
@@ -63,7 +63,7 @@ func _spawn_enemies() -> void:
 				Vector2(2 * GameState.screen_size.x / 3, -8.0)
 			)
 	
-	if position.y >= 380:
+	if checkpoint < 380 and position.y >= 380:
 		if not spawn_form_d[2]:
 			spawn_form_d[2] = true
 			
@@ -74,7 +74,7 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 3, -8.0)
 			)
 	
-	if position.y >= 440:
+	if checkpoint < 440 and position.y >= 440:
 		if not spawn_form_d[3]:
 			spawn_form_d[3] = true
 			
@@ -86,7 +86,7 @@ func _spawn_enemies() -> void:
 			)
 	
 	# CROSSES
-	if position.y >= 500:
+	if checkpoint < 500 and position.y >= 500:
 		if not spawn_form_e:
 			spawn_form_e = true
 			
@@ -97,7 +97,7 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 2 - 15.0, -8.0)
 			)
 	
-	if position.y >= 600:
+	if checkpoint < 600 and position.y >= 600:
 		if not spawn_form_e2[0]:
 			spawn_form_e2[0] = true
 			
@@ -108,7 +108,7 @@ func _spawn_enemies() -> void:
 				Vector2(3 * GameState.screen_size.x / 4, -8.0)
 			)
 	
-	if position.y >= 660:
+	if checkpoint < 660 and position.y >= 660:
 		if not spawn_form_e2[1]:
 			spawn_form_e2[1] = true
 			
@@ -120,7 +120,7 @@ func _spawn_enemies() -> void:
 			)
 	
 	# S-GLIDER
-	if position.y >= 800:
+	if checkpoint < 800 and position.y >= 800:
 		if not spawn_form_b:
 			
 			spawn_form_b = true
@@ -133,7 +133,7 @@ func _spawn_enemies() -> void:
 			)
 	
 	# PINK BALLS
-	if position.y >= 850:
+	if checkpoint < 850 and position.y >= 850:
 		if not spawn_form_d[4]:
 			spawn_form_d[4] = true
 			
@@ -144,7 +144,7 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 3, -8.0)
 			)
 	
-	if position.y >= 900:
+	if checkpoint < 900 and position.y >= 900:
 		if not spawn_form_d2[0]:
 			spawn_form_d2[0] = true
 			
@@ -155,7 +155,7 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
 	
-	if position.y >= 930:
+	if checkpoint < 930 and position.y >= 930:
 		if not spawn_form_d2[1]:
 			spawn_form_d2[1] = true
 			
@@ -166,7 +166,7 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 4, -8.0)
 			)
 	
-	if position.y >= 960:
+	if checkpoint < 960 and position.y >= 960:
 		if not spawn_form_d2[2]:
 			spawn_form_d2[2] = true
 			
@@ -178,7 +178,7 @@ func _spawn_enemies() -> void:
 			)
 	
 	# GLIDER
-	if position.y >= 1000:
+	if checkpoint < 1000 and position.y >= 1000:
 		if not spawn_form_c:
 			spawn_form_c = true
 			
@@ -190,7 +190,7 @@ func _spawn_enemies() -> void:
 			)
 	
 	# BLUE BALLS
-	if position.y >= 1050:
+	if checkpoint < 1050 and position.y >= 1050:
 		if not spawn_form_f[0]:
 			spawn_form_f[0] = true
 			
@@ -201,7 +201,7 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 3.1, -8.0)
 			)
 	
-	if position.y >= 1100:
+	if checkpoint < 1100 and position.y >= 1100:
 		if not spawn_form_f[1]:
 			spawn_form_f[1] = true
 			
@@ -212,7 +212,7 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 3.1, -8.0)
 			)
 	
-	if position.y >= 1150:
+	if checkpoint < 1150 and position.y >= 1150:
 		if not spawn_form_f[2]:
 			spawn_form_f[2] = true
 			
@@ -223,7 +223,7 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 3.1, -8.0)
 			)
 	
-	if position.y >= 1200:
+	if checkpoint < 1200 and position.y >= 1200:
 		if not spawn_form_f[3]:
 			spawn_form_f[3] = true
 			
@@ -235,7 +235,7 @@ func _spawn_enemies() -> void:
 			)
 	
 	# GLIDER
-	if position.y >= 1250:
+	if checkpoint < 1250 and position.y >= 1250:
 		if not spawn_form_br:
 			spawn_form_br = true
 			

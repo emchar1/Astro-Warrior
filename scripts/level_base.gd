@@ -5,6 +5,7 @@ class_name LevelBase
 
 @export var level_name: String
 @export var scroll_speed: float = 20.0
+@export var checkpoint: float = 0.0
 
 @onready var canvas_layer = $CanvasLayer
 @onready var level_label = $CanvasLayer/Control/LevelLabel
@@ -22,6 +23,8 @@ func _ready() -> void:
 	level_label.text = level_name
 	score_label.text = str(GameState.score).pad_zeros(6)
 	lives_label.text = str(" x ", GameState.lives)
+	
+	position.y = checkpoint
 	
 	await get_tree().create_timer(3.0).timeout
 	canvas_layer.hide()
