@@ -64,6 +64,7 @@ func _spawn_enemy_helper(
 	pos: Vector2 = Vector2(GameState.screen_size.x / 2, 0.0)
 ) -> void:
 	var enemy = scene.instantiate() as Enemy
+	enemy.player = player
 	
 	GameState.add_child_to_game_scene(enemy, "Enemies")
 	

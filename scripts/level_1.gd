@@ -6,13 +6,18 @@ var spawn_form_a: bool = false
 var spawn_form_ar: bool = false
 var spawn_form_b: bool = false
 var spawn_form_br: bool = false
-var spawn_form_c: bool = false
+var spawn_form_c: Array[bool] = [false, false]
 var spawn_form_cr: bool = false
 var spawn_form_d: Array[bool] = [false, false, false, false, false]
-var spawn_form_d2: Array[bool] = [false, false, false]
+var spawn_form_d2: Array[bool] = [
+	false, false, false,
+	false, false, false, false
+]
 var spawn_form_e: bool = false
 var spawn_form_e2: Array[bool] = [false, false]
 var spawn_form_f: Array[bool] = [false, false, false, false]
+var spawn_form_g: Array[bool] = [false, false]
+var spawn_form_gr: Array[bool] = [false, false]
 
 # FUNCTIONS
 
@@ -179,8 +184,8 @@ func _spawn_enemies() -> void:
 	
 	# GLIDER
 	if checkpoint < 1000 and position.y >= 1000:
-		if not spawn_form_c:
-			spawn_form_c = true
+		if not spawn_form_c[0]:
+			spawn_form_c[0] = true
 			
 			_spawn_enemy_helper(
 				EnemyGlider.SCENE,
@@ -234,6 +239,8 @@ func _spawn_enemies() -> void:
 				Vector2(GameState.screen_size.x / 3.1, -8.0)
 			)
 	
+	# - CHECKPOINT - 1200
+	
 	# GLIDER
 	if checkpoint < 1250 and position.y >= 1250:
 		if not spawn_form_br:
@@ -244,4 +251,118 @@ func _spawn_enemies() -> void:
 				EnemyGlider.CONFIG,
 				EnemyConfig.Type.FORM_BR,
 				Vector2(GameState.screen_size.x / 2, -4.0)
+			)
+	
+	# PINK BALLS
+	if checkpoint < 1310 and position.y >= 1310:
+		if not spawn_form_d2[3]:
+			spawn_form_d2[3] = true
+			
+			_spawn_enemy_helper(
+				EnemyPinkBall.SCENE,
+				EnemyPinkBall.CONFIG,
+				EnemyConfig.Type.FORM_D2,
+				Vector2(GameState.screen_size.x / 4, -8.0)
+			)
+	
+	if checkpoint < 1340 and position.y >= 1340:
+		if not spawn_form_d2[4]:
+			spawn_form_d2[4] = true
+			
+			_spawn_enemy_helper(
+				EnemyPinkBall.SCENE,
+				EnemyPinkBall.CONFIG,
+				EnemyConfig.Type.FORM_D2,
+				Vector2(GameState.screen_size.x / 4, -8.0)
+			)
+	
+	if checkpoint < 1370 and position.y >= 1370:
+		if not spawn_form_d2[5]:
+			spawn_form_d2[5] = true
+			
+			_spawn_enemy_helper(
+				EnemyPinkBall.SCENE,
+				EnemyPinkBall.CONFIG,
+				EnemyConfig.Type.FORM_D2,
+				Vector2(GameState.screen_size.x / 4, -8.0)
+			)
+	
+	if checkpoint < 1400 and position.y >= 1400:
+		if not spawn_form_d2[6]:
+			spawn_form_d2[6] = true
+			
+			_spawn_enemy_helper(
+				EnemyPinkBall.SCENE,
+				EnemyPinkBall.CONFIG,
+				EnemyConfig.Type.FORM_D2,
+				Vector2(GameState.screen_size.x / 4, -8.0)
+			)
+	
+	# GLIDER
+	if checkpoint < 1460 and position.y >= 1460:
+		if not spawn_form_c[1]:
+			spawn_form_c[1] = true
+			
+			_spawn_enemy_helper(
+				EnemyGlider.SCENE,
+				EnemyGlider.CONFIG,
+				EnemyConfig.Type.FORM_C,
+				Vector2(GameState.screen_size.x / 2, -4.0)
+			)
+	
+	# TIE FIGHTERS
+	if checkpoint < 1500 and position.y >= 1500:
+		if not spawn_form_g[0]:
+			spawn_form_g[0] = true
+			
+			_spawn_enemy_helper(
+				EnemyTieFighter.SCENE,
+				EnemyTieFighter.CONFIG,
+				EnemyConfig.Type.FORM_G,
+				Vector2(0.0, -8.0)
+			)
+	
+	if checkpoint < 1550 and position.y >= 1550:
+		if not spawn_form_gr[0]:
+			spawn_form_gr[0] = true
+			
+			_spawn_enemy_helper(
+				EnemyTieFighter.SCENE,
+				EnemyTieFighter.CONFIG,
+				EnemyConfig.Type.FORM_GR,
+				Vector2(0.0, -8.0)
+			)
+	
+	if checkpoint < 1600 and position.y >= 1600:
+		if not spawn_form_g[1]:
+			spawn_form_g[1] = true
+			
+			_spawn_enemy_helper(
+				EnemyTieFighter.SCENE,
+				EnemyTieFighter.CONFIG,
+				EnemyConfig.Type.FORM_G,
+				Vector2(0.0, -8.0)
+			)
+	
+	if checkpoint < 1650 and position.y >= 1650:
+		if not spawn_form_gr[1]:
+			spawn_form_gr[1] = true
+			
+			_spawn_enemy_helper(
+				EnemyTieFighter.SCENE,
+				EnemyTieFighter.CONFIG,
+				EnemyConfig.Type.FORM_GR,
+				Vector2(0.0, -8.0)
+			)
+	
+	# CROSSES
+	if checkpoint < 1700 and position.y >= 1700:
+		if not spawn_form_gr[0]:
+			spawn_form_gr[0] = true
+			
+			_spawn_enemy_helper(
+				EnemyTieFighter.SCENE,
+				EnemyTieFighter.CONFIG,
+				EnemyConfig.Type.FORM_GR,
+				Vector2(0, -8.0)
 			)

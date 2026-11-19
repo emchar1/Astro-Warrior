@@ -13,6 +13,7 @@ const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 var enemy_config: EnemyConfig
 var die_scale: Vector2 = Vector2.ONE
 var is_dead: bool = false
+var player: Player
 
 # Clone Properties
 var clones: Array[Enemy] = []
