@@ -30,7 +30,7 @@ func _spawn_enemies() -> void:
 			
 			_spawn_enemy_helper(
 				EnemyConfig.Type.FORM_AR,
-				Vector2(GameState.screen_size.x / 2, -4.0)
+				Vector2(GameState.screen_size.x / 2, -8.0)
 			)
 	
 	if checkpoint < 200 and position.y >= 200:
@@ -39,7 +39,7 @@ func _spawn_enemies() -> void:
 			
 			_spawn_enemy_helper(
 				EnemyConfig.Type.FORM_A,
-				Vector2(GameState.screen_size.x / 2, -4.0)
+				Vector2(GameState.screen_size.x / 2, -8.0)
 			)
 	
 	# PINK BALLS
@@ -115,7 +115,7 @@ func _spawn_enemies() -> void:
 			
 			_spawn_enemy_helper(
 				EnemyConfig.Type.FORM_B,
-				Vector2(GameState.screen_size.x / 2, -4.0)
+				Vector2(GameState.screen_size.x / 2, -8.0)
 			)
 	
 	# PINK BALLS
@@ -162,7 +162,7 @@ func _spawn_enemies() -> void:
 			
 			_spawn_enemy_helper(
 				EnemyConfig.Type.FORM_C,
-				Vector2(GameState.screen_size.x / 2, -4.0)
+				Vector2(GameState.screen_size.x / 2, -8.0)
 			)
 	
 	# BLUE BALLS
@@ -211,7 +211,7 @@ func _spawn_enemies() -> void:
 			
 			_spawn_enemy_helper(
 				EnemyConfig.Type.FORM_BR,
-				Vector2(GameState.screen_size.x / 2, -4.0)
+				Vector2(GameState.screen_size.x / 2, -8.0)
 			)
 	
 	# PINK BALLS
@@ -258,7 +258,7 @@ func _spawn_enemies() -> void:
 			
 			_spawn_enemy_helper(
 				EnemyConfig.Type.FORM_C,
-				Vector2(GameState.screen_size.x / 2, -4.0)
+				Vector2(GameState.screen_size.x / 2, -8.0)
 			)
 	
 	# TIE FIGHTERS
