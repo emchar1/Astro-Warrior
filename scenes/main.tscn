@@ -27,6 +27,7 @@ script = ExtResource("1_sugp2")
 [node name="Title" parent="." unique_id=696923215 instance=ExtResource("1_o5qli")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=113334314]
+layer = 10
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=277713631]
 material = SubResource("ShaderMaterial_lb7rc")
