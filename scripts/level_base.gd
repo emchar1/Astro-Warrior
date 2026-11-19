@@ -21,7 +21,7 @@ var powerup_manager: PowerupManager
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level_label.text = level_name
-	score_label.text = str(GameState.score).pad_zeros(6)
+	score_label.text = GameState.get_score_str()
 	lives_label.text = str(" x ", GameState.lives)
 	
 	position.y = checkpoint
@@ -45,6 +45,10 @@ func setup(_player: Player, _powerup_manager: PowerupManager) -> void:
 func _scroll_level(delta: float) -> void:
 	position.y += delta * scroll_speed
 	#print("position.y: ", position.y)
+
+
+func stop_scrolling() -> void:
+	scroll_speed = 0.0
 
 
 func _spawn_enemies() -> void:

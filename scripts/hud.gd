@@ -17,8 +17,8 @@ func _ready() -> void:
 	_update_lives(GameState.lives)
 
 
-func _update_score(total_score: int) -> void:
-	score_label.text = str(total_score).pad_zeros(6)
+func _update_score(_total_score: int) -> void:
+	score_label.text = GameState.get_score_str()
 
 
 func _update_lives(total_lives: int) -> void:

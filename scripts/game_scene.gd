@@ -5,11 +5,16 @@ class_name GameScene
 
 @onready var level = $Level1
 @onready var player = $Player
+@onready var enemies = $Enemies
+@onready var extras = $Extras
 @onready var hud = $Hud
+@onready var game_over_hud = $GameOverHud
+@onready var game_over_score_label = $GameOverHud/Control/ScoreLabel
 @onready var powerup_manager = %PowerupManager
 @onready var intro_stream = $IntroAudioStreamPlayer
 @onready var loop_stream = $LoopAudioStreamPlayer
 @onready var death_stream = $DeathAudioStreamPlayer
+@onready var game_over_stream = $GameOverAudioStreamPlayer
 
 
 # FUNCTIONS
@@ -63,5 +68,16 @@ func player_did_die() -> void:
 	if GameState.lives >= 0:
 		get_parent().restart_game(self)
 	else:
-		# TODO: - Game Over screen -> Title screen
-		print("Game Over!")
+		_play_game_over()
+
+
+func _play_game_over() -> void:
+	level.stop_scrolling()
+	
+	game_over_hud.show()
+	hud.hide()
+	enemies.hide()
+	extras.hide()
+	
+	game_over_score_label.text = GameState.get_score_str()
+	game_over_stream.play()

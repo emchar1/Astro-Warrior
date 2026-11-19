@@ -36,6 +36,10 @@ func add_child_to_game_scene(node: Node, node_name: String) -> void:
 	game_scene_node.add_child(node)
 
 
+func get_score_str() -> String:
+	return str(score).pad_zeros(6)
+
+
 func update_score(score_to_add: int) -> void:
 	# Execute this BEFORE updating score
 	_reward_lives(score_to_add)
