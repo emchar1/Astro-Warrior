@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 
 
 func setup() -> void:
-	anim_sprite.animation = enemy_config.get_anim_name()
+	anim_sprite.animation = EnemyConfig.get_anim_name(enemy_config.type)
 	anim_sprite.play()
 
 
