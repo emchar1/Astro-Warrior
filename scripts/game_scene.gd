@@ -3,6 +3,8 @@ class_name GameScene
 
 # PROPERTIES
 
+const TITLE_SCENE = preload("res://scenes/title.tscn")
+
 @onready var level = $Level1
 @onready var player = $Player
 @onready var enemies = $Enemies
@@ -81,3 +83,21 @@ func _play_game_over() -> void:
 	
 	game_over_score_label.text = GameState.get_score_str()
 	game_over_stream.play()
+	
+	await get_tree().create_timer(6.0).timeout
+	_return_to_title()
+
+
+func _return_to_title() -> void:
+	var main_scene = get_parent() as Main
+	
+	if main_scene == null:
+		return
+	
+	GameState.reset_all()
+	
+	queue_free()
+	
+	var title_scene = TITLE_SCENE.instantiate()
+	main_scene.add_child(title_scene)
+	main_scene.title_scene = title_scene
