@@ -102,8 +102,7 @@ func _on_body_shape_entered(
 	
 	if powerup_manager.bullet_type != Powerup.Type.LASER \
 	and tilemap.name == "Walls":
-		if not should_silence:
-			wall_audio_stream.play()
+		wall_audio_stream.play()
 	
 	die()
 
