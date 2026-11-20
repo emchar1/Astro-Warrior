@@ -3,6 +3,8 @@ class_name EnemyPinwheel
 
 # PROPERTIES
 
+const ENEMY_BULLET = preload("res://scenes/enemy_bullet.tscn")
+
 enum SpawnPosition { 
 	LEFT, TOP, RIGHT
 }
@@ -15,6 +17,7 @@ var spawn_pos: SpawnPosition
 var move_type: MoveType = MoveType.APPEAR
 var move_distance: float
 var dir_to_player: Vector2
+var did_fire_bullet: bool = false
 
 
 # FUNCTIONS
@@ -65,5 +68,27 @@ func _move(_delta: float) -> void:
 				move_type = MoveType.ATTACK
 		MoveType.ATTACK:
 			velocity = Vector2.ZERO
+			
+			if did_fire_bullet:
+				return
+			
+			for i in range(2):
+				var enemy_bullet = ENEMY_BULLET.instantiate() as EnemyBullet
+				
+				if enemy_bullet == null:
+					print("error")
+					break
+				
+				did_fire_bullet = true
+				
+				enemy_bullet.position = position
+				enemy_bullet.destination = player.position
+				
+				GameState.add_child_to_game_scene(enemy_bullet, "Enemies")
+				
+				await get_tree().create_timer(1.0).timeout
+				did_fire_bullet = false
+			
+			move_type = MoveType.RETREAT
 		MoveType.RETREAT:
 			pass

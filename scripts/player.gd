@@ -140,6 +140,12 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 			_die()
 
 
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy_bullet"):
+		if area is EnemyBullet:
+			_die()
+
+
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	await get_tree().create_timer(3.0).timeout
 	queue_free()
