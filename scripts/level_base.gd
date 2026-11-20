@@ -5,7 +5,8 @@ class_name LevelBase
 
 @export var level_name: String
 @export var scroll_speed: float = 20.0
-@export var checkpoint: float = 0.0
+@export var checkpoint_mid: float = 0.0
+@export var checkpoint_boss: float = 0.0
 
 @onready var canvas_layer = $CanvasLayer
 @onready var level_label = $CanvasLayer/Control/LevelLabel
@@ -14,6 +15,7 @@ class_name LevelBase
 
 var player: Player
 var powerup_manager: PowerupManager
+var checkpoint: float # This prevents enemies spawning after checkpoints
 
 
 # FUNCTIONS
@@ -24,7 +26,16 @@ func _ready() -> void:
 	score_label.text = GameState.get_score_str()
 	lives_label.text = str(" x ", GameState.lives)
 	
-	position.y = checkpoint
+	# Read from checkpoints
+	if GameState.checkpoint_boss_reached:
+		position.y = checkpoint_boss
+		checkpoint = checkpoint_boss
+	elif GameState.checkpoint_mid_reached:
+		position.y = checkpoint_mid
+		checkpoint = checkpoint_mid
+	else:
+		position.y = 0.0
+		checkpoint = 0.0
 	
 	await get_tree().create_timer(3.0).timeout
 	canvas_layer.hide()
@@ -45,6 +56,16 @@ func setup(_player: Player, _powerup_manager: PowerupManager) -> void:
 func _scroll_level(delta: float) -> void:
 	position.y += delta * scroll_speed
 	#print("position.y: ", position.y)
+	
+	# Set Checkpoints
+	if position.y >= checkpoint_boss:
+		if not GameState.checkpoint_boss_reached:
+			checkpoint = checkpoint_boss
+			GameState.checkpoint_boss_reached = true
+	elif position.y >= checkpoint_mid:
+		if not GameState.checkpoint_mid_reached:
+			checkpoint = checkpoint_mid
+			GameState.checkpoint_mid_reached = true
 
 
 func stop_scrolling() -> void:

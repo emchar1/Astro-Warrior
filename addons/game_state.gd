@@ -16,6 +16,9 @@ var score: int = 0
 var lives: int = STARTING_LIVES
 var powerup_count: int = 0
 
+var checkpoint_mid_reached: bool = false
+var checkpoint_boss_reached: bool = false
+
 
 # FUNCTIONS
 
@@ -81,3 +84,9 @@ func reset_all() -> void:
 	score = 0
 	lives = STARTING_LIVES
 	powerup_count = 0
+	reset_checkpoints()
+
+
+func reset_checkpoints() -> void:
+	checkpoint_mid_reached = false
+	checkpoint_boss_reached = false

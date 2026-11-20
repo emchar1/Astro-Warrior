@@ -202,7 +202,7 @@ func _spawn_enemies() -> void:
 			Vector2(GameState.screen_size.x / 3.1, -8.0)
 		)
 	
-	# - CHECKPOINT - 1200
+	# - CHECKPOINT MID - 1200
 	
 	# S-GLIDER
 	if checkpoint < 1250 and position.y >= 1250 and not spawn_form_br:
@@ -547,7 +547,9 @@ func _spawn_enemies() -> void:
 			Vector2(0.0, -8.0)
 		)
 	
-	# TODO: - PINWHEELS
+	# - CHECKPOINT BOSS - 3100
+	
+	# PINWHEELS
 	if checkpoint < 3150 and position.y >= 3150 and not spawn_form_h[0]:
 		spawn_form_h[0] = true
 		
