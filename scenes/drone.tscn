@@ -43,7 +43,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
-"speed": 9.0
+"speed": 12.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3pco"]
@@ -59,7 +59,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_lb7rc")
 sprite_frames = SubResource("SpriteFrames_u3pco")
 autoplay = "default"
-frame_progress = 0.11982109
+frame_progress = 0.86275256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=576131942]
 shape = SubResource("RectangleShape2D_u3pco")
