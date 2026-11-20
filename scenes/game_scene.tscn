@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://brfkrsw3ex2l5" path="res://scenes/player.tscn" id="3_rurhu"]
 [ext_resource type="AudioStream" uid="uid://b4r2kt37pu0ba" path="res://assets/sounds/galaxy_zone.ogg" id="4_kk2rg"]
 [ext_resource type="Script" uid="uid://dwdmflsdec5u2" path="res://scripts/powerup_manager.gd" id="4_rurhu"]
+[ext_resource type="PackedScene" uid="uid://d038612g3lvsd" path="res://scenes/drone.tscn" id="4_tcjrq"]
 [ext_resource type="FontFile" uid="uid://x1l36w7tdkds" path="res://assets/fonts/PressStart2P-Regular.ttf" id="5_utbpp"]
 [ext_resource type="AudioStream" uid="uid://d7hxri5j41ue" path="res://assets/sounds/death.ogg" id="5_y3j0m"]
 [ext_resource type="PackedScene" uid="uid://ch5y5k5sq6gsk" path="res://scenes/hud.tscn" id="7_kk2rg"]
@@ -28,6 +29,12 @@ color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." unique_id=1879099976 instance=ExtResource("3_rurhu")]
 position = Vector2(128, 150)
+
+[node name="Drone" parent="." unique_id=2044307437 node_paths=PackedStringArray("player") instance=ExtResource("4_tcjrq")]
+player = NodePath("../Player")
+
+[node name="Drone2" parent="." unique_id=790566980 node_paths=PackedStringArray("player") instance=ExtResource("4_tcjrq")]
+player = NodePath("../Player")
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1378577987]
 

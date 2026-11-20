@@ -4,8 +4,10 @@ class_name Player
 # PROPERTIES
 
 signal did_die
+signal did_shoot
 
 const SPRITE_LEN = 10.0
+const TRAIL_LENGTH = 15
 const BULLET_SCENE = preload("res://scenes/bullet.tscn")
 const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 
@@ -19,6 +21,8 @@ const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 var powerup_manager: PowerupManager
 var move_dir: Vector2
 var is_dead: bool = false
+
+var position_history: Array[Vector2] = []
 
 
 # FUNCTIONS
@@ -105,6 +109,13 @@ func _read_movement() -> void:
 	
 	if position.y >= GameState.screen_size.y - SPRITE_LEN and velocity.y > 0:
 		velocity.y = 0
+	
+	# For Drone pathing...
+	if velocity != Vector2.ZERO:
+		position_history.push_front(position)
+		
+		if position_history.size() > TRAIL_LENGTH * 2:
+			position_history.pop_back()
 
 
 func _shoot() -> void:
@@ -114,6 +125,8 @@ func _shoot() -> void:
 	GameState.add_child_to_game_scene(bullet, "Extras")
 	
 	bullet.global_position = global_position
+	
+	did_shoot.emit()
 
 
 func _die() -> void:

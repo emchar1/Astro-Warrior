@@ -58,7 +58,8 @@ script = ExtResource("1_1r4ts")
 texture_filter = 1
 material = SubResource("ShaderMaterial_lb7rc")
 sprite_frames = SubResource("SpriteFrames_u3pco")
-frame_progress = 0.13526152
+autoplay = "default"
+frame_progress = 0.11982109
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=576131942]
 shape = SubResource("RectangleShape2D_u3pco")

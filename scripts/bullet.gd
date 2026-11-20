@@ -15,6 +15,7 @@ const BULLET_LASER_SFX = preload("res://assets/sounds/bullet1.ogg")
 
 var powerup_manager: PowerupManager
 var is_disabled: bool = false
+var should_silence: bool = false
 
 
 # FUNCTIONS
@@ -41,7 +42,8 @@ func _ready() -> void:
 			collision.scale.y = 1.0
 			bullet_audio_stream.stream = BULLET_MAIN_SFX
 	
-	bullet_audio_stream.play()
+	if not should_silence:
+		bullet_audio_stream.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -100,7 +102,8 @@ func _on_body_shape_entered(
 	
 	if powerup_manager.bullet_type != Powerup.Type.LASER \
 	and tilemap.name == "Walls":
-		wall_audio_stream.play()
+		if not should_silence:
+			wall_audio_stream.play()
 	
 	die()
 

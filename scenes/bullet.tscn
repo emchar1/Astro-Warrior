@@ -37,7 +37,6 @@ rect = Rect2(-1, -5.5, 2, 11)
 
 [node name="BulletAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1270837188]
 stream = ExtResource("2_y25gk")
-autoplay = true
 bus = &"SFX"
 
 [node name="WallAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1597583440]
