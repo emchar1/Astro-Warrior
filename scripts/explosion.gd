@@ -14,6 +14,7 @@ const TILE_EXPLOSION_SFX = preload("res://assets/sounds/tile_destroy.ogg")
 @onready var audio_stream = $AudioStreamPlayer
 
 var type: Type = Type.ACTOR
+var should_silence: bool = false
 
 
 # FUNCTIONS
@@ -38,7 +39,9 @@ func activate(_position: Vector2, _scale: Vector2 = Vector2.ONE) -> void:
 	show()
 	
 	anim_sprite.play()
-	audio_stream.play()
+	
+	if not should_silence:
+		audio_stream.play()
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:

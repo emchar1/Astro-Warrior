@@ -45,7 +45,6 @@ script = ExtResource("2_yi1mk")
 material = SubResource("ShaderMaterial_4clje")
 sprite_frames = SubResource("SpriteFrames_wf5t1")
 animation = &"form_g"
-frame_progress = 0.713515
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1004384118]
 shape = SubResource("CircleShape2D_wf5t1")

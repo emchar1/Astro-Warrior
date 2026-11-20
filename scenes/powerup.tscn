@@ -88,7 +88,6 @@ script = ExtResource("1_ih772")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_u3pco")
 animation = &"drone"
-frame_progress = 0.47588342
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1187790432]
 shape = SubResource("CircleShape2D_u3pco")

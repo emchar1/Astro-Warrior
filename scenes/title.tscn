@@ -266,8 +266,6 @@ texture_filter = 1
 position = Vector2(179, 51)
 sprite_frames = SubResource("SpriteFrames_u3pco")
 autoplay = "default"
-frame = 4
-frame_progress = 1.0
 
 [node name="Laser0" type="MeshInstance2D" parent="." unique_id=1874616328]
 position = Vector2(-10, 210)
