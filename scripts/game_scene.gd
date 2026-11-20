@@ -52,7 +52,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	# DEBUG: - Debug purposes.
+	if level.debug_checkpoint > 0.0:
+		hud.update_debug_label(level.position.y)
 
 
 func _play_bgm_loop():

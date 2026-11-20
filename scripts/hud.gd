@@ -4,6 +4,7 @@ extends CanvasLayer
 
 @onready var score_label = $VBoxContainer/ScoreLabel
 @onready var lives_label = $VBoxContainer/LivesLabel
+@onready var debug_label = $VBoxContainer/DebugLabel
 
 
 # FUNCTIONS
@@ -15,6 +16,8 @@ func _ready() -> void:
 	
 	_update_score(GameState.score)
 	_update_lives(GameState.lives)
+	
+	debug_label.hide()
 
 
 func _update_score(_total_score: int) -> void:
@@ -23,3 +26,10 @@ func _update_score(_total_score: int) -> void:
 
 func _update_lives(total_lives: int) -> void:
 	lives_label.text = str(" x ", total_lives)
+
+
+func update_debug_label(value: float) -> void:
+	if debug_label.hidden:
+		debug_label.show()
+	
+	debug_label.text = str(int(value))

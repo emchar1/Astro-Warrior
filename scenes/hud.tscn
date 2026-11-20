@@ -52,3 +52,12 @@ material = SubResource("ShaderMaterial_lb7rc")
 position = Vector2(9, 14)
 scale = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_u3pco")
+
+[node name="DebugLabel" type="Label" parent="VBoxContainer" unique_id=1012820305]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_uo2fv")
+theme_override_font_sizes/font_size = 7
+text = "9999"
+horizontal_alignment = 2
