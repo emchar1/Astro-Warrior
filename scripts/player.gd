@@ -16,6 +16,7 @@ const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 @onready var sprite = $Sprite2D
 @onready var hurtbox = $Hurtbox
 @onready var shoot_timer = $ShootTimer
+@onready var main_timer = $MainShootTimer
 @onready var laser_timer = $LaserShootTimer
 
 var powerup_manager: PowerupManager
@@ -53,10 +54,16 @@ func update_weapon() -> void:
 	match powerup_manager.bullet_type:
 		Powerup.Type.LASER:
 			sprite_offset_x = 34.0
+			shoot_timer.wait_time = 0.4
+			shoot_timer.start()
 		Powerup.Type.TRIPLE:
 			sprite_offset_x = 17.0
+			shoot_timer.wait_time = 0.2
+			shoot_timer.start()
 		_:
 			sprite_offset_x = 0.0
+			shoot_timer.wait_time = 0.4
+			shoot_timer.start()
 	
 	sprite.texture.region = Rect2(sprite_offset_x, 0.0, 16.0, 16.0)
 
@@ -86,12 +93,18 @@ func _read_input() -> void:
 	) and shoot_timer.is_stopped()
 	
 	if shoot_pressed or shoot_held:
-		if powerup_manager.bullet_type == Powerup.Type.LASER \
-		and not laser_timer.is_stopped():
+		if (
+			powerup_manager.bullet_type == Powerup.Type.LASER
+			and not laser_timer.is_stopped()
+		) or (
+			powerup_manager.bullet_type == Powerup.Type.MAIN
+			and not main_timer.is_stopped()
+		):
 			return
 		
 		_shoot()
 		shoot_timer.start()
+		main_timer.start()
 		laser_timer.start()
 
 
