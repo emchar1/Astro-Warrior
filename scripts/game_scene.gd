@@ -8,6 +8,8 @@ const TITLE_SCENE = preload("res://scenes/title.tscn")
 # Level Properties
 @onready var level = $Level1
 @onready var player = $Player
+@onready var drone1 = $Drone
+@onready var drone2 = $Drone2
 @onready var enemies = $Enemies
 @onready var extras = $Extras
 @onready var powerup_manager = %PowerupManager
@@ -33,6 +35,7 @@ const TITLE_SCENE = preload("res://scenes/title.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level.boss_triggered.connect(approach_boss)
+	level.drone_collected.connect(collect_drone)
 	player.did_die.connect(player_did_die)
 	
 	level.setup(player, powerup_manager)
@@ -147,6 +150,13 @@ func _fade_out_music(stream_player: AudioStreamPlayer, duration: float) -> void:
 	
 	await tween.finished
 	stream_player.stop()
+
+
+func collect_drone() -> void:
+	if not drone1.is_unlocked:
+		drone1.unlock(Player.TRAIL_LENGTH)
+	elif not drone2.is_unlocked:
+		drone2.unlock(Player.TRAIL_LENGTH * 2)
 
 
 func _on_blink_timer_timeout() -> void:

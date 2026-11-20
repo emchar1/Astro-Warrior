@@ -55,9 +55,9 @@ func _offer_powerup(index: int) -> void:
 			else:
 				type = Powerup.Type.TRIPLE
 		5: type = Powerup.Type.SPEED
-		6: pass # TODO: - Drone
+		6: type = Powerup.Type.DRONE
 		7: type = Powerup.Type.SPEED
-		8: pass # TODO: - Drone
+		8: type = Powerup.Type.DRONE
 		9: type = Powerup.Type.SPEED
 		10: type = Powerup.Type.SPEED
 		11, 12, 13, 14, 15, 16, 17, 18, 19, 20:

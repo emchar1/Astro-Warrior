@@ -4,6 +4,7 @@ class_name LevelBase
 # PROPERTIES
 
 @warning_ignore("unused_signal") signal boss_triggered
+signal drone_collected
 
 @export var level_name: String
 @export var scroll_speed: float = 20.0
@@ -125,6 +126,7 @@ func _spawn_enemy_helper(type: EnemyConfig.Type, pos: Vector2) -> void:
 
 func _spawn_powerup(type: Powerup.Type) -> void:
 	var powerup = PowerupManager.POWERUP_SCENE.instantiate() as Powerup
+	powerup.did_collect_drone.connect(drone_collected.emit)
 	powerup.powerup_manager = powerup_manager
 	powerup.type = type
 	GameState.call_deferred("add_child_to_game_scene", powerup, "Extras")

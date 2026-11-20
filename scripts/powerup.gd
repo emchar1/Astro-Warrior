@@ -3,6 +3,8 @@ class_name Powerup
 
 # PROPERTIES
 
+signal did_collect_drone
+
 enum Type {
 	MAIN, TRIPLE, LASER, # Bullet Types
 	SPEED, DRONE # Other
@@ -102,8 +104,8 @@ func _on_body_entered(body: Node2D) -> void:
 				player.increase_speed()
 				show_status("SPEED UP!")
 			Powerup.Type.DRONE:
-				# TODO: - Make Drones
-				pass
+				did_collect_drone.emit()
+				show_status("+DRONE!")
 		
 		audio_stream.play()
 		
