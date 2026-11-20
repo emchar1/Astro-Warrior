@@ -58,6 +58,9 @@ func _spawn_enemies() -> void:
 
 
 func _spawn_enemy_helper(type: EnemyConfig.Type, pos: Vector2) -> void:
+	if not is_instance_valid(player):
+		return
+	
 	var enemy_class: Enemy
 	var enemy: Enemy
 	

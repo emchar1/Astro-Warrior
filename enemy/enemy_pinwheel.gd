@@ -76,7 +76,7 @@ func _get_random_position(pos: SpawnPosition) -> Vector2:
 func _move(_delta: float) -> void:
 	match move_type:
 		MoveType.APPEAR:
-			if player == null:
+			if not is_instance_valid(player):
 				return
 			
 			velocity = dir_to_player * enemy_config.speed
@@ -90,6 +90,9 @@ func _move(_delta: float) -> void:
 				return
 			
 			for i in range(randi_range(2, 3)):
+				if not is_instance_valid(player) or is_dead:
+					return
+				
 				var enemy_bullet = ENEMY_BULLET.instantiate() as EnemyBullet
 				
 				if enemy_bullet == null:

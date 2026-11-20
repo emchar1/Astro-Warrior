@@ -676,7 +676,7 @@ func _spawn_enemies() -> void:
 			Vector2.ZERO
 		)
 	
-	if checkpoint < 3490 and position.y >= 3490 and not spawn_form_h[16]:
+	if checkpoint < 3470 and position.y >= 3470 and not spawn_form_h[16]:
 		spawn_form_h[16] = true
 		
 		_spawn_enemy_helper(
@@ -684,7 +684,7 @@ func _spawn_enemies() -> void:
 			Vector2.ZERO
 		)
 	
-	if checkpoint < 3490 and position.y >= 3490 and not spawn_form_h[17]:
+	if checkpoint < 3470 and position.y >= 3470 and not spawn_form_h[17]:
 		spawn_form_h[17] = true
 		
 		_spawn_enemy_helper(
