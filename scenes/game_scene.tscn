@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://d7hxri5j41ue" path="res://assets/sounds/death.ogg" id="5_y3j0m"]
 [ext_resource type="PackedScene" uid="uid://ch5y5k5sq6gsk" path="res://scenes/hud.tscn" id="7_kk2rg"]
 [ext_resource type="AudioStream" uid="uid://b8lodfv6kvckp" path="res://assets/sounds/game_over.ogg" id="8_b5spy"]
+[ext_resource type="AudioStream" uid="uid://br3nnugncyb2v" path="res://assets/sounds/boss.ogg" id="8_mw25s"]
 
 [node name="GameScene" type="Node2D" unique_id=1416097669]
 script = ExtResource("1_bw6k5")
@@ -31,6 +32,11 @@ position = Vector2(128, 150)
 [node name="Enemies" type="Node2D" parent="." unique_id=1378577987]
 
 [node name="Extras" type="Node2D" parent="." unique_id=592610197]
+
+[node name="PowerupManager" type="Node" parent="." unique_id=2110457522]
+unique_name_in_owner = true
+script = ExtResource("4_rurhu")
+metadata/_custom_type_script = "uid://dwdmflsdec5u2"
 
 [node name="Hud" parent="." unique_id=1949064889 instance=ExtResource("7_kk2rg")]
 visible = false
@@ -75,16 +81,62 @@ theme_override_font_sizes/font_size = 7
 text = "000000"
 horizontal_alignment = 1
 
-[node name="PowerupManager" type="Node" parent="." unique_id=2110457522]
-unique_name_in_owner = true
-script = ExtResource("4_rurhu")
-metadata/_custom_type_script = "uid://dwdmflsdec5u2"
+[node name="BossWarningHud" type="CanvasLayer" parent="." unique_id=1697066155]
+visible = false
+
+[node name="Control" type="Control" parent="BossWarningHud" unique_id=665060928]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WarningLabel" type="Label" parent="BossWarningHud/Control" unique_id=855706167]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 12.0
+theme_override_colors/font_outline_color = Color(0, 0, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_utbpp")
+theme_override_font_sizes/font_size = 7
+text = "WARNING!"
+horizontal_alignment = 1
+
+[node name="BossLabel" type="Label" parent="BossWarningHud/Control" unique_id=244841743]
+layout_mode = 0
+offset_top = 20.0
+offset_right = 64.0
+offset_bottom = 32.0
+theme_override_colors/font_outline_color = Color(0, 0, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("5_utbpp")
+theme_override_font_sizes/font_size = 7
+text = "DESTROY
+ZANONI"
+horizontal_alignment = 1
+
+[node name="BlinkTimer" type="Timer" parent="BossWarningHud" unique_id=572994739]
+wait_time = 0.2
+one_shot = true
+autostart = true
 
 [node name="IntroAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=563750417]
 bus = &"Music"
 
 [node name="LoopAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1860689019]
 stream = ExtResource("4_kk2rg")
+bus = &"Music"
+parameters/looping = true
+
+[node name="BossAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1365818291]
+stream = ExtResource("8_mw25s")
 bus = &"Music"
 parameters/looping = true
 
@@ -95,3 +147,5 @@ bus = &"SFX"
 [node name="GameOverAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1158444129]
 stream = ExtResource("8_b5spy")
 bus = &"Music"
+
+[connection signal="timeout" from="BossWarningHud/BlinkTimer" to="." method="_on_blink_timer_timeout"]

@@ -3,10 +3,14 @@ class_name LevelBase
 
 # PROPERTIES
 
+signal boss_triggered
+
 @export var level_name: String
 @export var scroll_speed: float = 20.0
+
 @export var checkpoint_mid: float = 0.0
 @export var checkpoint_boss: float = 0.0
+@export var boss_fight: float = 0.0
 
 @onready var canvas_layer = $CanvasLayer
 @onready var level_label = $CanvasLayer/Control/LevelLabel
@@ -16,6 +20,7 @@ class_name LevelBase
 var player: Player
 var powerup_manager: PowerupManager
 var checkpoint: float # This prevents enemies spawning after checkpoints
+var did_trigger_boss: bool = false
 
 
 # FUNCTIONS

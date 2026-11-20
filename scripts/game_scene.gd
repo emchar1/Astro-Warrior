@@ -5,16 +5,25 @@ class_name GameScene
 
 const TITLE_SCENE = preload("res://scenes/title.tscn")
 
+# Level Properties
 @onready var level = $Level1
 @onready var player = $Player
 @onready var enemies = $Enemies
 @onready var extras = $Extras
+@onready var powerup_manager = %PowerupManager
+
+# HUD Properties
 @onready var hud = $Hud
 @onready var game_over_hud = $GameOverHud
 @onready var game_over_score_label = $GameOverHud/Control/ScoreLabel
-@onready var powerup_manager = %PowerupManager
+@onready var boss_warning_hud = $BossWarningHud
+@onready var warning_label = $BossWarningHud/Control/WarningLabel
+@onready var blink_timer = $BossWarningHud/BlinkTimer
+
+# Sound Properties
 @onready var intro_stream = $IntroAudioStreamPlayer
 @onready var loop_stream = $LoopAudioStreamPlayer
+@onready var boss_stream = $BossAudioStreamPlayer
 @onready var death_stream = $DeathAudioStreamPlayer
 @onready var game_over_stream = $GameOverAudioStreamPlayer
 
@@ -23,6 +32,7 @@ const TITLE_SCENE = preload("res://scenes/title.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	level.boss_triggered.connect(approach_boss)
 	player.did_die.connect(player_did_die)
 	
 	level.setup(player, powerup_manager)
@@ -60,6 +70,7 @@ func fade_music(duration: float = 6.0):
 func player_did_die() -> void:
 	intro_stream.stop()
 	loop_stream.stop()
+	boss_stream.stop()
 	death_stream.play()
 	
 	await get_tree().create_timer(3.5).timeout
@@ -101,3 +112,29 @@ func _return_to_title() -> void:
 	var title_scene = TITLE_SCENE.instantiate()
 	main_scene.add_child(title_scene)
 	main_scene.title_scene = title_scene
+
+
+func approach_boss() -> void:
+	boss_warning_hud.show()
+	
+	_fade_out_music(intro_stream, 16.0)
+	_fade_out_music(loop_stream, 16.0)
+	
+	await get_tree().create_timer(3.0).timeout
+	boss_warning_hud.hide()
+	
+	await get_tree().create_timer(4.0).timeout
+	boss_stream.play()
+
+
+func _fade_out_music(stream_player: AudioStreamPlayer, duration: float) -> void:
+	var tween := create_tween()
+	tween.tween_property(stream_player, "volume_db", -80.0, duration)
+	
+	await tween.finished
+	stream_player.stop()
+
+
+func _on_blink_timer_timeout() -> void:
+	blink_timer.start()
+	warning_label.visible = !warning_label.visible

@@ -693,3 +693,7 @@ func _spawn_enemies() -> void:
 			EnemyConfig.Type.FORM_H,
 			Vector2.ZERO
 		)
+	
+	if position.y >= boss_fight and not did_trigger_boss:
+		did_trigger_boss = true
+		boss_triggered.emit()
