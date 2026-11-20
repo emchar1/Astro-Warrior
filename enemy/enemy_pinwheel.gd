@@ -107,7 +107,9 @@ func _move(_delta: float) -> void:
 				GameState.add_child_to_game_scene(enemy_bullet, "Enemies")
 				
 				await get_tree().create_timer(1.0).timeout
-				did_fire_bullet = false
+				
+				if is_instance_valid(self):
+					did_fire_bullet = false
 			
 			move_type = MoveType.RETREAT
 		MoveType.RETREAT:

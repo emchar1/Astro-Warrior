@@ -106,6 +106,7 @@ start={
 2d_physics/layer_4="Enemy Projectile"
 2d_physics/layer_5="Powerup"
 2d_physics/layer_6="Tiles"
+2d_physics/layer_7="Drone"
 
 [physics]
 

@@ -45,7 +45,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	position.y -= delta * speed
 
 
@@ -68,7 +68,9 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	_disable_bullet()
 	
 	await get_tree().create_timer(1.0).timeout
-	queue_free()
+	
+	if is_instance_valid(self):
+		queue_free()
 
 
 func _on_body_shape_entered(

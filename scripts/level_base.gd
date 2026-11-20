@@ -3,7 +3,7 @@ class_name LevelBase
 
 # PROPERTIES
 
-signal boss_triggered
+@warning_ignore("unused_signal") signal boss_triggered
 
 @export var level_name: String
 @export var scroll_speed: float = 20.0
@@ -11,6 +11,7 @@ signal boss_triggered
 @export var checkpoint_mid: float = 0.0
 @export var checkpoint_boss: float = 0.0
 @export var boss_fight: float = 0.0
+@export var debug_checkpoint: float = 0.0
 
 @onready var canvas_layer = $CanvasLayer
 @onready var level_label = $CanvasLayer/Control/LevelLabel
@@ -42,12 +43,18 @@ func _ready() -> void:
 		position.y = 0.0
 		checkpoint = 0.0
 	
+	if debug_checkpoint > 0.0:
+		position.y = debug_checkpoint
+		checkpoint = debug_checkpoint
+	
 	await get_tree().create_timer(3.0).timeout
-	canvas_layer.hide()
+	
+	if is_instance_valid(self):
+		canvas_layer.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	_scroll_level(delta)
 	_spawn_enemies()
 
@@ -63,14 +70,15 @@ func _scroll_level(delta: float) -> void:
 	#print("position.y: ", position.y)
 	
 	# Set Checkpoints
-	if position.y >= checkpoint_boss:
-		if not GameState.checkpoint_boss_reached:
-			checkpoint = checkpoint_boss
-			GameState.checkpoint_boss_reached = true
-	elif position.y >= checkpoint_mid:
-		if not GameState.checkpoint_mid_reached:
-			checkpoint = checkpoint_mid
-			GameState.checkpoint_mid_reached = true
+	if debug_checkpoint <= 0.0:
+		if position.y >= checkpoint_boss:
+			if not GameState.checkpoint_boss_reached:
+				checkpoint = checkpoint_boss
+				GameState.checkpoint_boss_reached = true
+		elif position.y >= checkpoint_mid:
+			if not GameState.checkpoint_mid_reached:
+				checkpoint = checkpoint_mid
+				GameState.checkpoint_mid_reached = true
 
 
 func stop_scrolling() -> void:

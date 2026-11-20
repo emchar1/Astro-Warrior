@@ -45,7 +45,9 @@ func _ready() -> void:
 		_play_bgm_loop()
 	
 	await get_tree().create_timer(3.0).timeout
-	hud.show()
+	
+	if is_instance_valid(self):
+		hud.show()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -75,11 +77,17 @@ func player_did_die() -> void:
 	
 	await get_tree().create_timer(3.5).timeout
 	
+	if not is_instance_valid(self):
+		return
+	
 	GameState.update_lives(-1)
 	GameState.powerup_count = 0
 	
 	if GameState.lives >= 0:
-		get_parent().restart_game(self)
+		var main := get_parent() as Main
+		
+		if is_instance_valid(main):
+			main.restart_game(self)
 	else:
 		_play_game_over()
 
@@ -96,7 +104,9 @@ func _play_game_over() -> void:
 	game_over_stream.play()
 	
 	await get_tree().create_timer(6.0).timeout
-	_return_to_title()
+	
+	if is_instance_valid(self):
+		_return_to_title()
 
 
 func _return_to_title() -> void:
@@ -121,10 +131,12 @@ func approach_boss() -> void:
 	_fade_out_music(loop_stream, 16.0)
 	
 	await get_tree().create_timer(3.0).timeout
-	boss_warning_hud.hide()
+	if is_instance_valid(self):
+		boss_warning_hud.hide()
 	
 	await get_tree().create_timer(4.0).timeout
-	boss_stream.play()
+	if is_instance_valid(self):
+		boss_stream.play()
 
 
 func _fade_out_music(stream_player: AudioStreamPlayer, duration: float) -> void:

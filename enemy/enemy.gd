@@ -83,4 +83,6 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	await get_tree().create_timer(1.0).timeout
-	queue_free()
+	
+	if is_instance_valid(self):
+		queue_free()

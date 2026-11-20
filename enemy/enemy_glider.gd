@@ -101,8 +101,11 @@ func _spawn_gliders(_initial_position: Vector2) -> void:
 		await get_tree().create_timer(clone_spacing).timeout
 		
 		var clone = clones[i]
-		clone.set_physics_process(true)
-		clone.setup()
+		
+		# Prevents handling of an already freed clone.
+		if is_instance_valid(clone):
+			clone.set_physics_process(true)
+			clone.setup()
 
 
 func _move_form_c(reverse: bool, delta: float):

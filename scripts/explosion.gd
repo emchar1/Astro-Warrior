@@ -44,4 +44,6 @@ func activate(_position: Vector2, _scale: Vector2 = Vector2.ONE) -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	hide()
 	await get_tree().create_timer(1.0).timeout
-	queue_free()
+	
+	if is_instance_valid(self):
+		queue_free()

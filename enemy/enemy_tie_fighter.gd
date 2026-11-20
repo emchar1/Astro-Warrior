@@ -12,8 +12,8 @@ const CONFIG = preload("res://resources/enemy_tie_fighter.tres")
 
 var move_type: MoveType = MoveType.DESCEND
 var clone_spacing: float = 0.5
-var lr_margin: float = 30.0
 var attack_speed: float = 2.0
+var lr_margin: float
 
 
 # FUNCTIONS
@@ -28,13 +28,14 @@ func _ready() -> void:
 	
 	clones_count = 3
 	
+	if is_leader:
+		lr_margin = randf_range(30.0, 80.0)
+		_spawn_clones()
+	
 	if enemy_config.type == EnemyConfig.Type.FORM_G:
 		position.x = lr_margin
 	elif enemy_config.type == EnemyConfig.Type.FORM_GR:
 		position.x = GameState.screen_size.x - lr_margin
-	
-	if is_leader:
-		_spawn_clones()
 
 
 func _move(_delta: float) -> void:
@@ -65,7 +66,9 @@ func _move(_delta: float) -> void:
 				anim_sprite.speed_scale = 2.0
 				
 				await get_tree().create_timer(0.2).timeout
-				move_type = MoveType.ATTACK
+				
+				if is_instance_valid(self):
+					move_type = MoveType.ATTACK
 		MoveType.ATTACK:
 			velocity.x = 0.0
 			velocity.y = enemy_config.speed * attack_speed
@@ -75,6 +78,7 @@ func _spawn_clones() -> void:
 	for i in range(clones_count):
 		var clone = SCENE.instantiate() as EnemyTieFighter
 		clone.is_leader = false
+		clone.lr_margin = lr_margin
 		clone.player = player
 		
 		GameState.add_child_to_game_scene(clone, "Enemies")
@@ -89,5 +93,8 @@ func _spawn_clones() -> void:
 		await get_tree().create_timer(clone_spacing).timeout
 		
 		var clone = clones[i]
-		clone.set_physics_process(true)
-		clone.setup()
+		
+		# Prevents handling of an already freed clone.
+		if is_instance_valid(clone):
+			clone.set_physics_process(true)
+			clone.setup()
