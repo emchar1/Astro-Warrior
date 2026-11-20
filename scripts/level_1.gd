@@ -30,7 +30,14 @@ var spawn_form_f: Array[bool] = [
 ]
 var spawn_form_g: Array[bool] = [false, false, false, false]
 var spawn_form_gr: Array[bool] = [false, false, false, false]
-var spawn_form_h: Array[bool] = [false, false, false, false, false, false]
+var spawn_form_h: Array[bool] = [
+	false, false,
+	false, false, false, false,
+	false, false, false, false,
+	false, false, false, false,
+	false, false, 
+	false, false
+]
 
 
 # FUNCTIONS
@@ -541,8 +548,144 @@ func _spawn_enemies() -> void:
 		)
 	
 	# TODO: - PINWHEELS
-	if checkpoint < 3100 and position.y >= 3100 and not spawn_form_h[0]:
+	if checkpoint < 3150 and position.y >= 3150 and not spawn_form_h[0]:
 		spawn_form_h[0] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3150 and position.y >= 3150 and not spawn_form_h[1]:
+		spawn_form_h[1] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3220 and position.y >= 3220 and not spawn_form_h[2]:
+		spawn_form_h[2] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3220 and position.y >= 3220 and not spawn_form_h[3]:
+		spawn_form_h[3] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3220 and position.y >= 3220 and not spawn_form_h[4]:
+		spawn_form_h[4] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3220 and position.y >= 3220 and not spawn_form_h[5]:
+		spawn_form_h[5] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3290 and position.y >= 3290 and not spawn_form_h[6]:
+		spawn_form_h[6] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3290 and position.y >= 3290 and not spawn_form_h[7]:
+		spawn_form_h[7] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3290 and position.y >= 3290 and not spawn_form_h[8]:
+		spawn_form_h[8] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3290 and position.y >= 3290 and not spawn_form_h[9]:
+		spawn_form_h[9] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3360 and position.y >= 3360 and not spawn_form_h[10]:
+		spawn_form_h[10] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3360 and position.y >= 3360 and not spawn_form_h[11]:
+		spawn_form_h[11] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3360 and position.y >= 3360 and not spawn_form_h[12]:
+		spawn_form_h[12] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3360 and position.y >= 3360 and not spawn_form_h[13]:
+		spawn_form_h[13] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3430 and position.y >= 3430 and not spawn_form_h[14]:
+		spawn_form_h[14] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3430 and position.y >= 3430 and not spawn_form_h[15]:
+		spawn_form_h[15] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3490 and position.y >= 3490 and not spawn_form_h[16]:
+		spawn_form_h[16] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
+	
+	if checkpoint < 3490 and position.y >= 3490 and not spawn_form_h[17]:
+		spawn_form_h[17] = true
 		
 		_spawn_enemy_helper(
 			EnemyConfig.Type.FORM_H,

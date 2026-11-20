@@ -15,8 +15,11 @@ enum MoveType {
 
 var spawn_pos: SpawnPosition
 var move_type: MoveType = MoveType.APPEAR
-var move_distance: float
+
+var move_distance: float # Travel distance before stopping to attack
+var retreat_position: Vector2 # Retreat position
 var dir_to_player: Vector2
+
 var did_fire_bullet: bool = false
 
 
@@ -36,24 +39,38 @@ func setup() -> void:
 	super.setup()
 	
 	# Override the enemy position that gets set in level_base.
-	match spawn_pos:
-		SpawnPosition.LEFT:
-			position = Vector2(
-				-8.0,
-				randf_range(0.0, GameState.screen_size.y / 4)
-			)
-		SpawnPosition.TOP:
-			position = Vector2(randf_range(0.0, GameState.screen_size.x), -8.0)
-		SpawnPosition.RIGHT:
-			position = Vector2(
-				GameState.screen_size.x + 8.0,
-				randf_range(0.0, GameState.screen_size.y / 4)
-			)
-	
+	position = _get_random_position(spawn_pos)
 	initial_position = position
+	
+	# Set retreat position
+	retreat_position = _get_random_position(spawn_pos)
 	
 	if player:
 		dir_to_player = position.direction_to(player.position)
+
+
+func _get_random_position(pos: SpawnPosition) -> Vector2:
+	var rand_pos: Vector2
+	var offset := 16.0
+	
+	match pos:
+		SpawnPosition.LEFT:
+			rand_pos = Vector2(
+				-offset,
+				randf_range(0.0, GameState.screen_size.y / 4)
+			)
+		SpawnPosition.TOP:
+			rand_pos = Vector2(
+				randf_range(0.0, GameState.screen_size.x),
+				-offset
+			)
+		SpawnPosition.RIGHT:
+			rand_pos = Vector2(
+				GameState.screen_size.x + offset,
+				randf_range(0.0, GameState.screen_size.y / 4)
+			)
+	
+	return rand_pos
 
 
 func _move(_delta: float) -> void:
@@ -72,7 +89,7 @@ func _move(_delta: float) -> void:
 			if did_fire_bullet:
 				return
 			
-			for i in range(2):
+			for i in range(randi_range(2, 3)):
 				var enemy_bullet = ENEMY_BULLET.instantiate() as EnemyBullet
 				
 				if enemy_bullet == null:
@@ -91,4 +108,5 @@ func _move(_delta: float) -> void:
 			
 			move_type = MoveType.RETREAT
 		MoveType.RETREAT:
-			pass
+			var dir_to_retreat := position.direction_to(retreat_position)
+			velocity = dir_to_retreat * enemy_config.speed
