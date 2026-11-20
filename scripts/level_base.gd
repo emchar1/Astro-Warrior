@@ -72,6 +72,8 @@ func _spawn_enemy_helper(type: EnemyConfig.Type, pos: Vector2) -> void:
 			enemy_class = EnemyBlueBall.new()
 		EnemyConfig.TypeReadable.TIE_FIGHTER:
 			enemy_class = EnemyTieFighter.new()
+		EnemyConfig.TypeReadable.PINWHEEL:
+			enemy_class = EnemyPinwheel.new()
 	
 	enemy = enemy_class.scene.instantiate() as Enemy
 	enemy.player = player

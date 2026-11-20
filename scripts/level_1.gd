@@ -30,6 +30,8 @@ var spawn_form_f: Array[bool] = [
 ]
 var spawn_form_g: Array[bool] = [false, false, false, false]
 var spawn_form_gr: Array[bool] = [false, false, false, false]
+var spawn_form_h: Array[bool] = [false, false, false, false, false, false]
+
 
 # FUNCTIONS
 
@@ -539,3 +541,10 @@ func _spawn_enemies() -> void:
 		)
 	
 	# TODO: - PINWHEELS
+	if checkpoint < 3100 and position.y >= 3100 and not spawn_form_h[0]:
+		spawn_form_h[0] = true
+		
+		_spawn_enemy_helper(
+			EnemyConfig.Type.FORM_H,
+			Vector2.ZERO
+		)
