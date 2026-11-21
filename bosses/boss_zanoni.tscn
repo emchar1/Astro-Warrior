@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://c5wllpusk18fs"]
+
+[ext_resource type="PackedScene" uid="uid://b52uklps2pktk" path="res://bosses/boss.tscn" id="1_kmbyr"]
+[ext_resource type="Texture2D" uid="uid://cuvj6uwdvwpu3" path="res://assets/images/zanoni.png" id="2_tsxmp"]
+[ext_resource type="Script" uid="uid://dfh8rtqot6ttg" path="res://bosses/boss_zanoni.gd" id="2_xeqld"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc0wh"]
+atlas = ExtResource("2_tsxmp")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeqld"]
+atlas = ExtResource("2_tsxmp")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lb7rc"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvyiy"]
+atlas = ExtResource("2_tsxmp")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_biblo"]
+atlas = ExtResource("2_tsxmp")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ay8bm"]
+radius = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4k2w"]
+atlas = ExtResource("2_tsxmp")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3pco"]
+atlas = ExtResource("2_tsxmp")
+region = Rect2(320, 0, 64, 64)
+
+[node name="BossZanoni" unique_id=1796992530 instance=ExtResource("1_kmbyr")]
+script = ExtResource("2_xeqld")
+
+[node name="Sprite2D" parent="." index="0" unique_id=1242889091]
+texture_filter = 1
+texture = SubResource("AtlasTexture_oc0wh")
+
+[node name="Hurtbox1" type="Area2D" parent="Hurtboxes" parent_id_path=PackedInt32Array(1881352908) index="0" unique_id=2112474279]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Hurtboxes/Hurtbox1" index="0" unique_id=1759501554]
+texture_filter = 1
+texture = SubResource("AtlasTexture_xeqld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/Hurtbox1" index="1" unique_id=1038369446]
+position = Vector2(-16, -9)
+shape = SubResource("CircleShape2D_lb7rc")
+
+[node name="Hurtbox2" type="Area2D" parent="Hurtboxes" parent_id_path=PackedInt32Array(1881352908) index="1" unique_id=314233177]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Hurtboxes/Hurtbox2" index="0" unique_id=27991341]
+texture_filter = 1
+texture = SubResource("AtlasTexture_mvyiy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/Hurtbox2" index="1" unique_id=1271936769]
+position = Vector2(-16, 7)
+shape = SubResource("CircleShape2D_lb7rc")
+
+[node name="Hurtbox3" type="Area2D" parent="Hurtboxes" parent_id_path=PackedInt32Array(1881352908) index="2" unique_id=781659696]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Hurtboxes/Hurtbox3" index="0" unique_id=1307758728]
+texture_filter = 1
+texture = SubResource("AtlasTexture_biblo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/Hurtbox3" index="1" unique_id=707828917]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_ay8bm")
+
+[node name="Hurtbox4" type="Area2D" parent="Hurtboxes" parent_id_path=PackedInt32Array(1881352908) index="3" unique_id=1131735000]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Hurtboxes/Hurtbox4" index="0" unique_id=1642233598]
+texture_filter = 1
+texture = SubResource("AtlasTexture_o4k2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/Hurtbox4" index="1" unique_id=144162417]
+position = Vector2(16, -9)
+shape = SubResource("CircleShape2D_lb7rc")
+
+[node name="Hurtbox5" type="Area2D" parent="Hurtboxes" parent_id_path=PackedInt32Array(1881352908) index="4" unique_id=1488936783]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Hurtboxes/Hurtbox5" index="0" unique_id=1910328517]
+texture_filter = 1
+texture = SubResource("AtlasTexture_u3pco")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtboxes/Hurtbox5" index="1" unique_id=1704729565]
+position = Vector2(16, 7)
+shape = SubResource("CircleShape2D_lb7rc")

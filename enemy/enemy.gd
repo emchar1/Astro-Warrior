@@ -64,7 +64,6 @@ func _die() -> void:
 	
 	# MUST come after did_die signal for glider scoring.
 	GameState.update_score(enemy_config.score)
-
 	
 	# Add explosion
 	var explosion = EXPLOSION_SCENE.instantiate() as Explosion
