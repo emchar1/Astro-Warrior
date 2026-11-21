@@ -45,7 +45,7 @@ texture = SubResource("AtlasTexture_oc0wh")
 shape = SubResource("CircleShape2D_xeqld")
 
 [node name="BossShield" parent="Hurtboxes" parent_id_path=PackedInt32Array(1881352908) index="0" unique_id=864506270 instance=ExtResource("4_xeqld")]
-hp = 15.0
+hp = 25.0
 
 [node name="Sprite2D" parent="Hurtboxes/BossShield" index="0" unique_id=2112120141]
 texture = SubResource("AtlasTexture_mvyiy")
@@ -54,7 +54,7 @@ texture = SubResource("AtlasTexture_mvyiy")
 position = Vector2(-16, 7)
 
 [node name="BossShield2" parent="Hurtboxes" parent_id_path=PackedInt32Array(1881352908) index="1" unique_id=1422256743 instance=ExtResource("4_xeqld")]
-hp = 15.0
+hp = 25.0
 
 [node name="Sprite2D" parent="Hurtboxes/BossShield2" index="0" unique_id=2112120141]
 texture = SubResource("AtlasTexture_go8bv")
@@ -63,7 +63,7 @@ texture = SubResource("AtlasTexture_go8bv")
 position = Vector2(16, 7)
 
 [node name="BossShield3" parent="Hurtboxes" parent_id_path=PackedInt32Array(1881352908) index="2" unique_id=1020749872 instance=ExtResource("4_xeqld")]
-hp = 15.0
+hp = 25.0
 
 [node name="Sprite2D" parent="Hurtboxes/BossShield3" index="0" unique_id=2112120141]
 texture = SubResource("AtlasTexture_biblo")
@@ -72,7 +72,7 @@ texture = SubResource("AtlasTexture_biblo")
 position = Vector2(-16, -9)
 
 [node name="BossShield4" parent="Hurtboxes" parent_id_path=PackedInt32Array(1881352908) index="3" unique_id=122718186 instance=ExtResource("4_xeqld")]
-hp = 15.0
+hp = 25.0
 
 [node name="Sprite2D" parent="Hurtboxes/BossShield4" index="0" unique_id=2112120141]
 texture = SubResource("AtlasTexture_xeqld")
@@ -81,7 +81,7 @@ texture = SubResource("AtlasTexture_xeqld")
 position = Vector2(16, -9)
 
 [node name="BossShield5" parent="Hurtboxes" parent_id_path=PackedInt32Array(1881352908) index="4" unique_id=192256379 instance=ExtResource("4_xeqld")]
-hp = 25.0
+hp = 50.0
 
 [node name="Sprite2D" parent="Hurtboxes/BossShield5" index="0" unique_id=2112120141]
 texture = SubResource("AtlasTexture_ay8bm")
