@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BossConfig" format=3 uid="uid://b5ed7pcdibxbk"]
+
+[ext_resource type="Script" uid="uid://kli4gaa8yim7" path="res://resources/boss_config.gd" id="1_ksbw7"]
+
+[resource]
+script = ExtResource("1_ksbw7")
+speed = 40.0
+score = 10000
+metadata/_custom_type_script = "uid://kli4gaa8yim7"

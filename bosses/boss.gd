@@ -5,11 +5,21 @@ class_name Boss
 
 signal did_die
 
+enum MoveType { 
+	ENTER, TAUNT, ATTACK1, ATTACK2
+}
+
 const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 
+@onready var sprite = $Sprite2D
 @onready var hurtboxes = $Hurtboxes
 
-var score: float = 10000
+var scene: PackedScene
+var config: BossConfig
+
+var boss_config: BossConfig
+var player: Player
+var move_type: MoveType = MoveType.ENTER
 var is_dead: bool = false
 
 
@@ -35,7 +45,24 @@ func setup() -> void:
 
 func _move(_delta: float) -> void:
 	# You should override this function with specific enemy move implementation
-	pass
+	match move_type:
+		MoveType.ENTER:
+			var texture = sprite.texture
+			
+			if texture == null:
+				return
+			
+			velocity.y = 32.0
+			
+			if position.y >= texture.region.size.y / 2:
+				move_type = MoveType.TAUNT
+		MoveType.TAUNT:
+			velocity = Vector2.ZERO
+			
+			await get_tree().create_timer(2.0).timeout
+			
+			if is_instance_valid(self):
+				move_type = MoveType.ATTACK1
 
 
 func _die() -> void:
@@ -50,7 +77,7 @@ func _die() -> void:
 	did_die.emit()
 	
 	# MUST come after did_die signal for glider scoring.
-	GameState.update_score(score)
+	GameState.update_score(boss_config.score)
 	
 	# Add explosion
 	var explosion = EXPLOSION_SCENE.instantiate() as Explosion

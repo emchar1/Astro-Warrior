@@ -124,6 +124,36 @@ func _spawn_enemy_helper(type: EnemyConfig.Type, pos: Vector2) -> void:
 	enemy.setup()
 
 
+func _spawn_boss_helper(type: BossConfig.Type) -> void:
+	await get_tree().create_timer(3.0).timeout
+	
+	if not is_instance_valid(player):
+		return
+	
+	var boss_class: Boss
+	var boss: Boss
+	
+	match type:
+		BossConfig.Type.ZANONI:
+			boss_class = BossZanoni.new()
+		BossConfig.Type.NEBIROS:
+			pass
+		BossConfig.Type.BELZEBUL:
+			pass
+	
+	boss = boss_class.scene.instantiate() as Boss
+	boss.player = player
+	
+	GameState.add_child_to_game_scene(boss, "Enemies")
+	
+	boss.boss_config = boss_class.config.duplicate()
+	boss.boss_config.type = type
+	boss.position = Vector2(GameState.screen_size.x / 2, -32.0)
+	boss.setup() # Need to implement
+	
+	scroll_speed = 0.0
+
+
 func _spawn_powerup(type: Powerup.Type) -> void:
 	var powerup = PowerupManager.POWERUP_SCENE.instantiate() as Powerup
 	powerup.did_collect_drone.connect(drone_collected.emit)

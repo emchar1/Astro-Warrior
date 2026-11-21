@@ -162,7 +162,7 @@ func _die() -> void:
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
-		if body is Enemy:
+		if body is Enemy or body is Boss:
 			_die()
 
 

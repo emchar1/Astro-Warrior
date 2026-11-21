@@ -694,6 +694,8 @@ func _spawn_enemies() -> void:
 			Vector2.ZERO
 		)
 	
+	# BOSS FIGHT
 	if position.y >= boss_fight and not did_trigger_boss:
 		did_trigger_boss = true
+		_spawn_boss_helper(BossConfig.Type.ZANONI)
 		boss_triggered.emit()
