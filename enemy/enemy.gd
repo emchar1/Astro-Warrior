@@ -75,7 +75,7 @@ func _die() -> void:
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullet"):
-		if area is Bullet:
+		if area is Bullet and not area.is_disabled:
 			area.die()
 			_die()
 
