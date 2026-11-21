@@ -3,6 +3,12 @@ class_name BossZanoni
 
 # PROPERTIES
 
+@onready var shield1 = $Hurtboxes/BossShield
+@onready var shield2 = $Hurtboxes/BossShield2
+@onready var shield3 = $Hurtboxes/BossShield3
+@onready var shield4 = $Hurtboxes/BossShield4
+@onready var shield5 = $Hurtboxes/BossShield5
+
 var dip_count: int = 0
 
 
@@ -11,6 +17,19 @@ var dip_count: int = 0
 func _init() -> void:
 	scene = preload("res://bosses/boss_zanoni.tscn")
 	config = preload("res://resources/boss_zanoni.tres")
+
+
+func _ready() -> void:
+	shield1.can_target = false
+	shield2.can_target = false
+	shield3.can_target = false
+	shield4.can_target = false
+	shield5.can_target = false
+	
+	shield1.did_die.connect(_enable_shield3)
+	shield2.did_die.connect(_enable_shield4)
+	shield3.did_die.connect(_enable_shield5)
+	shield4.did_die.connect(_enable_shield5)
 
 
 func _move(delta: float) -> void:
@@ -41,5 +60,32 @@ func _move(delta: float) -> void:
 				# Upward movement
 				velocity.y = -boss_config.speed
 				dip_count += 1
+			
+			# Enable shield targeting
+			if is_instance_valid(shield1) and not shield1.can_target:
+				shield1.can_target = true
+			if is_instance_valid(shield2) and not shield2.can_target:
+				shield2.can_target = true
 		MoveType.ATTACK2:
 			pass
+
+
+func _enable_shield3() -> void:
+	shield3.can_target = true
+
+
+func _enable_shield4() -> void:
+	shield4.can_target = true
+
+
+func _enable_shield5() -> void:
+	if is_instance_valid(shield1) and not shield1.is_dead:
+		return
+	if is_instance_valid(shield2) and not shield2.is_dead:
+		return
+	if is_instance_valid(shield3) and not shield3.is_dead:
+		return
+	if is_instance_valid(shield4) and not shield4.is_dead:
+		return
+	
+	shield5.can_target = true

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bwnem4je5qbdj"]
+
+[ext_resource type="Script" uid="uid://crydentsce3q5" path="res://bosses/boss_shield.gd" id="1_go8bv"]
+[ext_resource type="AudioStream" uid="uid://dhdi2p6pundfq" path="res://assets/sounds/wall_deflect.ogg" id="2_owbhb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3pco"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lb7rc"]
+radius = 8.0
+
+[node name="BossShield" type="Area2D" unique_id=864506270 groups=["enemy"]]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_go8bv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2112120141]
+texture_filter = 1
+texture = SubResource("AtlasTexture_u3pco")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1813738783]
+shape = SubResource("CircleShape2D_lb7rc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1440617596]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1113435116]
+stream = ExtResource("2_owbhb")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

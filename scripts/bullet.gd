@@ -8,6 +8,8 @@ const BULLET_MAIN_SFX = preload("res://assets/sounds/bullet0.ogg")
 const BULLET_LASER_SFX = preload("res://assets/sounds/bullet1.ogg")
 
 @export var speed: float = 500.0
+@export var damage: float = 2.0
+
 @onready var sprite = $Sprite2D
 @onready var collision = $CollisionShape2D
 @onready var bullet_audio_stream = $BulletAudioStreamPlayer
@@ -28,18 +30,21 @@ func _ready() -> void:
 			collision.shape.size = Vector2(8.0, 16.0)
 			sprite.scale.y = 2.0
 			collision.scale.y = 2.0
+			damage = 5.0
 			bullet_audio_stream.stream = BULLET_LASER_SFX
 		Powerup.Type.TRIPLE:
 			sprite.texture.region = Rect2(3.0, 22.0, 14.0, 11.0)
 			collision.shape.size = Vector2(14.0, 11.0)
 			sprite.scale.y = 1.0
 			collision.scale.y = 1.0
+			damage = 3.0
 			bullet_audio_stream.stream = BULLET_MAIN_SFX
 		_:
 			sprite.texture.region = Rect2(0.0, 22.0, 2.0, 11.0)
 			collision.shape.size = Vector2(2.0, 11.0)
 			sprite.scale.y = 1.0
 			collision.scale.y = 1.0
+			damage = 2.0
 			bullet_audio_stream.stream = BULLET_MAIN_SFX
 	
 	if not should_silence:
