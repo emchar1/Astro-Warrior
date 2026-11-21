@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_ksbw7")
-speed = 40.0
+speed = 50.0
 score = 10000
 metadata/_custom_type_script = "uid://kli4gaa8yim7"
