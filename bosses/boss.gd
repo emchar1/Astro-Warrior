@@ -6,7 +6,7 @@ class_name Boss
 signal did_die
 
 enum MoveType { 
-	ENTER, TAUNT, ATTACK1, ATTACK2
+	ENTER, TAUNT, ATTACK1, ATTACK2, DIE
 }
 
 const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
@@ -63,6 +63,8 @@ func _move(_delta: float) -> void:
 			
 			if is_instance_valid(self):
 				move_type = MoveType.ATTACK1
+		MoveType.DIE:
+			velocity = Vector2.ZERO
 
 
 func _die() -> void:
@@ -72,7 +74,7 @@ func _die() -> void:
 	is_dead = true
 	
 	set_collision_layer_value(2, 0)
-	hide()
+	move_type = MoveType.DIE
 	did_die.emit()
 	
 	GameState.update_score(boss_config.score)
@@ -85,15 +87,30 @@ func _die() -> void:
 				node.queue_free()
 	
 	# FIXME: - HOW DO I WANT ENEMY TO GO OUT???
-	var explosion = EXPLOSION_SCENE.instantiate() as Explosion
-	GameState.add_child_to_game_scene(explosion, "Extras")
-	explosion.activate(position, Vector2(4.0, 4.0))
+	for i in range(25):
+		var explosion = EXPLOSION_SCENE.instantiate() as Explosion
+		GameState.add_child_to_game_scene(explosion, "Extras")
+		explosion.activate(
+			position + Vector2(
+				randf_range(-32, 32),
+				randf_range(-32, 32)
+			)
+		)
+		
+		await get_tree().create_timer(0.1).timeout
+		
+		if not is_instance_valid(self):
+			print("invalid")
+			return
+	
+	hide()
+
 
 
 # SIGNAL CALLBACK FUNCTIONS
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	
 	if is_instance_valid(self):
 		queue_free()
