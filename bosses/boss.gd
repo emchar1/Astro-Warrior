@@ -86,8 +86,16 @@ func _die() -> void:
 			if node is EnemyBullet:
 				node.queue_free()
 	
-	# FIXME: - HOW DO I WANT ENEMY TO GO OUT???
-	for i in range(25):
+	# Boss go out, not in a whimper, but a BANG!
+	var tween = create_tween()
+	tween.tween_property(
+		sprite,
+		"modulate",
+		Color.BLUE,
+		2.0
+	)
+	
+	for i in range(20):
 		var explosion = EXPLOSION_SCENE.instantiate() as Explosion
 		GameState.add_child_to_game_scene(explosion, "Extras")
 		explosion.activate(
@@ -103,8 +111,8 @@ func _die() -> void:
 			print("invalid")
 			return
 	
-	hide()
-
+	if is_instance_valid(self):
+		hide()
 
 
 # SIGNAL CALLBACK FUNCTIONS
