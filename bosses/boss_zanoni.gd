@@ -30,6 +30,7 @@ func _ready() -> void:
 	shield2.did_die.connect(_enable_shield4)
 	shield3.did_die.connect(_enable_shield5)
 	shield4.did_die.connect(_enable_shield5)
+	shield5.did_die.connect(_die)
 
 
 func _move(delta: float) -> void:
@@ -89,3 +90,36 @@ func _enable_shield5() -> void:
 		return
 	
 	shield5.can_target = true
+
+
+# SIGNAL CALLBACK FUNCTIONS
+
+func _on_attack_timer_timeout() -> void:
+	if not is_instance_valid(player):
+		return
+	
+	if move_type != MoveType.ATTACK1:
+		return
+	
+	if is_instance_valid(shield1) and not shield1.is_dead:
+		shield1.attack(player.position)
+	if is_instance_valid(shield2) and not shield2.is_dead:
+		shield2.attack(player.position)
+	if is_instance_valid(shield3) and not shield3.is_dead:
+		shield3.attack(player.position)
+	if is_instance_valid(shield4) and not shield4.is_dead:
+		shield4.attack(player.position)
+	if is_instance_valid(shield5) and not shield5.is_dead:
+		shield5.attack(player.position)
+
+
+func _on_attack_spread_timer_timeout() -> void:
+	if not is_instance_valid(player):
+		return
+	
+	if move_type != MoveType.ATTACK1:
+		return
+	
+	if is_instance_valid(shield5) and shield5.can_target \
+	and not shield5.is_dead:
+		shield5.attack2(player.position)

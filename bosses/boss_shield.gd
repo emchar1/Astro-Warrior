@@ -6,6 +6,7 @@ class_name BossShield
 signal did_die
 
 const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
+const ENEMY_BULLET = preload("res://scenes/enemy_bullet.tscn")
 
 @export var hp: float = 1.0
 
@@ -18,6 +19,31 @@ var is_dead: bool = false
 
 
 # FUNCTIONS
+
+func attack(pos: Vector2) -> void:
+	var enemy_bullet = ENEMY_BULLET.instantiate() as EnemyBullet
+	
+	if enemy_bullet == null:
+		return
+	
+	enemy_bullet.position = collision.global_position
+	enemy_bullet.destination = pos
+	
+	GameState.add_child_to_game_scene(enemy_bullet, "Enemies")
+
+
+func attack2(pos) -> void:
+	for i in range(6):
+		var enemy_bullet = ENEMY_BULLET.instantiate() as EnemyBullet
+		
+		if enemy_bullet == null:
+			return
+		
+		enemy_bullet.position = collision.global_position
+		enemy_bullet.destination = pos + Vector2(i * 50.0 - 100.0, 0.0)
+		
+		GameState.add_child_to_game_scene(enemy_bullet, "Enemies")
+
 
 func _damage(amount: float) -> void:
 	if is_dead:
