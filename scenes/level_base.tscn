@@ -218,6 +218,7 @@ texture = SubResource("GradientTexture2D_u3pco")
 [node name="Starfield" parent="." unique_id=40263792 instance=ExtResource("2_osu2p")]
 
 [node name="StarfieldBoss" parent="." unique_id=1253722794 instance=ExtResource("2_osu2p")]
+visible = false
 density = 800
 colors = Array[Color]([Color(1, 0, 0, 1), Color(0.70980394, 0, 0, 1), Color(0.49803922, 0, 0, 1), Color(0.34509805, 0, 0, 1)])
 twinkle_speed = 3.0

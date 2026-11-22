@@ -181,7 +181,7 @@ func _escape_level() -> void:
 	scroll_speed = 1000
 	escape_audio_stream.play()
 	
-	var fade_duration: float = 3.0
+	var fade_duration: float = 1.0
 	var tween = create_tween()
 	tween.set_parallel()
 	tween.tween_property(starfield_boss, "modulate:a", 0.0, fade_duration)
