@@ -31,6 +31,13 @@ func _ready() -> void:
 
 
 func add_child_to_game_scene(node: Node, node_name: String) -> void:
+	var game_scene_node = get_game_scene_node(node_name)
+	
+	if game_scene_node:
+		game_scene_node.add_child(node)
+
+
+func get_game_scene_node(node_name: String) -> Node:
 	var main_scene := get_tree().current_scene
 	var game_scene_node := main_scene.get_node_or_null("GameScene/" + node_name)
 	
@@ -38,7 +45,7 @@ func add_child_to_game_scene(node: Node, node_name: String) -> void:
 		print("Node name: ", node_name, " does not exist.")
 		return
 	
-	game_scene_node.add_child(node)
+	return game_scene_node
 
 
 func get_high_score_str() -> String:

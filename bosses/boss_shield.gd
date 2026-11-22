@@ -29,7 +29,7 @@ func attack(pos: Vector2) -> void:
 	enemy_bullet.position = collision.global_position
 	enemy_bullet.destination = pos
 	
-	GameState.add_child_to_game_scene(enemy_bullet, "Enemies")
+	GameState.add_child_to_game_scene(enemy_bullet, "Extras")
 
 
 func attack2(pos) -> void:
@@ -42,7 +42,7 @@ func attack2(pos) -> void:
 		enemy_bullet.position = collision.global_position
 		enemy_bullet.destination = pos + Vector2(i * 50.0 - 100.0, 0.0)
 		
-		GameState.add_child_to_game_scene(enemy_bullet, "Enemies")
+		GameState.add_child_to_game_scene(enemy_bullet, "Extras")
 
 
 func _damage(amount: float) -> void:

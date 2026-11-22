@@ -72,14 +72,19 @@ func _die() -> void:
 	is_dead = true
 	
 	set_collision_layer_value(2, 0)
-	#hurtbox.set_deferred("monitoring", false)
 	hide()
 	did_die.emit()
 	
-	# MUST come after did_die signal for glider scoring.
 	GameState.update_score(boss_config.score)
 	
-	# Add explosion
+	# Remove all enemy bullets on death
+	var extras_node = GameState.get_game_scene_node("Extras")
+	if extras_node:
+		for node in extras_node.get_children():
+			if node is EnemyBullet:
+				node.queue_free()
+	
+	# FIXME: - HOW DO I WANT ENEMY TO GO OUT???
 	var explosion = EXPLOSION_SCENE.instantiate() as Explosion
 	GameState.add_child_to_game_scene(explosion, "Extras")
 	explosion.activate(position, Vector2(4.0, 4.0))

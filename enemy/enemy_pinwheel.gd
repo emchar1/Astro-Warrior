@@ -104,7 +104,7 @@ func _move(_delta: float) -> void:
 				enemy_bullet.position = position
 				enemy_bullet.destination = player.position
 				
-				GameState.add_child_to_game_scene(enemy_bullet, "Enemies")
+				GameState.add_child_to_game_scene(enemy_bullet, "Extras")
 				
 				await get_tree().create_timer(1.0).timeout
 				
