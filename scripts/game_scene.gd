@@ -36,6 +36,7 @@ const TITLE_SCENE = preload("res://scenes/title.tscn")
 func _ready() -> void:
 	level.boss_triggered.connect(approach_boss)
 	level.drone_collected.connect(collect_drone)
+	level.boss_defeated.connect(did_defeat_boss)
 	player.did_die.connect(player_did_die)
 	
 	level.setup(player, powerup_manager)
@@ -142,6 +143,10 @@ func approach_boss() -> void:
 	await get_tree().create_timer(4.0).timeout
 	if is_instance_valid(self):
 		boss_stream.play()
+
+
+func did_defeat_boss() -> void:
+	boss_stream.stop()
 
 
 func _fade_out_music(stream_player: AudioStreamPlayer, duration: float) -> void:

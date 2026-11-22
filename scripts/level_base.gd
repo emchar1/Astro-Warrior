@@ -4,6 +4,7 @@ class_name LevelBase
 # PROPERTIES
 
 @warning_ignore("unused_signal") signal boss_triggered
+signal boss_defeated
 signal drone_collected
 
 @export var level_name: String
@@ -14,10 +15,13 @@ signal drone_collected
 @export var boss_fight: float = 0.0
 @export var debug_checkpoint: float = 0.0
 
+@onready var starfield_boss = $StarfieldBoss
+@onready var starfield_escape = $StarfieldEscape
 @onready var canvas_layer = $CanvasLayer
 @onready var level_label = $CanvasLayer/Control/LevelLabel
 @onready var score_label = $CanvasLayer/Control/ScoreLabel
 @onready var lives_label = $CanvasLayer/Control/LivesLabel
+@onready var escape_audio_stream = $EscapeAudioStreamPlayer
 
 var player: Player
 var powerup_manager: PowerupManager
@@ -32,6 +36,9 @@ func _ready() -> void:
 	level_label.text = level_name
 	score_label.text = GameState.get_score_str()
 	lives_label.text = str(" x ", GameState.lives)
+	
+	starfield_boss.modulate.a = 0.0
+	starfield_escape.modulate.a = 0.0
 	
 	# Read from checkpoints
 	if GameState.checkpoint_boss_reached:
@@ -84,6 +91,14 @@ func _scroll_level(delta: float) -> void:
 
 func stop_scrolling() -> void:
 	scroll_speed = 0.0
+
+
+func _spawn_powerup(type: Powerup.Type) -> void:
+	var powerup = PowerupManager.POWERUP_SCENE.instantiate() as Powerup
+	powerup.did_collect_drone.connect(drone_collected.emit)
+	powerup.powerup_manager = powerup_manager
+	powerup.type = type
+	GameState.call_deferred("add_child_to_game_scene", powerup, "Extras")
 
 
 func _spawn_enemies() -> void:
@@ -143,6 +158,8 @@ func _spawn_boss_helper(type: BossConfig.Type) -> void:
 	
 	boss = boss_class.scene.instantiate() as Boss
 	boss.player = player
+	boss.did_begin_fight.connect(_begin_boss_fight)
+	boss.did_die.connect(_escape_level)
 	
 	GameState.add_child_to_game_scene(boss, "Enemies")
 	
@@ -154,9 +171,18 @@ func _spawn_boss_helper(type: BossConfig.Type) -> void:
 	scroll_speed = 0.0
 
 
-func _spawn_powerup(type: Powerup.Type) -> void:
-	var powerup = PowerupManager.POWERUP_SCENE.instantiate() as Powerup
-	powerup.did_collect_drone.connect(drone_collected.emit)
-	powerup.powerup_manager = powerup_manager
-	powerup.type = type
-	GameState.call_deferred("add_child_to_game_scene", powerup, "Extras")
+func _begin_boss_fight() -> void:
+	var tween = create_tween()
+	tween.tween_property(starfield_boss, "modulate:a", 1.0, 1.0)
+
+
+func _escape_level() -> void:
+	boss_defeated.emit()
+	scroll_speed = 1000
+	escape_audio_stream.play()
+	
+	var fade_duration: float = 3.0
+	var tween = create_tween()
+	tween.set_parallel()
+	tween.tween_property(starfield_boss, "modulate:a", 0.0, fade_duration)
+	tween.tween_property(starfield_escape, "modulate:a", 1.0, fade_duration)

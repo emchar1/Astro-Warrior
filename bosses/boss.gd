@@ -4,9 +4,10 @@ class_name Boss
 # PROPERTIES
 
 signal did_die
+signal did_begin_fight
 
 enum MoveType { 
-	ENTER, TAUNT, ATTACK1, ATTACK2, DIE
+	ENTER, TAUNT, ATTACK1, ATTACK2, DIE, ESCAPE
 }
 
 const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
@@ -63,8 +64,11 @@ func _move(_delta: float) -> void:
 			
 			if is_instance_valid(self):
 				move_type = MoveType.ATTACK1
+				did_begin_fight.emit()
 		MoveType.DIE:
 			velocity = Vector2.ZERO
+		MoveType.ESCAPE:
+			velocity.y = 1000.0
 
 
 func _die() -> void:
@@ -75,7 +79,6 @@ func _die() -> void:
 	
 	set_collision_layer_value(2, 0)
 	move_type = MoveType.DIE
-	did_die.emit()
 	
 	GameState.update_score(boss_config.score)
 	
@@ -108,8 +111,12 @@ func _die() -> void:
 		await get_tree().create_timer(0.1).timeout
 		
 		if not is_instance_valid(self):
-			print("invalid")
+			print("boss invalid")
 			return
+		
+		if i == 17:
+			did_die.emit()
+			move_type = MoveType.ESCAPE
 	
 	if is_instance_valid(self):
 		hide()
