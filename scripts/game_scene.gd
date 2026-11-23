@@ -130,6 +130,7 @@ func _return_to_title() -> void:
 	var title_scene = TITLE_SCENE.instantiate()
 	main_scene.add_child(title_scene)
 	main_scene.title_scene = title_scene
+	main_scene.current_scene = Main.Scene.TITLE
 
 
 func approach_boss() -> void:
