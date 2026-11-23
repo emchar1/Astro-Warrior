@@ -326,5 +326,12 @@ position = Vector2(13, 67)
 scale = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_2v7b3")
 
+[node name="IntroAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=663636324]
+bus = &"Music"
+
+[node name="LoopAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=510582355]
+bus = &"Music"
+
 [node name="EscapeAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1104570751]
 stream = ExtResource("7_8n3nq")
+bus = &"Music"

@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://by07bmaiq2n5o" path="res://scripts/game_scene.gd" id="1_bw6k5"]
 [ext_resource type="PackedScene" uid="uid://cci76eyr3jj15" path="res://scenes/level_1.tscn" id="2_bw6k5"]
 [ext_resource type="PackedScene" uid="uid://brfkrsw3ex2l5" path="res://scenes/player.tscn" id="3_rurhu"]
-[ext_resource type="AudioStream" uid="uid://b4r2kt37pu0ba" path="res://assets/sounds/galaxy_zone.ogg" id="4_kk2rg"]
 [ext_resource type="Script" uid="uid://dwdmflsdec5u2" path="res://scripts/powerup_manager.gd" id="4_rurhu"]
 [ext_resource type="PackedScene" uid="uid://d038612g3lvsd" path="res://scenes/drone.tscn" id="4_tcjrq"]
 [ext_resource type="FontFile" uid="uid://x1l36w7tdkds" path="res://assets/fonts/PressStart2P-Regular.ttf" id="5_utbpp"]
@@ -136,14 +135,6 @@ horizontal_alignment = 1
 wait_time = 0.2
 one_shot = true
 autostart = true
-
-[node name="IntroAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=563750417]
-bus = &"Music"
-
-[node name="LoopAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1860689019]
-stream = ExtResource("4_kk2rg")
-bus = &"Music"
-parameters/looping = true
 
 [node name="BossAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1365818291]
 stream = ExtResource("8_mw25s")

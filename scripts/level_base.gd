@@ -22,11 +22,14 @@ signal drone_collected
 @onready var level_label = $CanvasLayer/Control/LevelLabel
 @onready var score_label = $CanvasLayer/Control/ScoreLabel
 @onready var lives_label = $CanvasLayer/Control/LivesLabel
+@onready var intro_audio_stream = $IntroAudioStreamPlayer
+@onready var loop_audio_stream = $LoopAudioStreamPlayer
 @onready var escape_audio_stream = $EscapeAudioStreamPlayer
 
 var player: Player
 var powerup_manager: PowerupManager
 var checkpoint: float # This prevents enemies spawning after checkpoints
+var should_show_hud: bool = true
 var did_trigger_boss: bool = false
 
 
@@ -40,6 +43,9 @@ func _ready() -> void:
 	
 	starfield_boss.modulate.a = 0.0
 	starfield_escape.modulate.a = 0.0
+	
+	if not should_show_hud:
+		canvas_layer.hide()
 	
 	# Read from checkpoints
 	if GameState.checkpoint_boss_reached:
@@ -55,6 +61,12 @@ func _ready() -> void:
 	if debug_checkpoint > 0.0:
 		position.y = debug_checkpoint
 		checkpoint = debug_checkpoint
+	
+	intro_audio_stream.play()
+	intro_audio_stream.finished.connect(_play_bgm_loop)
+	
+	if intro_audio_stream.stream == null:
+		_play_bgm_loop()
 	
 	await get_tree().create_timer(3.0).timeout
 	
@@ -72,6 +84,10 @@ func setup(_player: Player, _powerup_manager: PowerupManager) -> void:
 	player = _player
 	powerup_manager = _powerup_manager
 	powerup_manager.powerup_did_earn.connect(_spawn_powerup)
+
+
+func _play_bgm_loop() -> void:
+	loop_audio_stream.play()
 
 
 func _scroll_level(delta: float) -> void:

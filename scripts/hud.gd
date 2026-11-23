@@ -2,6 +2,7 @@ extends CanvasLayer
 
 # PROPERTIES
 
+@onready var vbox = $VBoxContainer
 @onready var score_label = $VBoxContainer/ScoreLabel
 @onready var lives_label = $VBoxContainer/LivesLabel
 @onready var debug_label = $VBoxContainer/DebugLabel
@@ -39,7 +40,16 @@ func update_debug_label(value: float) -> void:
 func fade_to(color: Color, duration: float) -> void:
 	var tween := create_tween()
 	tween.tween_property(fade_rect, "modulate", color, duration)
+	await tween.finished
 
 
 func fade_to_white(duration: float) -> void:
-	fade_to(Color.WHITE, duration)
+	await fade_to(Color.WHITE, duration)
+
+
+func remove_fade(duration: float) -> void:
+	await fade_to(Color(0, 0, 0, 0), duration)
+
+
+func hide_hud() -> void:
+	vbox.hide()

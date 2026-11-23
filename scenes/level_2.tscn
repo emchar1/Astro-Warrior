@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://piw68va2a8bq"]
+
+[ext_resource type="PackedScene" uid="uid://p8aq2aco01qd" path="res://scenes/level_base.tscn" id="1_3bmlt"]
+[ext_resource type="Script" uid="uid://1ewd7b8ggjtv" path="res://scripts/level_2.gd" id="2_jm1iu"]
+[ext_resource type="AudioStream" uid="uid://6yh74pw06mdh" path="res://assets/sounds/asteroid_zone_intro.ogg" id="3_eqxsl"]
+[ext_resource type="AudioStream" uid="uid://dmw13y3h5vg2u" path="res://assets/sounds/asteroid_zone_loop.ogg" id="4_b4j7a"]
+
+[node name="Level2" unique_id=1258516462 instance=ExtResource("1_3bmlt")]
+script = ExtResource("2_jm1iu")
+level_name = "ASTEROID"
+
+[node name="BackgroundRect" parent="." index="0" unique_id=689075847]
+visible = false
+
+[node name="IntroAudioStreamPlayer" parent="." index="6" unique_id=663636324]
+stream = ExtResource("3_eqxsl")
+
+[node name="LoopAudioStreamPlayer" parent="." index="7" unique_id=510582355]
+stream = ExtResource("4_b4j7a")
+parameters/looping = true

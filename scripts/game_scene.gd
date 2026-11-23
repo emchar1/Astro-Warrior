@@ -4,6 +4,8 @@ class_name GameScene
 # PROPERTIES
 
 const TITLE_SCENE = preload("res://scenes/title.tscn")
+const LEVEL2_SCENE = preload("res://scenes/level_2.tscn")
+const LEVEL3_SCENE = preload("res://scenes/level_3.tscn")
 
 # Level Properties
 @onready var camera = $Camera2D
@@ -24,8 +26,6 @@ const TITLE_SCENE = preload("res://scenes/title.tscn")
 @onready var blink_timer = $BossWarningHud/BlinkTimer
 
 # Sound Properties
-@onready var intro_stream = $IntroAudioStreamPlayer
-@onready var loop_stream = $LoopAudioStreamPlayer
 @onready var boss_stream = $BossAudioStreamPlayer
 @onready var death_stream = $DeathAudioStreamPlayer
 @onready var game_over_stream = $GameOverAudioStreamPlayer
@@ -49,12 +49,6 @@ func _ready() -> void:
 	level.setup(player, powerup_manager)
 	player.setup(powerup_manager)
 	
-	intro_stream.play()
-	intro_stream.finished.connect(_play_bgm_loop)
-	
-	if intro_stream.stream == null:
-		_play_bgm_loop()
-	
 	await get_tree().create_timer(3.0).timeout
 	
 	if is_instance_valid(self):
@@ -74,10 +68,6 @@ func _process(_delta: float) -> void:
 		hud.update_debug_label(level.position.y)
 
 
-func _play_bgm_loop():
-	loop_stream.play()
-
-
 func start_screen_shake(amount: float = 1.0) -> void:
 	shake_amount = amount
 
@@ -87,19 +77,9 @@ func stop_screen_shake() -> void:
 	camera.offset = camera_base_offset
 
 
-func fade_music(duration: float = 6.0):
-	var tween = create_tween()
-	tween.tween_property(
-		loop_stream,
-		"volume_db",
-		-80.0,
-		duration
-	)
-
-
 func player_did_die() -> void:
-	intro_stream.stop()
-	loop_stream.stop()
+	level.intro_audio_stream.stop()
+	level.loop_audio_stream.stop()
 	boss_stream.stop()
 	death_stream.play()
 	
@@ -155,8 +135,8 @@ func _return_to_title() -> void:
 func approach_boss() -> void:
 	boss_warning_hud.show()
 	
-	_fade_out_music(intro_stream, 16.0)
-	_fade_out_music(loop_stream, 16.0)
+	_fade_out_music(level.intro_audio_stream, 16.0)
+	_fade_out_music(level.loop_audio_stream, 16.0)
 	
 	await get_tree().create_timer(3.0).timeout
 	if is_instance_valid(self):
@@ -173,8 +153,26 @@ func did_defeat_boss() -> void:
 	
 	await get_tree().create_timer(2.0).timeout
 	
+	if is_instance_valid(self) and is_instance_valid(hud):
+		await hud.fade_to_white(3.0)
+		
+		if is_instance_valid(self):
+			next_level(LEVEL2_SCENE, false)
+
+
+func next_level(scene: PackedScene, show_hud: bool) -> void:
 	if is_instance_valid(self):
-		hud.fade_to_white(3.0)
+		remove_child(level)
+		level.queue_free()
+	
+	level = scene.instantiate()
+	level.should_show_hud = show_hud
+	add_child(level)
+	
+	# Cleanup for Next Level
+	stop_screen_shake()
+	hud.hide_hud()
+	hud.remove_fade(0.0)
 
 
 func _fade_out_music(stream_player: AudioStreamPlayer, duration: float) -> void:

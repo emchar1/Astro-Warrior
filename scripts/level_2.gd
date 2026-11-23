@@ -1,0 +1,3 @@
+extends LevelBase
+
+# EMPTY IMPLEMENTATION
