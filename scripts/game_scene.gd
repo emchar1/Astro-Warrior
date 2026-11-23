@@ -166,6 +166,10 @@ func next_level(scene: PackedScene, show_hud: bool) -> void:
 		level.queue_free()
 	
 	level = scene.instantiate()
+	
+	if scene == LEVEL2_SCENE:
+		level.credits_did_finish.connect(credits_finish_to_title)
+	
 	level.should_show_hud = show_hud
 	add_child(level)
 	
@@ -173,6 +177,17 @@ func next_level(scene: PackedScene, show_hud: bool) -> void:
 	stop_screen_shake()
 	hud.hide_hud()
 	hud.remove_fade(0.0)
+
+
+func credits_finish_to_title() -> void:
+	if is_instance_valid(level):
+		var fade_duration := 3.0
+		
+		_fade_out_music(level.intro_audio_stream, fade_duration)
+		_fade_out_music(level.loop_audio_stream, fade_duration)
+		await level.fade_to_black(fade_duration)
+		
+		_return_to_title()
 
 
 func _fade_out_music(stream_player: AudioStreamPlayer, duration: float) -> void:

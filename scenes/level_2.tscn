@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://p8aq2aco01qd" path="res://scenes/level_base.tscn" id="1_3bmlt"]
 [ext_resource type="Script" uid="uid://1ewd7b8ggjtv" path="res://scripts/level_2.gd" id="2_jm1iu"]
+[ext_resource type="FontFile" uid="uid://x1l36w7tdkds" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_b4j7a"]
 [ext_resource type="AudioStream" uid="uid://6yh74pw06mdh" path="res://assets/sounds/asteroid_zone_intro.ogg" id="3_eqxsl"]
 [ext_resource type="AudioStream" uid="uid://dmw13y3h5vg2u" path="res://assets/sounds/asteroid_zone_loop.ogg" id="4_b4j7a"]
 
@@ -12,9 +13,110 @@ level_name = "ASTEROID"
 [node name="BackgroundRect" parent="." index="0" unique_id=689075847]
 visible = false
 
+[node name="ComingSoon" type="Control" parent="CanvasLayer" parent_id_path=PackedInt32Array(1964925407) index="1" unique_id=1874684093]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ComingSoonLabel" type="Label" parent="CanvasLayer/ComingSoon" index="0" unique_id=45175755]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_b4j7a")
+theme_override_font_sizes/font_size = 7
+text = "COMING SOON!
+
+
+
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level2Label" type="Label" parent="CanvasLayer/ComingSoon" index="1" unique_id=436529174]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.6431373, 0, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_b4j7a")
+theme_override_font_sizes/font_size = 1
+text = "LEVEL 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="Control" parent="CanvasLayer" parent_id_path=PackedInt32Array(1964925407) index="2" unique_id=1448756306]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 192.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CreditsLabel" type="Label" parent="CanvasLayer/Credits" index="0" unique_id=631160159]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_b4j7a")
+theme_override_font_sizes/font_size = 7
+text = "Created by
+darkfenix
+
+
+
+
+
+
+Made for
+20 GAMES CHALLENGE:
+AUTUMN JAM 2026
+
+
+
+
+
+
+THANK YOU FOR PLAYING!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BlinkTimer" type="Timer" parent="CanvasLayer/Credits" index="1" unique_id=1404842165]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="FadeRect" type="ColorRect" parent="CanvasLayer" parent_id_path=PackedInt32Array(1964925407) index="3" unique_id=847790986]
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="IntroAudioStreamPlayer" parent="." index="6" unique_id=663636324]
 stream = ExtResource("3_eqxsl")
 
 [node name="LoopAudioStreamPlayer" parent="." index="7" unique_id=510582355]
 stream = ExtResource("4_b4j7a")
 parameters/looping = true
+
+[connection signal="timeout" from="CanvasLayer/Credits/BlinkTimer" to="." method="_on_blink_timer_timeout"]
