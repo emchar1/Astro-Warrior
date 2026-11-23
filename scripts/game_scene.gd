@@ -180,7 +180,9 @@ func _fade_out_music(stream_player: AudioStreamPlayer, duration: float) -> void:
 	tween.tween_property(stream_player, "volume_db", -80.0, duration)
 	
 	await tween.finished
-	stream_player.stop()
+	
+	if is_instance_valid(stream_player):
+		stream_player.stop()
 
 
 func collect_drone() -> void:

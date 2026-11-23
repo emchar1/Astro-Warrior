@@ -138,6 +138,8 @@ func _read_movement() -> void:
 				velocity = Vector2.DOWN * 10.0
 			EscapeState.LAUNCH_FORWARD:
 				velocity = Vector2.UP * 1000.0
+		
+		_add_to_position_history()
 		return
 	
 	# Input movement
@@ -157,10 +159,14 @@ func _read_movement() -> void:
 	
 	# For Drone pathing...
 	if velocity != Vector2.ZERO:
-		position_history.push_front(position)
-		
-		if position_history.size() > TRAIL_LENGTH * 2:
-			position_history.pop_back()
+		_add_to_position_history()
+
+
+func _add_to_position_history() -> void:
+	position_history.push_front(position)
+	
+	if position_history.size() > TRAIL_LENGTH * 2:
+		position_history.pop_back()
 
 
 func _shoot() -> void:

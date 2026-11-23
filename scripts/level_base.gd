@@ -18,10 +18,10 @@ signal drone_collected
 
 @onready var starfield_boss = $StarfieldBoss
 @onready var starfield_escape = $StarfieldEscape
-@onready var canvas_layer = $CanvasLayer
-@onready var level_label = $CanvasLayer/Control/LevelLabel
-@onready var score_label = $CanvasLayer/Control/ScoreLabel
-@onready var lives_label = $CanvasLayer/Control/LivesLabel
+@onready var hud_intro = $CanvasLayer/HudIntro
+@onready var level_label = $CanvasLayer/HudIntro/LevelLabel
+@onready var score_label = $CanvasLayer/HudIntro/ScoreLabel
+@onready var lives_label = $CanvasLayer/HudIntro/LivesLabel
 @onready var intro_audio_stream = $IntroAudioStreamPlayer
 @onready var loop_audio_stream = $LoopAudioStreamPlayer
 @onready var escape_audio_stream = $EscapeAudioStreamPlayer
@@ -45,7 +45,7 @@ func _ready() -> void:
 	starfield_escape.modulate.a = 0.0
 	
 	if not should_show_hud:
-		canvas_layer.hide()
+		hud_intro.hide()
 	
 	# Read from checkpoints
 	if GameState.checkpoint_boss_reached:
@@ -71,7 +71,7 @@ func _ready() -> void:
 	await get_tree().create_timer(3.0).timeout
 	
 	if is_instance_valid(self):
-		canvas_layer.hide()
+		hud_intro.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -248,7 +248,7 @@ physics_quadrant_size = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1964925407]
 
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=104658953]
+[node name="HudIntro" type="Control" parent="CanvasLayer" unique_id=104658953]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -262,7 +262,7 @@ offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LevelLabel" type="Label" parent="CanvasLayer/Control" unique_id=739200287]
+[node name="LevelLabel" type="Label" parent="CanvasLayer/HudIntro" unique_id=739200287]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 10.0
@@ -272,7 +272,7 @@ theme_override_fonts/font = ExtResource("3_bkdr1")
 theme_override_font_sizes/font_size = 7
 text = "GALAXY"
 
-[node name="ZoneLabel" type="Label" parent="CanvasLayer/Control" unique_id=1343293956]
+[node name="ZoneLabel" type="Label" parent="CanvasLayer/HudIntro" unique_id=1343293956]
 layout_mode = 0
 offset_top = 16.0
 offset_right = 64.0
@@ -284,7 +284,7 @@ theme_override_font_sizes/font_size = 7
 text = "ZONE"
 horizontal_alignment = 1
 
-[node name="Player1Label" type="Label" parent="CanvasLayer/Control" unique_id=604860670]
+[node name="Player1Label" type="Label" parent="CanvasLayer/HudIntro" unique_id=604860670]
 layout_mode = 0
 offset_top = 32.0
 offset_right = 64.0
@@ -295,7 +295,7 @@ theme_override_fonts/font = ExtResource("3_bkdr1")
 theme_override_font_sizes/font_size = 7
 text = "1P START"
 
-[node name="ScoreLabel" type="Label" parent="CanvasLayer/Control" unique_id=1807094346]
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/HudIntro" unique_id=1807094346]
 layout_mode = 0
 offset_top = 48.0
 offset_right = 64.0
@@ -307,7 +307,7 @@ theme_override_font_sizes/font_size = 7
 text = "0"
 horizontal_alignment = 2
 
-[node name="LivesLabel" type="Label" parent="CanvasLayer/Control" unique_id=1702402415]
+[node name="LivesLabel" type="Label" parent="CanvasLayer/HudIntro" unique_id=1702402415]
 layout_mode = 0
 offset_top = 64.0
 offset_right = 64.0
@@ -319,7 +319,7 @@ theme_override_font_sizes/font_size = 7
 text = " x 2"
 horizontal_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control" unique_id=1339437805]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/HudIntro" unique_id=1339437805]
 texture_filter = 1
 material = SubResource("ShaderMaterial_8n3nq")
 position = Vector2(13, 67)
