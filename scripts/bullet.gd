@@ -102,7 +102,11 @@ func _on_body_shape_entered(
 		explosion.activate(tilemap.map_to_local(tile_coords))
 		
 		powerup_manager.increment_powerup_count()
-		_add_powerup_label(tilemap, tile_coords)
+		
+		if powerup_manager.bullet_type != Powerup.Type.LASER \
+		or GameState.powerup_count <= 120:
+			_add_powerup_label(tilemap, tile_coords)
+		
 		GameState.update_score(200)
 	
 	if powerup_manager.bullet_type != Powerup.Type.LASER \

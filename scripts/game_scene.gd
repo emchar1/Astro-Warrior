@@ -152,10 +152,10 @@ func did_defeat_boss() -> void:
 	boss_stream.stop()
 	player.escape()
 	
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	
 	if is_instance_valid(self) and is_instance_valid(hud):
-		await hud.fade_to_white(3.0)
+		await hud.fade_to_white(2.0)
 		
 		if is_instance_valid(self):
 			next_level(LEVEL2_SCENE, false)

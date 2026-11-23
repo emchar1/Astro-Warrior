@@ -12,6 +12,7 @@ enum Type {
 
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var status_label = $StatusLabel
+@onready var flash_timer = $FlashTimer
 @onready var audio_stream = $AudioStreamPlayer
 
 var powerup_manager: PowerupManager
@@ -19,6 +20,7 @@ var type: Type
 var status_tween: Tween
 var status_color_tween: Tween
 var speed: float = 60.0
+var is_flashing: bool = false
 
 
 # FUNCTIONS
@@ -120,3 +122,12 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	
 	if is_instance_valid(self):
 		queue_free()
+
+
+func _on_flash_timer_timeout() -> void:
+	is_flashing = !is_flashing
+	
+	if is_flashing:
+		anim_sprite.modulate = Color.MAGENTA.lightened(0.4)
+	else:
+		anim_sprite.modulate = Color.WHITE
