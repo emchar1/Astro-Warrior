@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/galaxy_zone.ogg-a98a940a88e7fd5ec3cf10e3c8d79
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

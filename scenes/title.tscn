@@ -112,7 +112,7 @@ resource_name = "title"
 length = 17.56
 tracks/0/type = "audio"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("AudioStreamPlayer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -343,6 +343,7 @@ theme_override_font_sizes/font_size = 7
 text = "GODOT"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=614597132]
+stream = ExtResource("2_wosw1")
 autoplay = true
 bus = &"Music"
 

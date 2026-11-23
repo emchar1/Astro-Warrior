@@ -25,13 +25,6 @@ shader_parameter/border_smoothness = 0.002
 script = ExtResource("1_sugp2")
 
 [node name="Godot" parent="." unique_id=1293269790 instance=ExtResource("2_jyhfs")]
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 256.0
-offset_bottom = 192.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=113334314]
 layer = 10
