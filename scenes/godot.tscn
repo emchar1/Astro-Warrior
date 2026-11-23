@@ -156,3 +156,4 @@ vertical_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=337692783]
 stream = ExtResource("4_h2b55")
+bus = &"Music"
