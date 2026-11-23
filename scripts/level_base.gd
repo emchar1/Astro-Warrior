@@ -4,6 +4,7 @@ class_name LevelBase
 # PROPERTIES
 
 @warning_ignore("unused_signal") signal boss_triggered
+signal did_request_screen_shake(shake_amount: float)
 signal boss_defeated
 signal drone_collected
 
@@ -159,6 +160,7 @@ func _spawn_boss_helper(type: BossConfig.Type) -> void:
 	boss = boss_class.scene.instantiate() as Boss
 	boss.player = player
 	boss.did_begin_fight.connect(_begin_boss_fight)
+	boss.did_request_screen_shake.connect(_request_screen_shake)
 	boss.did_die.connect(_escape_level)
 	
 	GameState.add_child_to_game_scene(boss, "Enemies")
@@ -174,6 +176,10 @@ func _spawn_boss_helper(type: BossConfig.Type) -> void:
 func _begin_boss_fight() -> void:
 	var tween = create_tween()
 	tween.tween_property(starfield_boss, "modulate:a", 1.0, 1.0)
+
+
+func _request_screen_shake(shake_amount: float) -> void:
+	did_request_screen_shake.emit(shake_amount)
 
 
 func _escape_level() -> void:

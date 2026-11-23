@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var score_label = $VBoxContainer/ScoreLabel
 @onready var lives_label = $VBoxContainer/LivesLabel
 @onready var debug_label = $VBoxContainer/DebugLabel
+@onready var fade_rect = $FadeRect
 
 
 # FUNCTIONS
@@ -33,3 +34,12 @@ func update_debug_label(value: float) -> void:
 		debug_label.show()
 	
 	debug_label.text = str(int(value))
+
+
+func fade_to(color: Color, duration: float) -> void:
+	var tween := create_tween()
+	tween.tween_property(fade_rect, "modulate", color, duration)
+
+
+func fade_to_white(duration: float) -> void:
+	fade_to(Color.WHITE, duration)

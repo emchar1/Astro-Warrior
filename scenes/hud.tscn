@@ -61,3 +61,12 @@ theme_override_fonts/font = ExtResource("2_uo2fv")
 theme_override_font_sizes/font_size = 7
 text = "9999"
 horizontal_alignment = 2
+
+[node name="FadeRect" type="ColorRect" parent="." unique_id=1248286435]
+modulate = Color(1, 1, 1, 0)
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

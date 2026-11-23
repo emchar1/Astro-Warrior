@@ -5,6 +5,7 @@ class_name Boss
 
 signal did_die
 signal did_begin_fight
+signal did_request_screen_shake(shake_amount: float)
 
 enum MoveType { 
 	ENTER, TAUNT, ATTACK1, ATTACK2, DIE, ESCAPE
@@ -77,6 +78,7 @@ func _die() -> void:
 	
 	is_dead = true
 	
+	did_request_screen_shake.emit(0.5)
 	set_collision_layer_value(2, 0)
 	move_type = MoveType.DIE
 	

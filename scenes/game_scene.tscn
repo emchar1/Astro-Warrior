@@ -25,6 +25,9 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=924244300]
+anchor_mode = 0
+
 [node name="Level1" parent="." unique_id=1258516462 instance=ExtResource("2_bw6k5")]
 
 [node name="Player" parent="." unique_id=1879099976 instance=ExtResource("3_rurhu")]

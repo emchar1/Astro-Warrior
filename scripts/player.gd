@@ -6,6 +6,10 @@ class_name Player
 signal did_die
 signal did_shoot
 
+enum EscapeState {
+	NONE, MOVE_TO_CENTER, PULL_BACK, LAUNCH_FORWARD
+}
+
 const SPRITE_LEN = 10.0
 const TRAIL_LENGTH = 15
 const BULLET_SCENE = preload("res://scenes/bullet.tscn")
@@ -20,6 +24,7 @@ const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 @onready var laser_timer = $LaserShootTimer
 
 var powerup_manager: PowerupManager
+var escape_state: EscapeState = EscapeState.NONE
 var move_dir: Vector2
 var is_dead: bool = false
 
@@ -72,9 +77,20 @@ func increase_speed() -> void:
 	speed += 30.0
 
 
+func escape() -> void:
+	escape_state = EscapeState.MOVE_TO_CENTER
+	
+	await get_tree().create_timer(3.0).timeout
+	if is_instance_valid(self):
+		escape_state = EscapeState.LAUNCH_FORWARD
+
+
 # HELPER FUNCTIONS
 
 func _read_input() -> void:
+	if escape_state != EscapeState.NONE:
+		return
+	
 	move_dir = Input.get_vector(
 		"move_left",
 		"move_right",
@@ -109,6 +125,22 @@ func _read_input() -> void:
 
 
 func _read_movement() -> void:
+	# Escape movement
+	if escape_state != EscapeState.NONE:
+		match escape_state:
+			EscapeState.MOVE_TO_CENTER:
+				var center := GameState.screen_size / 2.0
+				velocity = position.direction_to(center) * 120.0
+				
+				if position.distance_to(center) < 2.0:
+					escape_state = EscapeState.PULL_BACK
+			EscapeState.PULL_BACK:
+				velocity = Vector2.DOWN * 10.0
+			EscapeState.LAUNCH_FORWARD:
+				velocity = Vector2.UP * 1000.0
+		return
+	
+	# Input movement
 	velocity = move_dir * speed
 	
 	if position.x <= SPRITE_LEN and velocity.x < 0:

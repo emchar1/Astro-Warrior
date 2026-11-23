@@ -6,6 +6,7 @@ class_name GameScene
 const TITLE_SCENE = preload("res://scenes/title.tscn")
 
 # Level Properties
+@onready var camera = $Camera2D
 @onready var level = $Level1
 @onready var player = $Player
 @onready var drone1 = $Drone
@@ -29,16 +30,22 @@ const TITLE_SCENE = preload("res://scenes/title.tscn")
 @onready var death_stream = $DeathAudioStreamPlayer
 @onready var game_over_stream = $GameOverAudioStreamPlayer
 
+# Camera Properties
+var camera_base_offset: Vector2
+var shake_amount := 0.0
+
 
 # FUNCTIONS
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level.boss_triggered.connect(approach_boss)
+	level.did_request_screen_shake.connect(start_screen_shake)
 	level.drone_collected.connect(collect_drone)
 	level.boss_defeated.connect(did_defeat_boss)
 	player.did_die.connect(player_did_die)
 	
+	camera_base_offset = camera.offset
 	level.setup(player, powerup_manager)
 	player.setup(powerup_manager)
 	
@@ -56,6 +63,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if shake_amount > 0.0:
+		camera.offset = camera_base_offset + Vector2(
+			randf_range(-shake_amount, shake_amount),
+			randf_range(-shake_amount, shake_amount)
+		)
+	
 	# DEBUG: - Debug purposes.
 	if level.debug_checkpoint > 0.0:
 		hud.update_debug_label(level.position.y)
@@ -63,6 +76,15 @@ func _process(_delta: float) -> void:
 
 func _play_bgm_loop():
 	loop_stream.play()
+
+
+func start_screen_shake(amount: float = 1.0) -> void:
+	shake_amount = amount
+
+
+func stop_screen_shake() -> void:
+	shake_amount = 0.0
+	camera.offset = camera_base_offset
 
 
 func fade_music(duration: float = 6.0):
@@ -147,6 +169,12 @@ func approach_boss() -> void:
 
 func did_defeat_boss() -> void:
 	boss_stream.stop()
+	player.escape()
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	if is_instance_valid(self):
+		hud.fade_to_white(3.0)
 
 
 func _fade_out_music(stream_player: AudioStreamPlayer, duration: float) -> void:
