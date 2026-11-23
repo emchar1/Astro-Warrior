@@ -183,8 +183,8 @@ func credits_finish_to_title() -> void:
 	if is_instance_valid(level):
 		var fade_duration := 3.0
 		
-		_fade_out_music(level.intro_audio_stream, fade_duration)
-		_fade_out_music(level.loop_audio_stream, fade_duration)
+		_fade_out_music(level.intro_audio_stream, fade_duration * 2.0)
+		_fade_out_music(level.loop_audio_stream, fade_duration * 2.0)
 		await level.fade_to_black(fade_duration)
 		
 		_return_to_title()

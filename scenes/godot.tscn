@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://cuhxgummhsphp"]
+
+[ext_resource type="Script" uid="uid://djd8pimerqlv" path="res://scripts/godot.gd" id="1_ny4mf"]
+[ext_resource type="FontFile" uid="uid://boyocp4bijvdg" path="res://assets/fonts/SEGA.TTF" id="1_xvun7"]
+[ext_resource type="FontFile" uid="uid://x1l36w7tdkds" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_2l3fd"]
+[ext_resource type="AudioStream" uid="uid://jt66pdta0k3i" path="res://assets/sounds/sega_startup.ogg" id="4_h2b55"]
+
+[node name="Godot" type="Node2D" unique_id=1534850568]
+script = ExtResource("1_ny4mf")
+
+[node name="Control" type="Control" parent="." unique_id=213837151]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 256.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1442930787]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GLabel" type="Label" parent="Control" unique_id=1593355163]
+z_index = 5
+layout_mode = 0
+offset_left = 56.0
+offset_top = 67.0
+offset_right = 76.0
+offset_bottom = 93.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_xvun7")
+theme_override_font_sizes/font_size = 26
+text = "G"
+
+[node name="GRect" type="ColorRect" parent="Control/GLabel" unique_id=1337794937]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 22.0
+offset_bottom = 28.0
+color = Color(0, 0, 0, 1)
+
+[node name="OLabel" type="Label" parent="Control" unique_id=926215812]
+z_index = 4
+layout_mode = 0
+offset_left = 77.0
+offset_top = 67.0
+offset_right = 96.0
+offset_bottom = 93.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_xvun7")
+theme_override_font_sizes/font_size = 26
+text = "O"
+
+[node name="ORect" type="ColorRect" parent="Control/OLabel" unique_id=530158701]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 22.0
+offset_bottom = 28.0
+color = Color(0, 0, 0, 1)
+
+[node name="DLabel" type="Label" parent="Control" unique_id=1764242948]
+z_index = 3
+layout_mode = 0
+offset_left = 97.0
+offset_top = 67.0
+offset_right = 115.0
+offset_bottom = 93.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_xvun7")
+theme_override_font_sizes/font_size = 26
+text = "D"
+
+[node name="DRect" type="ColorRect" parent="Control/DLabel" unique_id=2091386440]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 22.0
+offset_bottom = 28.0
+color = Color(0, 0, 0, 1)
+
+[node name="OLabel2" type="Label" parent="Control" unique_id=1073617936]
+z_index = 2
+layout_mode = 0
+offset_left = 116.0
+offset_top = 67.0
+offset_right = 135.0
+offset_bottom = 93.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_xvun7")
+theme_override_font_sizes/font_size = 26
+text = "O"
+
+[node name="ORect2" type="ColorRect" parent="Control/OLabel2" unique_id=2062229091]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 22.0
+offset_bottom = 28.0
+color = Color(0, 0, 0, 1)
+
+[node name="TLabel" type="Label" parent="Control" unique_id=1494650624]
+z_index = 1
+layout_mode = 0
+offset_left = 136.0
+offset_top = 67.0
+offset_right = 155.0
+offset_bottom = 93.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_xvun7")
+theme_override_font_sizes/font_size = 26
+text = "T"
+
+[node name="TRect" type="ColorRect" parent="Control/TLabel" unique_id=403315662]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 22.0
+offset_bottom = 28.0
+color = Color(0, 0, 0, 1)
+
+[node name="MasterSystemLabel" type="Label" parent="Control" unique_id=1522008874]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_2l3fd")
+theme_override_font_sizes/font_size = 14
+text = "
+
+
+MASTER SYSTEM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=337692783]
+stream = ExtResource("4_h2b55")
