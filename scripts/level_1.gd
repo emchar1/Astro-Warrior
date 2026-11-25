@@ -547,7 +547,7 @@ func _spawn_enemies() -> void:
 			Vector2(0.0, -8.0)
 		)
 	
-	# - CHECKPOINT BOSS - 3100
+	# - CHECKPOINT BOSS - 3080
 	
 	# PINWHEELS
 	if checkpoint < 3150 and position.y >= 3150 and not spawn_form_h[0]:
