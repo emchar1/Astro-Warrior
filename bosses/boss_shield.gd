@@ -14,6 +14,7 @@ const ENEMY_BULLET = preload("res://scenes/enemy_bullet.tscn")
 @onready var collision = $CollisionShape2D
 @onready var audio_stream = $AudioStreamPlayer
 
+var damage_tween: Tween
 var can_target: bool = true
 var is_dead: bool = false
 
@@ -50,7 +51,13 @@ func _damage(amount: float) -> void:
 		return
 	
 	hp -= amount
+	sprite.modulate = Color.RED
 	audio_stream.play()
+	
+	if damage_tween:
+		damage_tween.kill()
+	damage_tween = create_tween()
+	damage_tween.tween_property(sprite, "modulate", Color.WHITE, 0.25)
 	
 	if hp <= 0:
 		_die()

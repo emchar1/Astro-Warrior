@@ -8,6 +8,7 @@ class_name BossZanoni
 @onready var shield3 = $Hurtboxes/BossShield3
 @onready var shield4 = $Hurtboxes/BossShield4
 @onready var shield5 = $Hurtboxes/BossShield5
+@onready var attack_timer = $AttackTimer
 
 var dip_count: int = 0
 
@@ -90,6 +91,7 @@ func _enable_shield5() -> void:
 		return
 	
 	shield5.can_target = true
+	attack_timer.wait_time = 0.5
 
 
 # SIGNAL CALLBACK FUNCTIONS

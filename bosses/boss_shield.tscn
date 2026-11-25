@@ -24,6 +24,7 @@ shape = SubResource("CircleShape2D_lb7rc")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1113435116]
 stream = ExtResource("2_owbhb")
+pitch_scale = 0.69
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
