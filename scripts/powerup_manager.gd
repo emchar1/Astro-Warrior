@@ -8,7 +8,7 @@ const THRESHOLD = 12
 
 signal powerup_did_earn(type: Powerup.Type)
 
-var bullet_type: Powerup.Type = Powerup.Type.MAIN
+@export var bullet_type: Powerup.Type = Powerup.Type.MAIN
 
 
 # FUNCTIONS
