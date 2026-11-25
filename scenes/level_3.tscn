@@ -4,9 +4,8 @@
 [ext_resource type="AudioStream" uid="uid://byvhcnn48swuc" path="res://assets/sounds/nebula_zone.ogg" id="2_uwxec"]
 
 [node name="Level3" unique_id=1258516462 instance=ExtResource("1_h23n6")]
-
-[node name="BackgroundRect" parent="." index="0" unique_id=689075847]
-visible = false
+level_name = "NEBULA"
+boss_name = "BELZEBUL"
 
 [node name="LoopAudioStreamPlayer" parent="." index="7" unique_id=510582355]
 stream = ExtResource("2_uwxec")

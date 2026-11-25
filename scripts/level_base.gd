@@ -9,6 +9,7 @@ signal boss_defeated
 signal drone_collected
 
 @export var level_name: String
+@export var boss_name: String
 @export var scroll_speed: float = 20.0
 
 @export var checkpoint_mid: float = 0.0
@@ -19,6 +20,9 @@ signal drone_collected
 @onready var starfield_boss = $StarfieldBoss
 @onready var starfield_escape = $StarfieldEscape
 @onready var hud_intro = $CanvasLayer/HudIntro
+@onready var hud_escape = $CanvasLayer/HudEscape
+@onready var boss_name_label = $CanvasLayer/HudEscape/BossNameLabel
+@onready var escape_blink_timer = $CanvasLayer/HudEscape/EscapeBlinkTimer
 @onready var level_label = $CanvasLayer/HudIntro/LevelLabel
 @onready var score_label = $CanvasLayer/HudIntro/ScoreLabel
 @onready var lives_label = $CanvasLayer/HudIntro/LivesLabel
@@ -40,12 +44,16 @@ func _ready() -> void:
 	level_label.text = level_name
 	score_label.text = GameState.get_score_str()
 	lives_label.text = str(" x ", GameState.lives)
+	boss_name_label.text = boss_name
+	hud_escape.hide()
 	
 	starfield_boss.modulate.a = 0.0
 	starfield_escape.modulate.a = 0.0
 	
 	if not should_show_hud:
 		hud_intro.hide()
+	else:
+		hud_intro.show()
 	
 	# Read from checkpoints
 	if GameState.checkpoint_boss_reached:
@@ -208,3 +216,12 @@ func _escape_level() -> void:
 	tween.set_parallel()
 	tween.tween_property(starfield_boss, "modulate:a", 0.0, fade_duration)
 	tween.tween_property(starfield_escape, "modulate:a", 1.0, fade_duration)
+	
+	escape_blink_timer.start()
+
+
+# SIGNAL CALLBACK FUNCTIONS
+
+func _on_escape_blink_timer_timeout() -> void:
+	escape_blink_timer.start()
+	hud_escape.visible = !hud_escape.visible

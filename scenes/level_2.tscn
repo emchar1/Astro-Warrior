@@ -9,9 +9,7 @@
 [node name="Level2" unique_id=1258516462 instance=ExtResource("1_3bmlt")]
 script = ExtResource("2_jm1iu")
 level_name = "ASTEROID"
-
-[node name="BackgroundRect" parent="." index="0" unique_id=689075847]
-visible = false
+boss_name = "NEBIROS"
 
 [node name="ComingSoon" type="Control" parent="CanvasLayer" parent_id_path=PackedInt32Array(1964925407) index="1" unique_id=1874684093]
 layout_mode = 3

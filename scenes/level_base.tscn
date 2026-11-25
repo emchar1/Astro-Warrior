@@ -210,6 +210,7 @@ region = Rect2(0, 0, 16, 16)
 script = ExtResource("1_548ah")
 
 [node name="BackgroundRect" type="TextureRect" parent="." unique_id=689075847]
+visible = false
 offset_top = -1728.0
 offset_right = 256.0
 offset_bottom = 192.0
@@ -326,6 +327,49 @@ position = Vector2(13, 67)
 scale = Vector2(0.5, 0.5)
 texture = SubResource("AtlasTexture_2v7b3")
 
+[node name="HudEscape" type="Control" parent="CanvasLayer" unique_id=542339623]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SurelyLabel" type="Label" parent="CanvasLayer/HudEscape" unique_id=460962230]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 10.0
+theme_override_colors/font_outline_color = Color(0, 0, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_bkdr1")
+theme_override_font_sizes/font_size = 7
+text = "SURELY
+REVIVE"
+horizontal_alignment = 1
+
+[node name="BossNameLabel" type="Label" parent="CanvasLayer/HudEscape" unique_id=1205814653]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 64.0
+offset_bottom = 36.0
+theme_override_colors/font_outline_color = Color(0, 0, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_bkdr1")
+theme_override_font_sizes/font_size = 7
+text = "BOSS NAME"
+horizontal_alignment = 1
+
+[node name="EscapeBlinkTimer" type="Timer" parent="CanvasLayer/HudEscape" unique_id=253040880]
+wait_time = 0.2
+one_shot = true
+
 [node name="IntroAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=663636324]
 bus = &"Music"
 
@@ -335,3 +379,5 @@ bus = &"Music"
 [node name="EscapeAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1104570751]
 stream = ExtResource("7_8n3nq")
 bus = &"Music"
+
+[connection signal="timeout" from="CanvasLayer/HudEscape/EscapeBlinkTimer" to="." method="_on_escape_blink_timer_timeout"]

@@ -7,12 +7,10 @@
 [node name="Level1" unique_id=1258516462 instance=ExtResource("1_014kd")]
 script = ExtResource("2_bswci")
 level_name = "GALAXY"
+boss_name = "ZANONI"
 checkpoint_mid = 1200.0
 checkpoint_boss = 3080.0
 boss_fight = 3590.0
-
-[node name="BackgroundRect" parent="." index="0" unique_id=689075847]
-visible = false
 
 [node name="Starfield" parent="." index="1" unique_id=40263792]
 height = 3450.0

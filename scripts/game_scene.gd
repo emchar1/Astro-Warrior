@@ -23,6 +23,7 @@ const LEVEL3_SCENE = preload("res://scenes/level_3.tscn")
 @onready var game_over_score_label = $GameOverHud/Control/ScoreLabel
 @onready var boss_warning_hud = $BossWarningHud
 @onready var warning_label = $BossWarningHud/Control/WarningLabel
+@onready var boss_name_label = $BossWarningHud/Control/BossLabel
 @onready var blink_timer = $BossWarningHud/BlinkTimer
 
 # Sound Properties
@@ -48,6 +49,7 @@ func _ready() -> void:
 	camera_base_offset = camera.offset
 	level.setup(player, powerup_manager)
 	player.setup(powerup_manager)
+	boss_name_label.text = "DESTROY\n" + level.boss_name
 	
 	await get_tree().create_timer(3.0).timeout
 	
