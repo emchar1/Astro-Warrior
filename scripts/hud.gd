@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var vbox = $VBoxContainer
 @onready var score_label = $VBoxContainer/ScoreLabel
 @onready var lives_label = $VBoxContainer/LivesLabel
+@onready var sprite = $VBoxContainer/Sprite2D
 @onready var debug_label = $VBoxContainer/DebugLabel
 @onready var fade_rect = $FadeRect
 
@@ -53,3 +54,13 @@ func remove_fade(duration: float) -> void:
 
 func hide_hud() -> void:
 	vbox.hide()
+
+
+func change_icon(powerup_type: Powerup.Type) -> void:
+	match powerup_type:
+		Powerup.Type.MAIN:
+			sprite.texture.region.position.x = 0.0
+		Powerup.Type.TRIPLE:
+			sprite.texture.region.position.x = 17.0
+		Powerup.Type.LASER:
+			sprite.texture.region.position.x = 34.0

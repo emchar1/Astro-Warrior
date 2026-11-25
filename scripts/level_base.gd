@@ -6,7 +6,7 @@ class_name LevelBase
 @warning_ignore("unused_signal") signal boss_triggered
 signal did_request_screen_shake(shake_amount: float)
 signal boss_defeated
-signal drone_collected
+signal powerup_collected(type: Powerup.Type)
 
 @export var level_name: String
 @export var boss_name: String
@@ -20,9 +20,11 @@ signal drone_collected
 @onready var starfield_boss = $StarfieldBoss
 @onready var starfield_escape = $StarfieldEscape
 @onready var hud_intro = $CanvasLayer/HudIntro
+@onready var hud_sprite = $CanvasLayer/HudIntro/Sprite2D
 @onready var hud_escape = $CanvasLayer/HudEscape
 @onready var boss_name_label = $CanvasLayer/HudEscape/BossNameLabel
 @onready var escape_blink_timer = $CanvasLayer/HudEscape/EscapeBlinkTimer
+
 @onready var level_label = $CanvasLayer/HudIntro/LevelLabel
 @onready var score_label = $CanvasLayer/HudIntro/ScoreLabel
 @onready var lives_label = $CanvasLayer/HudIntro/LivesLabel
@@ -92,6 +94,14 @@ func setup(_player: Player, _powerup_manager: PowerupManager) -> void:
 	player = _player
 	powerup_manager = _powerup_manager
 	powerup_manager.powerup_did_earn.connect(_spawn_powerup)
+	
+	match powerup_manager.bullet_type:
+		Powerup.Type.MAIN:
+			hud_sprite.texture.region.position.x = 0.0
+		Powerup.Type.TRIPLE:
+			hud_sprite.texture.region.position.x = 17.0
+		Powerup.Type.LASER:
+			hud_sprite.texture.region.position.x = 34.0
 
 
 func _play_bgm_loop() -> void:
@@ -120,7 +130,7 @@ func stop_scrolling() -> void:
 
 func _spawn_powerup(type: Powerup.Type) -> void:
 	var powerup = PowerupManager.POWERUP_SCENE.instantiate() as Powerup
-	powerup.did_collect_drone.connect(drone_collected.emit)
+	powerup.did_collect_powerup.connect(powerup_collected.emit)
 	powerup.powerup_manager = powerup_manager
 	powerup.type = type
 	GameState.call_deferred("add_child_to_game_scene", powerup, "Extras")

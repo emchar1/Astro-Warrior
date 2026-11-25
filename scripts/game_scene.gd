@@ -42,7 +42,7 @@ var shake_amount := 0.0
 func _ready() -> void:
 	level.boss_triggered.connect(approach_boss)
 	level.did_request_screen_shake.connect(start_screen_shake)
-	level.drone_collected.connect(collect_drone)
+	level.powerup_collected.connect(collect_powerup)
 	level.boss_defeated.connect(did_defeat_boss)
 	player.did_die.connect(player_did_die)
 	
@@ -50,6 +50,7 @@ func _ready() -> void:
 	level.setup(player, powerup_manager)
 	player.setup(powerup_manager)
 	boss_name_label.text = "DESTROY\n" + level.boss_name
+	hud.change_icon(powerup_manager.bullet_type)
 	
 	await get_tree().create_timer(3.0).timeout
 	
@@ -203,11 +204,15 @@ func _fade_out_music(stream_player: AudioStreamPlayer, duration: float) -> void:
 		stream_player.stop()
 
 
-func collect_drone() -> void:
-	if not drone1.is_unlocked:
-		drone1.unlock(Player.TRAIL_LENGTH)
-	elif not drone2.is_unlocked:
-		drone2.unlock(Player.TRAIL_LENGTH * 2)
+func collect_powerup(type: Powerup.Type) -> void:
+	match type:
+		Powerup.Type.MAIN, Powerup.Type.TRIPLE, Powerup.Type.LASER:
+			hud.change_icon(type)
+		Powerup.Type.DRONE:
+			if not drone1.is_unlocked:
+				drone1.unlock(Player.TRAIL_LENGTH)
+			elif not drone2.is_unlocked:
+				drone2.unlock(Player.TRAIL_LENGTH * 2)
 
 
 func _on_blink_timer_timeout() -> void:

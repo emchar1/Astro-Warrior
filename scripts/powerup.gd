@@ -3,7 +3,7 @@ class_name Powerup
 
 # PROPERTIES
 
-signal did_collect_drone
+signal did_collect_powerup(type: Powerup.Type)
 
 enum Type {
 	MAIN, TRIPLE, LASER, # Bullet Types
@@ -97,6 +97,7 @@ func _on_body_entered(body: Node2D) -> void:
 			return
 		
 		powerup_manager.collect_powerup(type)
+		did_collect_powerup.emit(type)
 		
 		match type:
 			Powerup.Type.TRIPLE, Powerup.Type.LASER:
@@ -106,7 +107,6 @@ func _on_body_entered(body: Node2D) -> void:
 				player.increase_speed()
 				show_status("SPEED UP!")
 			Powerup.Type.DRONE:
-				did_collect_drone.emit()
 				show_status("+DRONE!")
 		
 		audio_stream.play()
