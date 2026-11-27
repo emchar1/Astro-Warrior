@@ -37,6 +37,7 @@ script = ExtResource("4_rurhu")
 metadata/_custom_type_script = "uid://dwdmflsdec5u2"
 
 [node name="Hud" parent="." unique_id=1949064889 instance=ExtResource("7_kk2rg")]
+visible = false
 
 [node name="GameOverHud" type="CanvasLayer" parent="." unique_id=1540839239]
 visible = false

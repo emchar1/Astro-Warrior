@@ -85,13 +85,12 @@ func setup_level() -> void:
 	camera_base_offset = camera.offset
 	level.setup(player, powerup_manager)
 	boss_name_label.text = "DESTROY\n" + level.boss_name
-	hud.hide_hud()
 	hud.change_icon(powerup_manager.bullet_type)
 	
 	await get_tree().create_timer(3.0).timeout
 	
 	if is_instance_valid(self):
-		hud.show_hud()
+		hud.show()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -143,7 +142,7 @@ func _play_game_over() -> void:
 	level.stop_scrolling()
 	
 	game_over_hud.show()
-	hud.hide_hud()
+	hud.hide()
 	enemies.hide()
 	extras.hide()
 	
@@ -211,7 +210,7 @@ func next_level(scene: PackedScene, show_hud: bool) -> void:
 	
 	# Cleanup for Next Level
 	stop_screen_shake()
-	hud.hide_hud()
+	hud.hide()
 	hud.remove_fade(0.0)
 	
 	# Setup for Next Level

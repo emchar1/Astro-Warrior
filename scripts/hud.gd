@@ -52,14 +52,6 @@ func remove_fade(duration: float) -> void:
 	await fade_to(Color(0, 0, 0, 0), duration)
 
 
-func hide_hud() -> void:
-	vbox.hide()
-
-
-func show_hud() -> void:
-	vbox.show()
-
-
 func change_icon(powerup_type: Powerup.Type) -> void:
 	match powerup_type:
 		Powerup.Type.MAIN:
