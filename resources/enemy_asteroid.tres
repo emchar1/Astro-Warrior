@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyConfig" format=3 uid="uid://dlry38hwms4xv"]
+
+[ext_resource type="Script" uid="uid://d3vykss4k8ng6" path="res://resources/enemy_config.gd" id="1_qt75u"]
+
+[resource]
+script = ExtResource("1_qt75u")
+type = 20
+speed = 200.0
+score = 100
+metadata/_custom_type_script = "uid://d3vykss4k8ng6"

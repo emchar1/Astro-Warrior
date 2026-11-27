@@ -4,17 +4,24 @@ class_name EnemyConfig
 # PROPERTIES
 
 enum Type { 
+	# LEVEL 1 ENEMIES
 	FORM_A, FORM_AR, FORM_B, FORM_BR, FORM_C, FORM_CR, # Glider
 	FORM_D, FORM_D2, FORM_D8, FORM_D8R, # Pink Ball
 	FORM_E, FORM_E2, FORM_E3, # Cross
 	FORM_F, FORM_FR, FORM_F2, FORM_F2R, # Blue Ball
 	FORM_G, FORM_GR, # Tie Fighter
-	FORM_H # Pinwheel
+	FORM_H, # Pinwheel
+	
+	# LEVEL 2 ENEMIES
+	FORM_I # Asteroid
 }
 
 enum TypeReadable {
 	# Level 1
-	GLIDER, PINK_BALL, CROSS, BLUE_BALL, TIE_FIGHTER, PINWHEEL
+	GLIDER, PINK_BALL, CROSS, BLUE_BALL, TIE_FIGHTER, PINWHEEL,
+	
+	# LEVEL 2
+	ASTEROID
 }
 
 @export var type: Type
@@ -42,6 +49,8 @@ static func get_type_readable(_type: Type) -> TypeReadable:
 			type_readable = TypeReadable.TIE_FIGHTER
 		Type.FORM_H:
 			type_readable = TypeReadable.PINWHEEL
+		Type.FORM_I:
+			type_readable = TypeReadable.ASTEROID
 	
 	return type_readable
 
@@ -72,5 +81,7 @@ static func get_anim_name(_type: Type) -> String:
 			anim_name = "form_g"
 		Type.FORM_H:
 			anim_name = "form_h"
+		Type.FORM_I:
+			anim_name = "form_i"
 	
 	return anim_name
