@@ -7,9 +7,6 @@ enum MoveType {
 	DESCEND, RETREAT, ATTACK
 }
 
-const SCENE = preload("res://enemy/enemy_tie_fighter.tscn")
-const CONFIG = preload("res://resources/enemy_tie_fighter.tres")
-
 var move_type: MoveType = MoveType.DESCEND
 var clone_spacing: float = 0.5
 var attack_speed: float = 2.0
@@ -76,7 +73,7 @@ func _move(_delta: float) -> void:
 
 func _spawn_clones() -> void:
 	for i in range(clones_count):
-		var clone = SCENE.instantiate() as EnemyTieFighter
+		var clone = scene.instantiate() as EnemyTieFighter
 		clone.is_leader = false
 		clone.lr_margin = lr_margin
 		clone.player = player

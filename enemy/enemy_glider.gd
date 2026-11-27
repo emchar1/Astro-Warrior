@@ -3,9 +3,6 @@ class_name EnemyGlider
 
 # PROPERTIES
 
-const SCENE = preload("res://enemy/enemy_glider.tscn")
-const CONFIG = preload("res://resources/enemy_glider.tres")
-
 var did_nullify_cascade: bool = false
 var elapsed_time: float = 0.0
 var clone_spacing: float = 0.2
@@ -84,7 +81,7 @@ func _move(delta: float) -> void:
 func _spawn_gliders(_initial_position: Vector2) -> void:
 	# Set up gliders
 	for i in range(clones_count):
-		var clone = SCENE.instantiate() as EnemyGlider
+		var clone = scene.instantiate() as EnemyGlider
 		clone.is_leader = false
 		clone.did_die.connect(_on_clone_died)
 		

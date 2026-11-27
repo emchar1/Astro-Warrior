@@ -3,9 +3,6 @@ class_name EnemyPinkBall
 
 # PROPERTIES
 
-const SCENE = preload("res://enemy/enemy_pink_ball.tscn")
-const CONFIG = preload("res://resources/enemy_pink_ball.tres")
-
 var clone_spacing: float = 30.0
 var rand_speed: float = randf_range(0.0, 30.0)
 
@@ -53,7 +50,7 @@ func _spawn_clones() -> void:
 	for i in range(clones_count):
 		var x_offset := 1.0
 		var y_offset := 0.0
-		var clone = SCENE.instantiate() as EnemyPinkBall
+		var clone = scene.instantiate() as EnemyPinkBall
 		clone.is_leader = false
 		
 		GameState.add_child_to_game_scene(clone, "Enemies")

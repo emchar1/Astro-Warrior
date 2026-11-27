@@ -11,9 +11,6 @@ enum Direction {
 	CLOCKWISE, COUNTERCLOCKWISE
 }
 
-const SCENE = preload("res://enemy/enemy_blue_ball.tscn")
-const CONFIG = preload("res://resources/enemy_blue_ball.tres")
-
 var move_type: MoveType = MoveType.DESCEND
 var rotation_dir: Direction
 var clone_spacing: float = 30.0
@@ -88,7 +85,7 @@ func _move(delta: float) -> void:
 
 func _spawn_clones() -> void:
 	for i in range(clones_count):
-		var clone = SCENE.instantiate() as EnemyBlueBall
+		var clone = scene.instantiate() as EnemyBlueBall
 		clone.is_leader = false
 		
 		GameState.add_child_to_game_scene(clone, "Enemies")
