@@ -211,8 +211,10 @@ func collect_powerup(type: Powerup.Type) -> void:
 		Powerup.Type.DRONE:
 			if not drone1.is_unlocked:
 				drone1.unlock(Player.TRAIL_LENGTH)
+				powerup_manager.drone_count += 1
 			elif not drone2.is_unlocked:
 				drone2.unlock(Player.TRAIL_LENGTH * 2)
+				powerup_manager.drone_count += 1
 
 
 func _on_blink_timer_timeout() -> void:

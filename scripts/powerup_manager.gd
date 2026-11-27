@@ -9,6 +9,7 @@ const THRESHOLD = 12
 signal powerup_did_earn(type: Powerup.Type)
 
 @export var bullet_type: Powerup.Type = Powerup.Type.MAIN
+@export_range(0, 2) var drone_count: int = 0
 
 
 # FUNCTIONS

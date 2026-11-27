@@ -41,11 +41,13 @@ func _physics_process(_delta: float) -> void:
 
 
 func unlock(_trail_delay: int) -> void:
+	var starting_distance := float(_trail_delay) / float(Player.TRAIL_LENGTH)
+	
 	is_unlocked = true
 	trail_delay = _trail_delay
 	
 	if is_instance_valid(player):
-		position = player.position + Vector2(20.0, 0.0)
+		position = player.position + Vector2(20.0 * starting_distance, 0.0)
 	
 	show()
 
