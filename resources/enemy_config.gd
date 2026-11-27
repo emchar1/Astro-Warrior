@@ -13,7 +13,8 @@ enum Type {
 	FORM_H, # Pinwheel
 	
 	# LEVEL 2 ENEMIES
-	FORM_I # Asteroid
+	FORM_I, # Asteroid
+	FORM_J # Icicles
 }
 
 enum TypeReadable {
@@ -21,7 +22,7 @@ enum TypeReadable {
 	GLIDER, PINK_BALL, CROSS, BLUE_BALL, TIE_FIGHTER, PINWHEEL,
 	
 	# LEVEL 2
-	ASTEROID
+	ASTEROID, ICICLES
 }
 
 @export var type: Type
@@ -51,6 +52,8 @@ static func get_type_readable(_type: Type) -> TypeReadable:
 			type_readable = TypeReadable.PINWHEEL
 		Type.FORM_I:
 			type_readable = TypeReadable.ASTEROID
+		Type.FORM_J:
+			type_readable = TypeReadable.ICICLES
 	
 	return type_readable
 
@@ -83,5 +86,7 @@ static func get_anim_name(_type: Type) -> String:
 			anim_name = "form_h"
 		Type.FORM_I:
 			anim_name = "form_i"
+		Type.FORM_J:
+			anim_name = "form_j"
 	
 	return anim_name

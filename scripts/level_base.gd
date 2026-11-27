@@ -164,6 +164,8 @@ func _spawn_enemy_helper(type: EnemyConfig.Type, pos: Vector2) -> void:
 			enemy_class = EnemyPinwheel.new()
 		EnemyConfig.TypeReadable.ASTEROID:
 			enemy_class = EnemyAsteroid.new()
+		EnemyConfig.TypeReadable.ICICLES:
+			enemy_class = EnemyIcicles.new()
 		_:
 			print("Missing type in LevelBase._spawn_enemy_helper(): ", type)
 			return
