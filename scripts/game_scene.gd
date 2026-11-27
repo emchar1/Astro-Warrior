@@ -6,13 +6,12 @@ class_name GameScene
 const TITLE_SCENE = preload("res://scenes/title.tscn")
 const LEVEL2_SCENE = preload("res://scenes/level_2.tscn")
 const LEVEL3_SCENE = preload("res://scenes/level_3.tscn")
+const PLAYER_SCENE = preload("res://scenes/player.tscn")
+const DRONE_SCENE = preload("res://scenes/drone.tscn")
 
 # Level Properties
 @onready var camera = $Camera2D
 @onready var level = $Level1
-@onready var player = $Player
-@onready var drone1 = $Drone
-@onready var drone2 = $Drone2
 @onready var enemies = $Enemies
 @onready var extras = $Extras
 @onready var powerup_manager = %PowerupManager
@@ -35,27 +34,64 @@ const LEVEL3_SCENE = preload("res://scenes/level_3.tscn")
 var camera_base_offset: Vector2
 var shake_amount := 0.0
 
+var player: Player
+var drone1: Drone
+var drone2: Drone
+
 
 # FUNCTIONS
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	setup_player()
+	setup_level()
+
+
+func setup_player() -> void:
+	player = PLAYER_SCENE.instantiate()
+	drone1 = DRONE_SCENE.instantiate()
+	drone2 = DRONE_SCENE.instantiate()
+	
+	drone1.player = player
+	drone2.player = player
+	
+	add_child(player)
+	add_child(drone1)
+	add_child(drone2)
+	
+	player.did_die.connect(player_did_die)
+	player.setup(powerup_manager)
+	player.position = Vector2(
+		GameState.screen_size.x / 2, 
+		GameState.screen_size.y / 1.25
+	)
+	
+	if powerup_manager.drone_count == 1:
+		if not drone1.is_unlocked:
+			drone1.unlock(Player.TRAIL_LENGTH)
+	elif powerup_manager.drone_count == 2:
+		if not drone1.is_unlocked:
+			drone1.unlock(Player.TRAIL_LENGTH)
+		if not drone2.is_unlocked:
+			drone2.unlock(Player.TRAIL_LENGTH * 2)
+
+
+func setup_level() -> void:
 	level.boss_triggered.connect(approach_boss)
 	level.did_request_screen_shake.connect(start_screen_shake)
 	level.powerup_collected.connect(collect_powerup)
 	level.boss_defeated.connect(did_defeat_boss)
-	player.did_die.connect(player_did_die)
 	
 	camera_base_offset = camera.offset
 	level.setup(player, powerup_manager)
-	player.setup(powerup_manager)
 	boss_name_label.text = "DESTROY\n" + level.boss_name
+	hud.hide_hud()
 	hud.change_icon(powerup_manager.bullet_type)
 	
 	await get_tree().create_timer(3.0).timeout
 	
 	if is_instance_valid(self):
-		hud.show()
+		hud.show_hud()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -107,7 +143,7 @@ func _play_game_over() -> void:
 	level.stop_scrolling()
 	
 	game_over_hud.show()
-	hud.hide()
+	hud.hide_hud()
 	enemies.hide()
 	extras.hide()
 	
@@ -161,7 +197,7 @@ func did_defeat_boss() -> void:
 		await hud.fade_to_white(2.0)
 		
 		if is_instance_valid(self):
-			next_level(LEVEL2_SCENE, false)
+			next_level(LEVEL2_SCENE, true)
 
 
 func next_level(scene: PackedScene, show_hud: bool) -> void:
@@ -170,10 +206,6 @@ func next_level(scene: PackedScene, show_hud: bool) -> void:
 		level.queue_free()
 	
 	level = scene.instantiate()
-	
-	if scene == LEVEL2_SCENE:
-		level.credits_did_finish.connect(credits_finish_to_title)
-	
 	level.should_show_hud = show_hud
 	add_child(level)
 	
@@ -181,17 +213,10 @@ func next_level(scene: PackedScene, show_hud: bool) -> void:
 	stop_screen_shake()
 	hud.hide_hud()
 	hud.remove_fade(0.0)
-
-
-func credits_finish_to_title() -> void:
-	if is_instance_valid(level):
-		var fade_duration := 3.0
-		
-		_fade_out_music(level.intro_audio_stream, fade_duration * 2.0)
-		_fade_out_music(level.loop_audio_stream, fade_duration * 2.0)
-		await level.fade_to_black(fade_duration)
-		
-		_return_to_title()
+	
+	# Setup for Next Level
+	setup_player()
+	setup_level()
 
 
 func _fade_out_music(stream_player: AudioStreamPlayer, duration: float) -> void:

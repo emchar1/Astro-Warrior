@@ -15,8 +15,6 @@ const TRAIL_LENGTH = 15
 const BULLET_SCENE = preload("res://scenes/bullet.tscn")
 const EXPLOSION_SCENE = preload("res://scenes/explosion.tscn")
 
-@export var speed: float = 80.0
-
 @onready var sprite = $Sprite2D
 @onready var hurtbox = $Hurtbox
 @onready var shoot_timer = $ShootTimer
@@ -74,7 +72,7 @@ func update_weapon() -> void:
 
 
 func increase_speed() -> void:
-	speed += 30.0
+	GameState.increase_player_speed(30.0)
 
 
 func escape() -> void:
@@ -143,7 +141,7 @@ func _read_movement() -> void:
 		return
 	
 	# Input movement
-	velocity = move_dir * speed
+	velocity = move_dir * GameState.player_speed
 	
 	if position.x <= SPRITE_LEN and velocity.x < 0:
 		velocity.x = 0

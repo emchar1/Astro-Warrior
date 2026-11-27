@@ -34,7 +34,7 @@ func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(player):
 		return
 	
-	speed = player.speed
+	speed = GameState.player_speed
 	
 	if player.position_history.size() >= trail_delay:
 		position = position.lerp(player.position_history[trail_delay - 1], 0.3)

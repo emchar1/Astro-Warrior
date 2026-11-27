@@ -14,6 +14,7 @@ var screen_size: Vector2
 var high_score: int = 0
 var score: int = 0
 var lives: int = STARTING_LIVES
+var player_speed: float = 80.0
 var powerup_count: int = 0
 
 var checkpoint_mid_reached: bool = false
@@ -85,6 +86,10 @@ func _reward_lives(score_to_add: int) -> void:
 func update_lives(lives_to_add: int) -> void:
 	lives += lives_to_add
 	did_update_lives.emit(lives)
+
+
+func increase_player_speed(amount: float) -> void:
+	player_speed += amount
 
 
 func reset_all() -> void:
