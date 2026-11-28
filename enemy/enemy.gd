@@ -16,6 +16,7 @@ var config: EnemyConfig
 var enemy_config: EnemyConfig
 var die_scale: Vector2 = Vector2.ONE
 var is_dead: bool = false
+var should_explode: bool = true
 var player: Player
 
 # Clone Properties
@@ -66,9 +67,10 @@ func _die() -> void:
 	GameState.update_score(enemy_config.score)
 	
 	# Add explosion
-	var explosion = EXPLOSION_SCENE.instantiate() as Explosion
-	GameState.add_child_to_game_scene(explosion, "Extras")
-	explosion.activate(position, die_scale)
+	if should_explode:
+		var explosion = EXPLOSION_SCENE.instantiate() as Explosion
+		GameState.add_child_to_game_scene(explosion, "Extras")
+		explosion.activate(position, die_scale)
 
 
 # SIGNAL FUNCTIONS
